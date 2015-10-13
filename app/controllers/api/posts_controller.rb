@@ -17,7 +17,7 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.save
+    if @post.update(post_params)
       render :show
     else
       render json: @post.errors.full_messages, status: 422
@@ -31,12 +31,16 @@ class Api::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    render json: @post.errors.full_messages, status: 422 unless @post.destroy
+    if @post.destroy
+      render json: { message: "Successfully deleted post." }
+    else
+      render json: @post.errors.full_messages, status: 422
+    end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:media_url, :user_id)
+    params.require(:post).permit(:media_url, :user_id, :caption)
   end
 end
