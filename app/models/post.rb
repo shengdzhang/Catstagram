@@ -11,4 +11,7 @@
 #
 
 class Post < ActiveRecord::Base
+  validates :user_id, :media_url, presence: true
+
+  belongs_to :user
 end

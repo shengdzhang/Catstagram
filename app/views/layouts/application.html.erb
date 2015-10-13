@@ -17,7 +17,8 @@
 <% end %>
 
 <% if current_user %>
-  <%= link_to "SIGN OUT", session_url, method: :delete %>
+  Welcome, <%= current_user.username %><br>
+  <%= link_to "Log out", session_url, method: :delete %>
 <% end %>
 
 <%= yield %>
