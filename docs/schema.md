@@ -15,7 +15,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 media_url   | string    | not null
-caption     | text      | not null
+caption     | text      | 
 user_id     | integer   | not null, foreign key (references users), indexed
 
 ## relationships
