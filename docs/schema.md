@@ -22,7 +22,7 @@ user_id     | integer   | not null, foreign key (references users), indexed
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-follower_id | integer   | not null, foreign key (references users), indexed
+follower_id | integer   | not null, foreign key (references users), indexed, unique [:following_id]
 following_id| integer   | not null, foreign key (references users), indexed
 
 ## tags
@@ -35,7 +35,6 @@ name        | string    | not null
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-name        | string    | not null
 post_id     | integer   | not null, foreign key (references posts), indexed, unique [tag_id]
 tag_id      | integer   | not null, foreign key (references tags), indexed
 
