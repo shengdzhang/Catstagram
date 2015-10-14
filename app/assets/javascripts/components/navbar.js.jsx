@@ -21,6 +21,17 @@ var Navbar = React.createClass({
             </form>
             <div className="col-xs-1" />
             <ul className="nav navbar-nav navbar-right">
+              <li className="dropdown" role="presentation">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                   role="button" aria-haspopup="true" aria-expanded="false">
+                   Activity <span className="badge">3</span>
+                </a>
+                <ul className="dropdown-menu">
+                  <li><a href="#">Notification1</a></li>
+                  <li><a href="#">Notification2</a></li>
+                  <li><a href="#">Notification3</a></li>
+                </ul>
+              </li>
               <li><a href="#" className="glyphicon glyphicon-camera"></a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown"
