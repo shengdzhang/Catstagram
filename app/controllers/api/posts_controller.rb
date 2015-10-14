@@ -1,7 +1,10 @@
+require 'byebug'
+
 class Api::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.media_url = Cloudinary::Uploader.upload(@post.media_url)["secure_url"]
 
     if @post.save
       render :show

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: pixor
+  api_key: '722574199445564'
+  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: pixor
+  api_key: '722574199445564'
+  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: pixor
+  api_key: '722574199445564'
+  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  enhance_image_tag: true
+  static_image_support: false

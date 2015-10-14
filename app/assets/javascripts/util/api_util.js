@@ -7,6 +7,8 @@ var ApiUtil = {
       dataType: 'json',
       success: function (post) {
         debugger;
+        PostActions.receiveSinglePost(post);
+        window.location.href = "/";
       }
     });
   },

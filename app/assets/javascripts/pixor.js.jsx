@@ -9,6 +9,7 @@ $(function () {
     <Router>
       <Route path="/" component={App}>
         <IndexRoute component={FeedIndex} />
+        <Route path="posts/new" component={FeedForm} />
       </Route>
     </Router>
   ), rootEl);

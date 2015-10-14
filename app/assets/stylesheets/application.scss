@@ -1,10 +1,25 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-  background-color: #eee;
-}
-
 .page-header, .jumbotron {
   text-align: center;
+}
+
+.panel-media {
+  width: 372.656px;
+  height: 372.656px;
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.panel-media img {
+  display: inline;
+  // width: 372.656px;
+  padding: 0px;
+  width: 100%;
+}
+
+a:hover {
+  text-decoration: none;
 }

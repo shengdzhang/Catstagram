@@ -1,7 +1,7 @@
 #Users
 garrett = User.create!(username: "garrett", password: "password")
 katie = User.create!(username: "katie", password: "password")
-markov = User.create!(username: "markoc", password: "password")
+markov = User.create!(username: "markov", password: "password")
 
 #Posts
 post1 = Post.create!(media_url: "http://vignette1.wikia.nocookie.net/princesstutu/images/3/3e/Troll_Face.png/revision/latest?cb=20140111014458", user_id: 1, caption: "They see me trollin")

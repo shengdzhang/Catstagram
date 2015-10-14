@@ -31,6 +31,8 @@ gem 'annotate'
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets'
 
+gem 'cloudinary'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -32,7 +32,7 @@ var Navbar = React.createClass({
                   <li><a href="#">Notification3</a></li>
                 </ul>
               </li>
-              <li><a href="#" className="glyphicon glyphicon-camera"></a></li>
+              <li><a href="#/posts/new" className="glyphicon glyphicon-camera"></a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown"
                    role="button" aria-haspopup="true" aria-expanded="false">
