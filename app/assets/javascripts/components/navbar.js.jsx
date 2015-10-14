@@ -5,10 +5,11 @@ var Navbar = React.createClass({
   render: function () {
     return (
       <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
+        <div className="container-fluid col-xs-offset-2 col-xs-8">
+          <div className="navbar-header col-xs-3">
             <a className="navbar-brand" href="#">Pixor</a>
           </div>
+          <div className="col-xs-1" />
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form className="navbar-form navbar-left" role="search">
               <div className="input-group">
@@ -18,6 +19,7 @@ var Navbar = React.createClass({
                 <input type="text" className="form-control" placeholder="Search" aria-describedby="basic-addon1" />
               </div>
             </form>
+            <div className="col-xs-1" />
             <ul className="nav navbar-nav navbar-right">
               <li><a href="#" className="glyphicon glyphicon-camera"></a></li>
               <li className="dropdown">

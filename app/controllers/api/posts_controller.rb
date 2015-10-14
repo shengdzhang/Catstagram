@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Api::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
@@ -11,7 +13,7 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(user_id: params[:user_id])
+    @posts = Post.includes(:user).where(user_id: params[:user_id]).order(created_at: :desc)
     render :index
   end
 
