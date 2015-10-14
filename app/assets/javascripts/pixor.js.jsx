@@ -7,7 +7,9 @@ $(function () {
 
   React.render((
     <Router>
-      <Route path="/" component={App} />
+      <Route path="/" component={App}>
+        <IndexRoute component={FeedIndex} />
+      </Route>
     </Router>
   ), rootEl);
 });

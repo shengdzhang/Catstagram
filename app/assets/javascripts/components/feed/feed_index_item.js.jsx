@@ -1,9 +1,7 @@
 var FeedIndexItem = React.createClass({
   render: function () {
     return (
-      <div>
-        
-      </div>
+      <li><img src={this.props.post.media_url} /></li>
     );
   }
 });

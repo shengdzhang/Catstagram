@@ -3,11 +3,6 @@ var App = React.createClass({
     return (
       <div>
         <Navbar />
-
-        <div className="pixor-root">
-
-        </div>
-
         { this.props.children }
       </div>
     );

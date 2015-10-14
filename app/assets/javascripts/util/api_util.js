@@ -16,7 +16,7 @@ var ApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (posts) {
-        debugger;
+        PostActions.receiveAllPostsForUser(posts);
       }
     });
   },

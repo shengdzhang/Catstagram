@@ -1,6 +1,6 @@
 var Navbar = React.createClass({
   logOut: function () {
-    SessionUtil.logOut();
+    ApiUtil.logOut();
   },
   render: function () {
     return (
