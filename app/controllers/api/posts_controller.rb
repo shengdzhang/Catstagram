@@ -1,6 +1,7 @@
 class Api::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     if @post.save
       render :show
@@ -10,7 +11,7 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(user_id: params[:user_id])
     render :index
   end
 
@@ -41,6 +42,6 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:media_url, :user_id, :caption)
+    params.require(:post).permit(:media_url, :caption)
   end
 end

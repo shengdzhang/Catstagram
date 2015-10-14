@@ -1,7 +1,7 @@
 var ApiUtil = {
   createPost: function (postParams) {
     $.ajax({
-      url: 'api/posts',
+      url: 'api/users/' + window.CURRENT_USER_ID + '/posts',
       type: 'POST',
       data: { post: postParams },
       dataType: 'json',
@@ -10,9 +10,19 @@ var ApiUtil = {
       }
     });
   },
-  fetchSinglePost: function (id) {
+  fetchAllPostsFromUser: function (userId) {
     $.ajax({
-      url: 'api/posts/' + id,
+      url: 'api/users/' + userId + '/posts',
+      type: 'GET',
+      dataType: 'json',
+      success: function (posts) {
+        debugger;
+      }
+    });
+  },
+  fetchSinglePost: function (postId) {
+    $.ajax({
+      url: 'api/posts/' + postId,
       type: 'GET',
       dataType: 'json',
       success: function (post) {
@@ -20,9 +30,9 @@ var ApiUtil = {
       }
     });
   },
-  deletePost: function (id) {
+  deletePost: function (postId) {
     $.ajax({
-      url: 'api/posts/' + id,
+      url: 'api/posts/' + postId,
       type: 'DELETE',
       dataType: 'json',
       success: function (message) {
@@ -30,14 +40,23 @@ var ApiUtil = {
       }
     });
   },
-  updatePost: function (id, postParams) {
+  updatePost: function (postId, postParams) {
     $.ajax({
-      url: 'api/posts/' + id,
+      url: 'api/posts/' + postId,
       type: 'PATCH',
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
         debugger;
+      }
+    });
+  },
+  logOut: function () {
+    $.ajax({
+      url: 'session',
+      type: 'DELETE',
+      success: function () {
+        window.location.href = "/";
       }
     });
   }
