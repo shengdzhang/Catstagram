@@ -32,9 +32,8 @@ var Navbar = React.createClass({
                     {window.CURRENT_USER_USERNAME} <span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a href="#">Item1</a></li>
-                  <li><a href="#">Item2</a></li>
-                  <li><a href="#">Item3</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Account Settings</a></li>
                   <li role="separator" className="divider"></li>
                   <li><a onClick={this.logOut}>Log out</a></li>
                 </ul>

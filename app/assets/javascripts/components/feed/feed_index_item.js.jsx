@@ -33,7 +33,7 @@ var FeedIndexItem = React.createClass({
             <span>
               {
                 this.state.editing ?
-                <form className="form-group" onSubmit={this.updatePost}>
+                <form className="form-group clearfix" onSubmit={this.updatePost}>
                   <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={this.props.post.caption}></textarea>
                   <button type="submit" className="btn-sm btn-primary form-control">Update</button>
                 </form> :
