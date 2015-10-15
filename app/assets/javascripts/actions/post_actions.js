@@ -7,7 +7,7 @@ var PostActions = {
   },
   receiveEditedPost: function (post) {
     AppDispatcher.dispatch({
-      actionType: PostConstants.EDITED_POST,
+      actionType: PostConstants.RECEIVED_EDITED_POST,
       post: post
     });
   }

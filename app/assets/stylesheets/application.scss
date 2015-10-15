@@ -1,36 +1,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-p {
+p, span {
   white-space: pre;
+}
+
+.feed-index {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.panel {
+  width: 100%;
+  margin-bottom: 40px;
 }
 
 .page-header, .jumbotron {
   text-align: center;
 }
 
-.panel {
-  margin-bottom: 40px;
-}
-
 .panel-body {
   padding: 0px;
   margin: 0px;
+  position: relative;
 }
 
 .comment-section {
   padding-left: 10px;
   padding-top: 5px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
-.panel-media {
-  width: 608px;
-  height: 608px;
-  margin: 0px;
-  padding: 0px;
-  min-height: 10em;
-  display: table-cell;
-  vertical-align: middle;
+.post-controls {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
 .panel-media img {
@@ -52,6 +58,11 @@ a:hover {
   margin-bottom: 80px;
 }
 
-.navbar-form .input {
-  width: 100%;
+.feed-item-caption {
+  width: 80%;
+  word-wrap: break-word;
+}
+
+nav .container-fluid {
+  max-width: 620px;
 }

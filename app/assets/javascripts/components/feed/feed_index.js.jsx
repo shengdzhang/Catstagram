@@ -11,7 +11,7 @@ var FeedIndex = React.createClass({
   },
   render: function () {
     return (
-      <div className="feed-index col-xs-offset-3 col-xs-6">
+      <div className="feed-index">
         <div className="feed-items">
           {
             this.state.posts.map(function (post) {

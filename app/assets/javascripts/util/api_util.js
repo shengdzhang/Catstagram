@@ -6,7 +6,6 @@ var ApiUtil = {
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
-        PostActions.editPost(post);
         window.location.href = "/";
       }
     });

@@ -28,7 +28,7 @@ var FeedIndexItem = React.createClass({
           <div className="panel-media">
             <img className="clearfix" src={this.props.post.media_url} />
           </div>
-          <div className="pull-left comment-section">
+          <div className="comment-section">
             <p className="pull-left"><b>{this.props.post.username}</b>: </p>
             <span>
               {
@@ -37,16 +37,23 @@ var FeedIndexItem = React.createClass({
                   <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={this.props.post.caption}></textarea>
                   <button type="submit" className="btn-sm btn-primary form-control">Update</button>
                 </form> :
-                this.props.post.caption
+                <div className="pull-left feed-item-caption" width="80%">
+                  {this.props.post.caption}
+                </div>
               }
             </span>
           </div>
-          <a onClick={this.deletePost.bind(null, this.props.post.id)}>
-            <span className="glyphicon glyphicon-trash pull-right"></span>
-          </a>
-          <a onClick={this.renderEditForm}>
-            <span className="glyphicon glyphicon-edit pull-right"></span>
-          </a>
+          {
+            this.props.post.user_id === window.CURRENT_USER_ID ?
+            <div className="post-controls pull-right">
+              <a onClick={this.deletePost.bind(null, this.props.post.id)}>
+                <span className="glyphicon glyphicon-trash pull-right"></span>
+              </a>
+              <a onClick={this.renderEditForm}>
+                <span className="glyphicon glyphicon-edit pull-right"></span>
+              </a>
+            </div> : ""
+          }
         </div>
       </div>
     );

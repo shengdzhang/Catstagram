@@ -37,7 +37,7 @@
         case PostConstants.RECEIVED_ALL_POSTS_FROM_USER:
           resetPosts(action.posts);
           break;
-        case PostConstants.EDITED_POST:
+        case PostConstants.RECEIVED_EDITED_POST:
           receiveEditedPost(action.post);
           break;
       }
