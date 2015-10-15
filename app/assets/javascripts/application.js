@@ -20,5 +20,6 @@
 //= require react
 //= require react_ujs
 //= require reactrouter.min
+//= require upload_widget
 //= require components
 //= require_tree .

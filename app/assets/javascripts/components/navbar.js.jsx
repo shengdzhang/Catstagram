@@ -22,7 +22,7 @@ var Navbar = React.createClass({
             <div className="col-xs-1" />
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown" role="presentation">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                <a className="dropdown-toggle" data-toggle="dropdown"
                    role="button" aria-haspopup="true" aria-expanded="false">
                    Activity <span className="badge">3</span>
                 </a>
@@ -32,9 +32,9 @@ var Navbar = React.createClass({
                   <li><a href="#">Notification3</a></li>
                 </ul>
               </li>
-              <li><a href="#/posts/new" className="glyphicon glyphicon-camera"></a></li>
+              <li><a href="#/posts/upload" className="glyphicon glyphicon-camera"></a></li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                <a className="dropdown-toggle" data-toggle="dropdown"
                    role="button" aria-haspopup="true" aria-expanded="false">
                     {window.CURRENT_USER_USERNAME} <span className="caret"></span>
                 </a>
@@ -43,7 +43,7 @@ var Navbar = React.createClass({
                   <li><a href="#">Item2</a></li>
                   <li><a href="#">Item3</a></li>
                   <li role="separator" className="divider"></li>
-                  <li><a href="#" onClick={this.logOut}>Log out</a></li>
+                  <li><a onClick={this.logOut}>Log out</a></li>
                 </ul>
               </li>
             </ul>

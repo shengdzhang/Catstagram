@@ -9,8 +9,7 @@ var FeedIndexItem = React.createClass({
           <div className="panel-media">
             <img className="clearfix" src={this.props.post.media_url} width="372.656px" />
           </div>
-          <br /><br />
-          <p>{this.props.post.username}: {this.props.post.caption}</p>
+          <p><b>{this.props.post.username}</b>: {this.props.post.caption}</p>
         </div>
       </div>
     );
