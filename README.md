@@ -53,17 +53,17 @@ point. This phase will also include a basic implementation of Bootstrap.
 
 [Details][phase-two]
 
-### Phase 3: Account Views, Search, and Follows (2 days)
+### Phase 3: Profile Views, Search, and Follows (2 days)
 
-Phase 3 adds user account views. An account view page should include
+Phase 3 adds user profile views. An profile view page should include
 the user's profile picture, biography, an option to edit profile information, a
 follow/unfollow button, and a grid/list of photos posted by that user. Users
 can search for other users by username within the `SearchIndex` component. This
 will require a SearchItemStore as well as a `SearchIndexItem` component. The
-user account view page will have its own components, including an `ProfileView`,
+user profile view page will have its own components, including a `ProfileView`,
 `ProfileInformation`, and `ProfileViewItem` component. In order to allow
 follows, there will need to be a join table in the database and a `FollowButton`
-component. Also, there must be an `ProfileEditForm` component for editing user
+component. Also, there must be a `ProfileEditForm` component for editing user
 profile information.
 
 [Details][phase-three]

@@ -1,4 +1,4 @@
-# Phase 3: Account Views, Search, and Follows (2 days)
+# Phase 3: Profile Views, Search, and Follows (2 days)
 
 ## Rails
 ### Models
@@ -12,11 +12,11 @@
 
 ## Flux
 ### Views (React Components)
-* AccountView
-  - AccountViewItem
-  - AccountInformation
+* ProfileView
+  - ProfileViewItem
+  - ProfileInformation
   - FollowButton
-* AccountEditForm
+* ProfileEditForm
 * SearchIndex
   - SearchIndexItem
 

@@ -12,11 +12,11 @@
 ## FeedForm
 ![feed-form]
 
-## AccountView / AccountViewItem / AccountInformation
-![account-view]
+## ProfileView / ProfileViewItem / ProfileInformation
+![profile-view]
 
-## AccountEditForm
-![account-edit-form]
+## ProfileEditForm
+![profile-edit-form]
 
 ## Component Heirarchy
 ![component-heirarchy]
@@ -25,6 +25,6 @@
 [new-session]: ./wireframes/SignIn.png
 [feed]: ./wireframes/Feed.png
 [feed-form]: ./wireframes/FeedForm.png
-[account-view]: ./wireframes/Profile.png
+[profile-view]: ./wireframes/Profile.png
 [component-heirarchy]: ./wireframes/ComponentHierarchy.png
-[account-edit-form]: ./wireframes/AccountEditForm.png
+[profile-edit-form]: ./wireframes/ProfileEditForm.png
