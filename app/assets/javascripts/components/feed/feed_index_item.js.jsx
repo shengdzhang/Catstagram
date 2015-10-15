@@ -28,14 +28,19 @@ var FeedIndexItem = React.createClass({
           <div className="panel-media">
             <img className="clearfix" src={this.props.post.media_url} />
           </div>
-          <p className="pull-left"><b>{this.props.post.username}</b>: {
-            this.state.editing ?
-            <form className="form-group" onSubmit={this.updatePost}>
-              <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={this.props.post.caption}></textarea>
-              <button type="submit" className="btn-sm btn-primary form-control">Update</button>
-            </form> :
-            this.props.post.caption
-          }</p>
+          <div className="pull-left comment-section">
+            <p className="pull-left"><b>{this.props.post.username}</b>: </p>
+            <span>
+              {
+                this.state.editing ?
+                <form className="form-group" onSubmit={this.updatePost}>
+                  <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={this.props.post.caption}></textarea>
+                  <button type="submit" className="btn-sm btn-primary form-control">Update</button>
+                </form> :
+                this.props.post.caption
+              }
+            </span>
+          </div>
           <a onClick={this.deletePost.bind(null, this.props.post.id)}>
             <span className="glyphicon glyphicon-trash pull-right"></span>
           </a>

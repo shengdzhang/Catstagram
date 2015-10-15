@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+p {
+  white-space: pre;
+}
+
 .page-header, .jumbotron {
   text-align: center;
 }
@@ -12,6 +16,11 @@
 .panel-body {
   padding: 0px;
   margin: 0px;
+}
+
+.comment-section {
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .panel-media {
