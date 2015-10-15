@@ -6,7 +6,7 @@ var ApiUtil = {
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
-        PostActions.receiveSinglePost(post);
+        PostActions.editPost(post);
         window.location.href = "/";
       }
     });
@@ -35,9 +35,8 @@ var ApiUtil = {
     $.ajax({
       url: 'api/posts/' + postId,
       type: 'DELETE',
-      dataType: 'json',
-      success: function (message) {
-        debugger;
+      success: function () {
+        window.location.href = "/";
       }
     });
   },
@@ -48,7 +47,7 @@ var ApiUtil = {
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
-        debugger;
+        PostActions.receiveEditedPost(post);
       }
     });
   },

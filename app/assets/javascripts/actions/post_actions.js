@@ -5,9 +5,9 @@ var PostActions = {
       posts: posts
     });
   },
-  receiveSinglePost: function (post) {
+  receiveEditedPost: function (post) {
     AppDispatcher.dispatch({
-      actionType: PostConstants.RECEIVED_SINGLE_POST,
+      actionType: PostConstants.EDITED_POST,
       post: post
     });
   }

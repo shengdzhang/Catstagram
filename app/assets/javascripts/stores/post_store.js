@@ -9,6 +9,16 @@
     PostStore.changed();
   }
 
+  function receiveEditedPost(post) {
+    _posts.forEach(function (p, index) {
+      if (p.id === post.id) {
+        _posts[index] = post;
+        return;
+      }
+    });
+    PostStore.changed();
+  }
+
   root.PostStore = $.extend({}, EventEmitter.prototype, {
     all: function () {
       return _posts.slice();
@@ -27,7 +37,10 @@
         case PostConstants.RECEIVED_ALL_POSTS_FROM_USER:
           resetPosts(action.posts);
           break;
+        case PostConstants.EDITED_POST:
+          receiveEditedPost(action.post);
+          break;
       }
-    })
+    }.bind(this))
   });
 }(this));
