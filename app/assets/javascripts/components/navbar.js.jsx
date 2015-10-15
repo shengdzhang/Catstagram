@@ -17,12 +17,16 @@ var Navbar = React.createClass({
               <li className="dropdown" role="presentation">
                 <a className="dropdown-toggle" data-toggle="dropdown"
                    role="button" aria-haspopup="true" aria-expanded="false">
-                   Activity <span className="badge">3</span>
+                   Activity <span className="badge">7</span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a href="#">Notification1</a></li>
-                  <li><a href="#">Notification2</a></li>
-                  <li><a href="#">Notification3</a></li>
+                  <li><a href="#">These</a></li>
+                  <li><a href="#">are</a></li>
+                  <li><a href="#">sample</a></li>
+                  <li><a href="#">notifications,</a></li>
+                  <li><a href="#">not</a></li>
+                  <li><a href="#">real</a></li>
+                  <li><a href="#">ones.</a></li>
                 </ul>
               </li>
               <li><a href="#/posts/upload" className="glyphicon glyphicon-camera"></a></li>
