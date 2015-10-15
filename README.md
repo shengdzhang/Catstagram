@@ -60,10 +60,10 @@ the user's profile picture, biography, an option to edit profile information, a
 follow/unfollow button, and a grid/list of photos posted by that user. Users
 can search for other users by username within the `SearchIndex` component. This
 will require a SearchItemStore as well as a `SearchIndexItem` component. The
-user account view page will have its own components, including an `AccountView`,
-`AccountInformation`, and `AccountViewItem` component. In order to allow
+user account view page will have its own components, including an `ProfileView`,
+`ProfileInformation`, and `ProfileViewItem` component. In order to allow
 follows, there will need to be a join table in the database and a `FollowButton`
-component. Also, there must be an `AccountEditForm` component for editing user
+component. Also, there must be an `ProfileEditForm` component for editing user
 profile information.
 
 [Details][phase-three]
