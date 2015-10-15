@@ -4,7 +4,7 @@ var Navbar = React.createClass({
   },
   render: function () {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid col-xs-offset-2 col-xs-8">
           <div className="navbar-header col-xs-3">
             <a className="navbar-brand" href="#">Pixor</a>
