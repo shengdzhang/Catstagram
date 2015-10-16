@@ -71,3 +71,30 @@ a:hover {
 nav .container-fluid {
   max-width: 620px;
 }
+
+.profile-items {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-view-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.profile-view-item {
+  width: 100%;
+  max-width: 280px;
+  padding: 0px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.flashes li {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  list-style: none;
+  text-align: center;
+}

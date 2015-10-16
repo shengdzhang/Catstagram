@@ -50,6 +50,26 @@ var ApiUtil = {
       }
     });
   },
+  fetchUser: function (userId) {
+    $.ajax({
+      url: 'api/users/' + userId,
+      type: 'GET',
+      dataType: 'json',
+      success: function (user) {
+        UserActions.receiveUser(user);
+      }
+    });
+  },
+  updateUser: function (userParams) {
+    $.ajax({
+      url: 'api/users/' + window.CURRENT_USER_ID,
+      type: 'PATCH',
+      data: { user: userParams },
+      success: function (user) {
+        UserActions.receiveUser(user);
+      }
+    });
+  },
   logOut: function () {
     $.ajax({
       url: 'session',

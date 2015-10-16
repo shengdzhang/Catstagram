@@ -6,6 +6,9 @@ var FeedIndex = React.createClass({
     PostStore.addChangeListener(this._onChange);
     ApiUtil.fetchAllPostsFromUser(window.CURRENT_USER_ID);
   },
+  componentWillUnmount: function () {
+    PostStore.removeChangeListener(this._onChange);
+  },
   _onChange: function () {
     this.setState({ posts: PostStore.all() });
   },

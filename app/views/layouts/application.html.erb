@@ -15,9 +15,9 @@
 <body>
 
 <% if flash['errors'] %>
-  <ul>
+  <ul class="flashes">
     <% flash['errors'].each do |error| %>
-      <li><%= error %></li>
+      <li class="alert alert-info"><%= error %></li>
     <% end %>
   </ul>
 <% end %>

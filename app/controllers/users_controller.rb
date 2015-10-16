@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_not_logged_in
+  before_action :require_not_logged_in, except: [:update]
 
   def new
     @user = User.new
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :biography, :profile_pic_url)
   end
 end

@@ -10,6 +10,8 @@ $(function () {
       <Route path="/" component={App}>
         <IndexRoute component={FeedIndex} />
         <Route path="posts/upload" component={UploadWidget} />
+        <Route path="users/:id" component={ProfileView} />
+        <Route path="settings" component={AccountSettings} />
       </Route>
     </Router>
   ), rootEl);
