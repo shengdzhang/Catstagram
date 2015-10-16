@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.username.downcase!
+    
     if @user.save
       log_in!(@user)
       redirect_to root_url
