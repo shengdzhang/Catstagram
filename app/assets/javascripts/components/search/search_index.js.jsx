@@ -15,11 +15,10 @@ var SearchIndex = React.createClass({
     return (
       <ul className="dropdown-menu search">
         <li>
-          <div className="input-group">
+          <div className="input-group search">
             <input className="form-control" type="text" placeholder="Search" onKeyUp={this.updateResults} />
           </div>
         </li>
-        <li role="separator" className="divider"></li>
         {
           this.state.results.map(function (result) {
             return <SearchIndexItem result={result} key={result.id} />

@@ -1,10 +1,15 @@
 #Users
-garrett = User.create!(username: "garrett", password: "password")
-katie = User.create!(username: "katie", password: "password")
-markov = User.create!(username: "markov", password: "password")
+User.create!(username: "garrett", password: "password", profile_pic_url: "http://s3-us-west-1.amazonaws.com/witty-avatars/default-avatar-4-l.jpg", biography: "Hey")
+
+50.times do |i|
+  username = Faker::Internet.user_name
+  password = "password"
+  profile_pic_url = Faker::Avatar.image
+  biography = Faker::Lorem.paragraph(3)
+  User.create!(username: username, password: password, profile_pic_url: profile_pic_url, biography: biography)
+end
 
 #Posts
-post1 = Post.create!(media_url: "http://vignette1.wikia.nocookie.net/princesstutu/images/3/3e/Troll_Face.png/revision/latest?cb=20140111014458", user_id: 1, caption: "They see me trollin")
-post2 = Post.create!(media_url: "http://assets.iamdisappoint.com/hashed_silo_content/silo_content/12338/resized/son_I_am_disappoint.jpg", user_id: 2, caption: "I am disappoint.")
-post3 = Post.create!(media_url: "https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg", user_id: 3, caption: "My mother")
-post4 = Post.create!(media_url: "http://vignette1.wikia.nocookie.net/princesstutu/images/3/3e/Troll_Face.png/revision/latest?cb=20140111014458", user_id: 1, caption: "Just trollin again")
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444929498/jshbfink34zb4sd1tyvc.gif", user_id: 1, caption: "Hehehe so oblivious")
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444929184/yh1fpamdk1xmrwcvppch.jpg", user_id: 1, caption: "Coooool")
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444867356/pnwpzlvzpvut2ieydmf4.jpg", user_id: 1, caption: "Nebula")

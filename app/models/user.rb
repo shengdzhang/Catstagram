@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   after_initialize :ensure_session_token
+  before_save :init
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username.downcase)
@@ -32,10 +33,6 @@ class User < ActiveRecord::Base
   def self.find_by_query(query)
     return [] if query.empty?
     User.where(["username LIKE ?", "%#{query}%"]).limit(10)
-  end
-
-  def ensure_session_token
-    self.session_token ||= generate_session_token
   end
 
   def generate_session_token
@@ -55,5 +52,16 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
+  private
+
+  def init
+    self.username.downcase!
+    self.profile_pic_url ||= "http://s3-us-west-1.amazonaws.com/witty-avatars/default-avatar-4-l.jpg"
+  end
+
+  def ensure_session_token
+    self.session_token ||= generate_session_token
   end
 end

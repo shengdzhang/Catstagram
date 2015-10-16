@@ -16,7 +16,7 @@ var ProfileInformation = React.createClass({
     return (
       <div>
         <div className="page-header">
-          <h1>{this.props.user.username}</h1>
+          <h1><img className="profile-pic" src={this.props.user.profile_pic_url} /><small>{this.props.user.username}</small></h1>
           <div className="profile-information">
             {
               this.state.editing ?
