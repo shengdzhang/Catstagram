@@ -15,7 +15,7 @@ var ProfileInformation = React.createClass({
   updateProfile: function (e) {
     e.preventDefault();
 
-    ApiUtil.updateUser({ biography: this.state.biography });
+    ApiUtil.updateUser({ biography: this.state.biography || this.props.user.biography });
     this.setState({ editing: false });
   },
   toggleFollow: function () {
@@ -29,13 +29,13 @@ var ProfileInformation = React.createClass({
       <div>
         <div className="page-header">
           {
-            !this.state.editing && this.props.user.id === window.CURRENT_USER_ID ?
-            <a onClick={this.editProfile}>Edit profile</a> :
-            (
-              this.state.following ?
-              <button className="btn btn-default" onClick={this.toggleFollow}>Unfollow</button> :
-              <button className="btn btn-primary" onClick={this.toggleFollow}>Follow</button>
-            )
+            this.props.user.id === window.CURRENT_USER_ID ?
+              (!this.state.editing ? <a onClick={this.editProfile}>Edit</a> : "") :
+              (
+                this.state.following ?
+                <button className="btn btn-default" onClick={this.toggleFollow}>Unfollow</button> :
+                <button className="btn btn-primary" onClick={this.toggleFollow}>Follow</button>
+              )
           }
           <h1><img className="profile-pic" src={this.props.user.profile_pic_url} /><small>{this.props.user.username}</small></h1>
           <div className="profile-information wrapword">

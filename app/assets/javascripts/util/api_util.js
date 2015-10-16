@@ -104,7 +104,7 @@ var ApiUtil = {
     var type = (following ? 'DELETE' : 'POST');
     var action = (following ? 'unfollow/' : 'follow/');
     var url = 'api/' + action + userId;
-    
+
     $.ajax({
       url: url,
       type: type,

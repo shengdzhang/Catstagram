@@ -63,12 +63,13 @@ p, span {
 }
 
 .panel-media img {
+  display: inline;
   padding: 0px;
   width: 100%;
 }
 
 .panel-media {
-  width: 600px;
+  width: 100%;
   height: 600px;
 }
 
