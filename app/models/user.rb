@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   def self.find_by_query(query)
     return [] if query.empty?
-    User.where(["username LIKE ?", "%#{query}%"])
+    User.where(["username LIKE ?", "%#{query}%"]).limit(10)
   end
 
   def ensure_session_token
