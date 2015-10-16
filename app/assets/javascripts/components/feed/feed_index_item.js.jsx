@@ -19,7 +19,7 @@ var FeedIndexItem = React.createClass({
   },
   render: function () {
     return (
-      <div className="panel panel-primary">
+      <div className="panel panel-primary effect8">
         <div className="panel-heading clearfix">
           <span className="pull-left">{this.props.post.username}</span>
           <span className="pull-right">{jQuery.timeago(this.props.post.created_at)}</span>
