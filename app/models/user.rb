@@ -17,7 +17,23 @@ class User < ActiveRecord::Base
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+
+  has_many :active_relationships,
+    class_name: "Relationship",
+    foreign_key: :follower_id,
+    primary_key: :id,
+    dependent: :destroy
+
+  has_many :passive_relationships,
+    class_name: "Relationship",
+    foreign_key: :following_id,
+    primary_key: :id,
+    dependent: :destroy
+
+  has_many :followees, through: :active_relationships
+
+  has_many :followers, through: :passive_relationships
 
   attr_reader :password
 
@@ -52,6 +68,24 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
+  def follow!(user)
+    self.active_relationships.create!(following_id: user.id)
+  end
+
+  def unfollow!(user)
+    self.active_relationships.find_by_following_id(user.id).destroy!
+  end
+
+  def following?(user)
+    self.followees.include?(user)
+  end
+
+  def user_feed
+    following_ids = Relationship.select(:following_id).where(follower_id: self.id).map(&:following_id)
+    following_ids << self.id
+    Post.where(:user_id => following_ids).order(created_at: :desc)
   end
 
   private

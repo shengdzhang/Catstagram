@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:user).where(user_id: params[:user_id]).order(created_at: :desc)
+    @posts = current_user.user_feed
 
     render :index
   end
