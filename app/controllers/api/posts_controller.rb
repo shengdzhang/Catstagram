@@ -36,7 +36,9 @@ class Api::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
 
-    if @post.destroy
+    if !authorize_user(@post.user)
+      render json: {}
+    elsif @post.destroy
       render json: {}
     else
       render json: @post.errors.full_messages, status: 422
