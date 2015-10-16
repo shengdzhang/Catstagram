@@ -4,14 +4,21 @@
 
   var _user = {};
   var _posts = [];
+  var _following = false;
 
   function resetUser(user) {
     _user = user;
+    _following = user.following;
     ProfileStore.changed();
   }
 
   function resetPosts(posts) {
     _posts = posts;
+    ProfileStore.changed();
+  }
+
+  function updateFollowStatus(status) {
+    _following = status;
     ProfileStore.changed();
   }
 
@@ -21,6 +28,9 @@
     },
     posts: function () {
       return _posts.slice();
+    },
+    following: function () {
+      return _following;
     },
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
@@ -38,6 +48,9 @@
           break;
         case PostConstants.RECEIVED_ALL_POSTS_FROM_USER:
           resetPosts(action.posts);
+          break;
+        case UserConstants.RECEIVED_FOLLOW_TOGGLE_REQUEST:
+          updateFollowStatus(action.status.following);
           break;
       }
     })

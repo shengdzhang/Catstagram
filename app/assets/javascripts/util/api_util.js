@@ -99,5 +99,19 @@ var ApiUtil = {
         window.location.href = "/";
       }
     });
+  },
+  toggleFollow: function (userId, following) {
+    var type = (following ? 'DELETE' : 'POST');
+    var action = (following ? 'unfollow/' : 'follow/');
+    var url = 'api/' + action + userId;
+    
+    $.ajax({
+      url: url,
+      type: type,
+      dataType: 'json',
+      success: function (status) {
+        UserActions.receiveFollowToggleRequest(status);
+      }
+    });
   }
 };

@@ -21,35 +21,37 @@ var FeedIndexItem = React.createClass({
     window.location.href = "#/users/" + userId;
   },
   render: function () {
+    var post = this.props.post;
+
     return (
       <div className="panel panel-primary effect8">
         <div className="panel-heading clearfix">
-          <a className="pull-left" onClick={this.navigateToUserProfile}>{this.props.post.username}</a>
-          <span className="pull-right">{jQuery.timeago(this.props.post.created_at)}</span>
+          <a className="pull-left" onClick={this.navigateToUserProfile.bind(null, post.user_id)}>{post.username}</a>
+          <span className="pull-right">{jQuery.timeago(post.created_at)}</span>
         </div>
         <div className="panel-body">
           <div className="panel-media">
-            <img className="clearfix" src={this.props.post.media_url} />
+            <img className="clearfix" src={post.media_url} />
           </div>
           <div className="comment-section">
-            <p className="pull-left"><a onClick={this.navigateToUserProfile}><b>{this.props.post.username}</b></a>: </p>
+            <p className="pull-left"><a onClick={this.navigateToUserProfile.bind(null, post.user_id)}><b>{post.username}</b></a>: </p>
             <span>
               {
                 this.state.editing ?
                 <form className="form-group clearfix" onSubmit={this.updatePost}>
-                  <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={this.props.post.caption}></textarea>
+                  <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={post.caption}></textarea>
                   <button type="submit" className="btn-sm btn-primary form-control">Update</button>
                 </form> :
                 <div className="pull-left feed-item-caption" width="80%">
-                  {this.props.post.caption}
+                  {post.caption}
                 </div>
               }
             </span>
           </div>
           {
-            this.props.post.user_id === window.CURRENT_USER_ID ?
+            post.user_id === window.CURRENT_USER_ID ?
             <div className="post-controls pull-right">
-              <a onClick={this.deletePost.bind(null, this.props.post.id)}>
+              <a onClick={this.deletePost.bind(null, post.id)}>
                 <span className="glyphicon glyphicon-trash pull-right"></span>
               </a>
               <a onClick={this.renderEditForm}>
