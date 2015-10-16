@@ -10,6 +10,10 @@ var ProfileView = React.createClass({
   componentWillUnmount: function () {
     ProfileStore.removeChangeListener(this._onChange);
   },
+  componentWillReceiveProps: function (props) {
+    ApiUtil.fetchUser(props.params.id);
+    ApiUtil.fetchAllPostsFromUser(props.params.id);
+  },
   _onChange: function () {
     this.setState({ posts: ProfileStore.posts(), user: ProfileStore.user() });
   },
