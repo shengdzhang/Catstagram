@@ -39,6 +39,7 @@ gem 'cloudinary'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -57,5 +58,4 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'faker'
 end
