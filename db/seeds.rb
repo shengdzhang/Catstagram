@@ -16,8 +16,8 @@ Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v14448673
 
 50.times do |i|
   user = User.find(i+2)
-  10.times do
+  10.times do |j|
     caption = Faker::Lorem.paragraph(2)
-    user.posts.create!(media_url: "http://placecreature.com/600/600", caption: caption)
+    user.posts.create!(media_url: "http://placecorgi.com/600/600?no_track=#{user.id + j}", caption: caption)
   end
 end
