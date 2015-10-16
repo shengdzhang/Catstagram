@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def follow!(user)
+    return if user == self
     self.active_relationships.create!(following_id: user.id)
   end
 
