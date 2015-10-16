@@ -1,3 +1,4 @@
+require 'byebug'
 class Api::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
@@ -11,13 +12,16 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user).where(user_id: params[:user_id]).order(created_at: :desc)
+
     render :index
   end
 
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(post_params)
+    if !authorize_user(@post.user)
+      render json: {}
+    elsif @post.update(post_params)
       render :show
     else
       render json: @post.errors.full_messages, status: 422
@@ -26,11 +30,13 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
     render :show
   end
 
   def destroy
     @post = Post.find(params[:id])
+
     if @post.destroy
       render json: {}
     else

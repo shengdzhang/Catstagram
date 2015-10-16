@@ -17,11 +17,14 @@ var FeedIndexItem = React.createClass({
   renderEditForm: function () {
     this.setState({editing: true});
   },
+  navigateToUserProfile: function (userId) {
+    window.location.href = "#/users/" + userId;
+  },
   render: function () {
     return (
       <div className="panel panel-primary effect8">
         <div className="panel-heading clearfix">
-          <span className="pull-left">{this.props.post.username}</span>
+          <a className="pull-left" onClick={this.navigateToUserProfile}>{this.props.post.username}</a>
           <span className="pull-right">{jQuery.timeago(this.props.post.created_at)}</span>
         </div>
         <div className="panel-body">
@@ -29,7 +32,7 @@ var FeedIndexItem = React.createClass({
             <img className="clearfix" src={this.props.post.media_url} />
           </div>
           <div className="comment-section">
-            <p className="pull-left"><b>{this.props.post.username}</b>: </p>
+            <p className="pull-left"><a onClick={this.navigateToUserProfile}><b>{this.props.post.username}</b></a>: </p>
             <span>
               {
                 this.state.editing ?

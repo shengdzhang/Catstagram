@@ -42,6 +42,10 @@ p, span {
   position: relative;
 }
 
+.panel-heading > a {
+  color: #fff;
+}
+
 .comment-section {
   padding-left: 10px;
   padding-top: 5px;
@@ -112,6 +116,7 @@ nav .container-fluid {
   margin: 0 auto;
   list-style: none;
   text-align: center;
+  z-index: 20;
 }
 
 .profile-information {

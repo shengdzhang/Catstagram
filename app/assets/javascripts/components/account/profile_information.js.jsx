@@ -16,6 +16,10 @@ var ProfileInformation = React.createClass({
     return (
       <div>
         <div className="page-header">
+          {
+            !this.state.editing && this.props.user.id === window.CURRENT_USER_ID ?
+            <a onClick={this.editProfile}>Edit profile</a> : ""
+          }
           <h1><img className="profile-pic" src={this.props.user.profile_pic_url} /><small>{this.props.user.username}</small></h1>
           <div className="profile-information">
             {
@@ -27,7 +31,6 @@ var ProfileInformation = React.createClass({
               </form> :
               <div>
                 <p>{this.props.user.biography}</p>
-                <a onClick={this.editProfile}>Edit profile</a>
               </div>
             }
           </div>
