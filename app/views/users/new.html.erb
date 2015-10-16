@@ -1,19 +1,21 @@
 <div class="page-header">
   <h1>Welcome to Pixor!</h1>
 </div>
-<div class="jumbotron col-xs-offset-4 col-xs-4">
-  <h2>Sign Up</h2>
+<div class="auth-form">
+  <div class="jumbotron box-shadow--16dp">
+    <h2>Sign Up</h2>
 
-  <form class="form-group" action=<%= users_url %> method='POST'>
-    <%= auth_token %>
-    <input type="text" name="user[username]" class="form-control" value="<%= @user.username %>" placeholder="Username">
-    <br>
+    <form class="form-group" action=<%= users_url %> method='POST'>
+      <%= auth_token %>
+      <input type="text" name="user[username]" class="form-control" value="<%= @user.username %>" placeholder="Username">
+      <br>
 
-    <input type="password" name="user[password]" class="form-control" placeholder="Password">
-    <br>
+      <input type="password" name="user[password]" class="form-control" placeholder="Password">
+      <br>
 
-    <button type="submit" class="btn btn-primary form-control">Sign Up</button>
-  </form>
+      <button type="submit" class="btn btn-primary form-control">Sign Up</button>
+    </form>
 
-  <p>Already have an account? <%= link_to "Sign In!", new_session_url %></p>
+    <p>Already have an account? <%= link_to "Sign In!", new_session_url %></p>
+  </div>
 </div>

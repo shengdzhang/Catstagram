@@ -12,6 +12,12 @@ p, span {
   margin: 0 auto;
 }
 
+.auth-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .panel {
   width: 100%;
   margin-bottom: 40px;
@@ -19,6 +25,10 @@ p, span {
 
 .page-header, .jumbotron {
   text-align: center;
+}
+
+.jumbotron {
+  padding: 30px;
 }
 
 .panel-body {
