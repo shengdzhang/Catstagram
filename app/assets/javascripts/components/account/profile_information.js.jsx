@@ -6,7 +6,9 @@ var ProfileInformation = React.createClass({
   editProfile: function () {
     this.setState({ editing: true });
   },
-  updateProfile: function () {
+  updateProfile: function (e) {
+    e.preventDefault();
+
     ApiUtil.updateUser({ biography: this.state.biography });
     this.setState({ editing: false });
   },
