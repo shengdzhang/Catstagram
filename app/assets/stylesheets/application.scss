@@ -46,14 +46,13 @@ p, span {
   color: #fff;
 }
 
-.comment-section {
+.caption-section {
   padding-left: 10px;
   padding-top: 5px;
   margin-bottom: 10px;
-  word-wrap: break-word;
 }
 
-.comment-section .form-group {
+.caption-section .form-group {
   margin-right: 10px;
 }
 
@@ -64,9 +63,13 @@ p, span {
 }
 
 .panel-media img {
-  display: inline;
   padding: 0px;
   width: 100%;
+}
+
+.panel-media {
+  width: 600px;
+  height: 600px;
 }
 
 a:hover {
@@ -84,7 +87,6 @@ a:hover {
 
 .feed-item-caption {
   width: 80%;
-  word-wrap: break-word;
 }
 
 nav .container-fluid {
@@ -103,8 +105,8 @@ nav .container-fluid {
 }
 
 .profile-view-item {
-  width: 100%;
-  max-width: 280px;
+  width: 280px;
+  height: 280px;
   padding: 0px;
   margin: 10px;
   border-radius: 5px;
@@ -123,11 +125,11 @@ nav .container-fluid {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  word-wrap: break-word;
 }
 
 .profile-pic {
   width: 100px;
+  height: 100px;
 }
 
 .search {
@@ -135,3 +137,23 @@ nav .container-fluid {
   margin-top: 0px;
   padding: 0px;
 }
+
+textarea {
+  resize: none;
+}
+
+.wrapword {
+  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  white-space: pre-wrap;       /* css-3 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+  word-break: break-all;
+  white-space: normal;
+}
+// {
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   overflow: hidden;
+// }

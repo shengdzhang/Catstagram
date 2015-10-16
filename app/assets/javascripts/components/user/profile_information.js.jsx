@@ -38,7 +38,7 @@ var ProfileInformation = React.createClass({
             )
           }
           <h1><img className="profile-pic" src={this.props.user.profile_pic_url} /><small>{this.props.user.username}</small></h1>
-          <div className="profile-information">
+          <div className="profile-information wrapword">
             {
               this.state.editing ?
               <form className="form-group clearfix" onSubmit={this.updateProfile}>

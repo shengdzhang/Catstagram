@@ -31,9 +31,9 @@ var FeedIndexItem = React.createClass({
         </div>
         <div className="panel-body">
           <div className="panel-media">
-            <img className="clearfix" src={post.media_url} />
+            <img src={post.media_url} />
           </div>
-          <div className="comment-section">
+          <div className="caption-section">
             <p className="pull-left"><a onClick={this.navigateToUserProfile.bind(null, post.user_id)}><b>{post.username}</b></a>: </p>
             <span>
               {
@@ -42,8 +42,8 @@ var FeedIndexItem = React.createClass({
                   <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={post.caption}></textarea>
                   <button type="submit" className="btn-sm btn-primary form-control">Update</button>
                 </form> :
-                <div className="pull-left feed-item-caption" width="80%">
-                  {post.caption}
+                <div className="pull-left feed-item-caption">
+                  <p className="wrapword">{post.caption}</p>
                 </div>
               }
             </span>
