@@ -20,14 +20,7 @@ var Navbar = React.createClass({
                    role="button" aria-haspopup="true" aria-expanded="false">
                   <span className="glyphicon glyphicon-search"></span>
                 </a>
-                <ul className="dropdown-menu search">
-                  <li>
-                    <div className="input-group input-group">
-                      <input className="form-control" type="text" placeholder="Search" />
-                    </div>
-                  </li>
-                  <li role="separator" className="divider"></li>
-                </ul>
+                <SearchIndex />
               </li>
             </ul>
           </div>

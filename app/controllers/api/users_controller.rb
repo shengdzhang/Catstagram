@@ -1,4 +1,9 @@
 class Api::UsersController < ApplicationController
+  def index
+    @users = User.find_by_query(params[:query])
+    render :index
+  end
+
   def show
     @user = User.find(params[:id])
     render :show

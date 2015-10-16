@@ -70,6 +70,17 @@ var ApiUtil = {
       }
     });
   },
+  fetchUserSearchResults: function (query) {
+    $.ajax({
+      url: 'api/users',
+      type: 'GET',
+      data: { query: query },
+      dataType: 'json',
+      success: function (results) {
+        SearchActions.receiveUserSearchResults(results);
+      }
+    });
+  },
   logOut: function () {
     $.ajax({
       url: 'session',

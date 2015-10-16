@@ -29,6 +29,11 @@ class User < ActiveRecord::Base
     user if user.is_password?(password)
   end
 
+  def self.find_by_query(query)
+    return [] if query.empty?
+    User.where(["username LIKE ?", "%#{query}%"])
+  end
+
   def ensure_session_token
     self.session_token ||= generate_session_token
   end
