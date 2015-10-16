@@ -15,12 +15,17 @@ p, span {
 .auth-form {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .panel {
   width: 100%;
   margin-bottom: 40px;
+}
+
+.page-header {
+  margin: 0px;
+  background-color: #fff;
 }
 
 .page-header, .jumbotron {
