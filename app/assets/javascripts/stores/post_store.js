@@ -34,7 +34,7 @@
     },
     dispatcherId: AppDispatcher.register(function (action) {
       switch (action.actionType) {
-        case PostConstants.RECEIVED_ALL_POSTS_FROM_USER:
+        case PostConstants.RECEIVED_FEED_ITEMS:
           resetPosts(action.posts);
           break;
         case PostConstants.RECEIVED_EDITED_POST:

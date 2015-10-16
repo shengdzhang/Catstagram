@@ -10,5 +10,11 @@ var PostActions = {
       actionType: PostConstants.RECEIVED_EDITED_POST,
       post: post
     });
+  },
+  receiveFeed: function (posts) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.RECEIVED_FEED_ITEMS,
+      posts: posts
+    });
   }
 };

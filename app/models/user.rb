@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   def user_feed
     following_ids = Relationship.select(:following_id).where(follower_id: self.id).map(&:following_id)
     following_ids << self.id
-    Post.where(:user_id => following_ids).order(created_at: :desc)
+    Post.includes(:user).where(:user_id => following_ids).order(created_at: :desc)
   end
 
   private

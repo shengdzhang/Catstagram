@@ -3,7 +3,7 @@
   var CHANGE_EVENT = "CHANGE_EVENT";
 
   var _user = {};
-  var _userPosts = [];
+  var _posts = [];
 
   function resetUser(user) {
     _user = user;
@@ -11,7 +11,7 @@
   }
 
   function resetPosts(posts) {
-    _userPosts = posts;
+    _posts = posts;
     ProfileStore.changed();
   }
 
@@ -20,7 +20,7 @@
       return $.extend({}, _user);
     },
     posts: function () {
-      return _userPosts.slice();
+      return _posts.slice();
     },
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
