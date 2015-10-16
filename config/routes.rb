@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:create]
       get 'profile' => 'posts#profile_index'
     end
+    resources :relationships, only: [:create, :destroy]
     resources :posts, only: [:index, :destroy, :update, :show]
   end
 end
