@@ -1,4 +1,3 @@
-require 'byebug'
 class Api::RelationshipsController < ApplicationController
   before_action :require_log_in
 
