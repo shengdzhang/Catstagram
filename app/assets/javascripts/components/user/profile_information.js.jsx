@@ -12,6 +12,9 @@ var ProfileInformation = React.createClass({
   componentWillUnmount: function () {
     ProfileStore.removeChangeListener(this._onChange);
   },
+  componentWillReceiveProps: function () {
+    this.setState({ editingBiography: false });
+  },
   editProfile: function () {
     this.setState({ editingBiography: true });
   },
