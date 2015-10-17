@@ -24,7 +24,9 @@ var FeedForm = React.createClass({
                 <a href="#"> Cancel</a>
               </form>
             </div> :
-            <UploadWidget mediaUploadedHandler={this.mediaUploaded} />
+            <div className="jumbotron col-xs-offset-4 col-xs-4">
+              <UploadWidget mediaUploadedHandler={this.mediaUploaded} />
+            </div>
           }
       </div>
     );

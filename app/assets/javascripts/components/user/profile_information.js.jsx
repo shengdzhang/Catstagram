@@ -3,6 +3,7 @@ var ProfileInformation = React.createClass({
   getInitialState: function () {
     return { editingBiography: false,
              biography: this.props.user.biography,
+             profilePicUrl: this.props.user.profile_pic_url,
              following: ProfileStore.following(),
              editingProfilePic: false };
   },
@@ -13,16 +14,23 @@ var ProfileInformation = React.createClass({
     ProfileStore.removeChangeListener(this._onChange);
   },
   componentWillReceiveProps: function () {
-    this.setState({ editingBiography: false });
+    this.setState({ editingBiography: false, editingProfilePic: false });
   },
-  editProfile: function () {
+  editBiography: function () {
     this.setState({ editingBiography: true });
   },
-  updateProfile: function (e) {
+  updateBiography: function (e) {
     e.preventDefault();
 
     ApiUtil.updateUser({ biography: this.state.biography });
     this.setState({ editingBiography: false });
+  },
+  editProfilePic: function () {
+    this.setState({ editingProfilePic: !this.state.editingProfilePic, editingBiography: false });
+  },
+  updateProfilePic: function (media_url) {
+    ApiUtil.updateUser({ profile_pic_url: media_url });
+    this.setState({ editingProfilePic: false });
   },
   toggleFollow: function () {
     ApiUtil.toggleFollow(this.props.user.id, this.state.following);
@@ -36,17 +44,25 @@ var ProfileInformation = React.createClass({
         <div className="page-header">
           {
             this.props.user.id === window.CURRENT_USER_ID ?
-              (!this.state.editing ? <a onClick={this.editProfile}>Edit</a> : "") :
+            (
+              this.state.editingProfilePic ?
+              <UploadWidget mediaUploadedHandler={this.updateProfilePic} /> :
               (
-                this.state.following ?
-                <button className="btn btn-default" onClick={this.toggleFollow}>Unfollow</button> :
-                <button className="btn btn-primary" onClick={this.toggleFollow}>Follow</button>
+                !this.state.editingBiography ?
+                <a onClick={this.editBiography}>Edit</a> :
+                ""
               )
+            ) :
+            (
+              this.state.following ?
+              <button className="btn btn-default" onClick={this.toggleFollow}>Unfollow</button> :
+              <button className="btn btn-primary" onClick={this.toggleFollow}>Follow</button>
+            )
           }
           <h1>
             {
               this.props.user.id === window.CURRENT_USER_ID ?
-              <a data-toggle="modal" data-target="#smallModal"><img className="profile-pic" src={this.props.user.profile_pic_url} /></a> :
+              <a onClick={this.editProfilePic}><img className="profile-pic" src={this.props.user.profile_pic_url} /></a> :
               <img className="profile-pic" src={this.props.user.profile_pic_url} />
             }
             <small>{this.props.user.username}</small>
@@ -54,7 +70,7 @@ var ProfileInformation = React.createClass({
           <div className="profile-information wrapword">
             {
               this.state.editingBiography ?
-              <form className="form-group clearfix" onSubmit={this.updateProfile}>
+              <form className="form-group clearfix" onSubmit={this.updateBiography}>
                 <textarea className="form-control" valueLink={this.linkState("biography")}
                           defaultValue={this.props.user.biography}></textarea>
                 <button type="submit" className="btn btn-primary form-control">Update</button>

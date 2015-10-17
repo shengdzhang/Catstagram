@@ -16,7 +16,7 @@ var UploadWidget = React.createClass({
   },
   render: function () {
     return (
-      <div className="jumbotron col-xs-offset-4 col-xs-4">
+      <div>
         <div id="widget"></div>
       </div>
     );
