@@ -1,10 +1,10 @@
 var ProfileInformation = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
-    return { editing: false,
+    return { editingBiography: false,
              biography: this.props.user.biography,
              following: ProfileStore.following(),
-             editingProfilePic: true };
+             editingProfilePic: false };
   },
   componentDidMount: function () {
     ProfileStore.addChangeListener(this._onChange);
@@ -13,13 +13,13 @@ var ProfileInformation = React.createClass({
     ProfileStore.removeChangeListener(this._onChange);
   },
   editProfile: function () {
-    this.setState({ editing: true });
+    this.setState({ editingBiography: true });
   },
   updateProfile: function (e) {
     e.preventDefault();
 
-    ApiUtil.updateUser({ biography: this.state.biography || this.props.user.biography });
-    this.setState({ editing: false });
+    ApiUtil.updateUser({ biography: this.state.biography });
+    this.setState({ editingBiography: false });
   },
   toggleFollow: function () {
     ApiUtil.toggleFollow(this.props.user.id, this.state.following);
@@ -50,7 +50,7 @@ var ProfileInformation = React.createClass({
           </h1>
           <div className="profile-information wrapword">
             {
-              this.state.editing ?
+              this.state.editingBiography ?
               <form className="form-group clearfix" onSubmit={this.updateProfile}>
                 <textarea className="form-control" valueLink={this.linkState("biography")}
                           defaultValue={this.props.user.biography}></textarea>
