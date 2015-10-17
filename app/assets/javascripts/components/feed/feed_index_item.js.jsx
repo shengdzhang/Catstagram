@@ -60,13 +60,13 @@ var FeedIndexItem = React.createClass({
             <span>
               <div className="post-interactions pull-left">
                 <div className="favorites pull-left">
-                  <span className="pull-left">0</span>
+                  <a className="pull-left">0</a>
                   <a>
                     <span className="glyphicon glyphicon-heart-empty pull-left"></span>
                   </a>
                 </div>
                 <div className="comments pull-left">
-                  <span className="pull-left">0</span>
+                  <a className="pull-left">0</a>
                   <a>
                     <span className="glyphicon glyphicon-comment pull-left"></span>
                   </a>

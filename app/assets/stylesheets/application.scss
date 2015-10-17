@@ -84,13 +84,8 @@ nav {
   margin-left: 5px;
 }
 
-.post-interactions > div > span {
-  margin-top: 2px;
-}
-
-.post-interactions > div > span:hover {
-  margin-top: 2px;
-  cursor: default;
+.post-interactions > div > a:first-child {
+  margin-top: 3px;
 }
 
 .panel-media img {
