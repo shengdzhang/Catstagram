@@ -55,7 +55,7 @@ var ProfileInformation = React.createClass({
               </div> :
               (
                 !this.state.editingBiography ?
-                <a onClick={this.editBiography}>Edit</a> :
+                <a onClick={this.editBiography}>Edit Bio</a> :
                 ""
               )
             ) :
