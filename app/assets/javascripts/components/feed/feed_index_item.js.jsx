@@ -1,24 +1,45 @@
 var FeedIndexItem = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
-  getInitialState: function () {
-    return {editing: false, caption: this.props.post.caption};
-  },
   deletePost: function (postId) {
-    if (confirm("Are you sure you want to delete this post?")) {
-      ApiUtil.deletePost(postId);
-    }
+    BootstrapDialog.confirm({
+      title: 'WARNING',
+      message: 'Are you sure you want to delete this post? This action is irreversible.',
+      type: BootstrapDialog.TYPE_WARNING,
+      btnCancelLabel: 'Cancel',
+      btnOKLabel: 'Delete',
+      btnOKClass: 'btn-warning',
+      callback: function(result) {
+        if(result) {
+          ApiUtil.deletePost(postId);
+        }
+      }
+    });
   },
-  updatePost: function (e) {
-    e.preventDefault();
-
-    ApiUtil.updatePost(this.props.post.id, {caption: this.state.caption});
-    this.setState({editing: false});
+  updatePost: function (caption) {
+    ApiUtil.updatePost(this.props.post.id, {caption: caption});
   },
   renderEditForm: function () {
-    this.setState({editing: true});
+    BootstrapDialog.show({
+      title: 'Update Caption',
+      message: '<textarea class="form-control">' + this.props.post.caption + '</textarea>',
+      buttons: [{
+        label: 'Update',
+        cssClass: 'btn-primary',
+        action: function(dialogRef) {
+          var caption = dialogRef.getModalBody().find('textarea').val();
+          this.updatePost(caption);
+          dialogRef.close();
+        }.bind(this)
+      }]
+    });
   },
   navigateToUserProfile: function (userId) {
     window.location.href = "#/users/" + userId;
+  },
+  renderModal: function (caption) {
+    BootstrapDialog.show({
+      title: 'Caption',
+      message: caption || "There is no caption for this post.",
+    });
   },
   render: function () {
     var post = this.props.post;
@@ -31,34 +52,39 @@ var FeedIndexItem = React.createClass({
         </div>
         <div className="panel-body">
           <div className="panel-media">
-            <img src={post.media_url} />
+            <a onClick={this.renderModal.bind(null, post.caption)}>
+              <img src={post.media_url} />
+            </a>
           </div>
-          <div className="caption-section">
-            <p className="pull-left"><a onClick={this.navigateToUserProfile.bind(null, post.user_id)}><b>{post.username}</b></a>: </p>
+          <div className="panel-footer">
             <span>
-              {
-                this.state.editing ?
-                <form className="form-group clearfix" onSubmit={this.updatePost}>
-                  <textarea className="form-control" valueLink={this.linkState("caption")} defaultValue={post.caption}></textarea>
-                  <button type="submit" className="btn-sm btn-primary form-control">Update</button>
-                </form> :
-                <div className="pull-left feed-item-caption">
-                  <p className="wrapword">{post.caption}</p>
+              <div className="post-interactions pull-left">
+                <div className="favorites pull-left">
+                  <span className="pull-left">0</span>
+                  <a>
+                    <span className="glyphicon glyphicon-heart-empty pull-left"></span>
+                  </a>
                 </div>
-              }
+                <div className="comments pull-left">
+                  <span className="pull-left">0</span>
+                  <a>
+                    <span className="glyphicon glyphicon-comment pull-left"></span>
+                  </a>
+                </div>
+              </div>
             </span>
+            {
+              post.user_id === window.CURRENT_USER_ID ?
+              <div className="post-controls pull-right">
+                <a onClick={this.deletePost.bind(null, post.id)}>
+                  <span className="glyphicon glyphicon-trash pull-right"></span>
+                </a>
+                <a onClick={this.renderEditForm}>
+                  <span className="glyphicon glyphicon-edit pull-right"></span>
+                </a>
+              </div> : ""
+            }
           </div>
-          {
-            post.user_id === window.CURRENT_USER_ID ?
-            <div className="post-controls pull-right">
-              <a onClick={this.deletePost.bind(null, post.id)}>
-                <span className="glyphicon glyphicon-trash pull-right"></span>
-              </a>
-              <a onClick={this.renderEditForm}>
-                <span className="glyphicon glyphicon-edit pull-right"></span>
-              </a>
-            </div> : ""
-          }
         </div>
       </div>
     );

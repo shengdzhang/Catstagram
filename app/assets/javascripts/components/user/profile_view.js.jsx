@@ -3,6 +3,7 @@ var ProfileView = React.createClass({
     return { posts: ProfileStore.posts(), user: ProfileStore.user() };
   },
   componentDidMount: function () {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     ProfileStore.addChangeListener(this._onChange);
     ApiUtil.fetchUser(this.props.params.id);
     ApiUtil.fetchAllPostsFromUser(this.props.params.id);

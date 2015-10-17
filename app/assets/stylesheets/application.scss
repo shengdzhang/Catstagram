@@ -1,14 +1,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap.lumen";
+@import "bootstrap-dialog";
 
 p, span {
   white-space: pre;
 }
 
+nav {
+  max-height: 52px;
+  opacity: 0.95;
+}
+
+.navbar-right > li {
+  margin-left: 15px;
+}
+
 .feed-index {
   width: 100%;
-  max-width: 600px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
@@ -20,7 +30,10 @@ p, span {
 
 .panel {
   width: 100%;
-  margin-bottom: 40px;
+  max-width: 320px;
+  max-height: 400px;
+  margin: 20px;
+  float: left;
 }
 
 .page-header {
@@ -46,31 +59,48 @@ p, span {
   color: #fff;
 }
 
-.caption-section {
-  padding-left: 10px;
-  padding-top: 5px;
-  margin-bottom: 10px;
-}
-
-.caption-section .form-group {
-  margin-right: 10px;
+.panel-footer {
+  min-height: 30px;
 }
 
 .post-controls {
+  display: none;
   position: absolute;
   bottom: 5px;
   right: 5px;
 }
 
+.panel:hover .post-controls {
+  display: block;
+}
+
+.post-interactions {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.post-interactions > div {
+  margin-left: 5px;
+}
+
+.post-interactions > div > span {
+  margin-top: 2px;
+}
+
+.post-interactions > div > span:hover {
+  margin-top: 2px;
+  cursor: default;
+}
+
 .panel-media img {
-  display: inline;
   padding: 0px;
   width: 100%;
 }
 
 .panel-media {
   width: 100%;
-  height: 600px;
+  height: 320px;
 }
 
 a:hover {
@@ -79,19 +109,19 @@ a:hover {
 }
 
 .panel-body .glyphicon {
-  margin: 5px;
+  padding: 5px;
 }
 
 #navbar-feed-separator {
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
 .feed-item-caption {
-  width: 80%;
+  margin-right: 55px;
 }
 
 nav .container-fluid {
-  max-width: 620px;
+  max-width: 1000px;
 }
 
 .profile-items {
@@ -119,7 +149,7 @@ nav .container-fluid {
   margin: 0 auto;
   list-style: none;
   text-align: center;
-  z-index: 20;
+  z-index: 1;
 }
 
 .profile-information {
@@ -141,6 +171,27 @@ nav .container-fluid {
 
 textarea {
   resize: none;
+}
+
+.test-div {
+  position: absolute;
+  bottom: 0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #000;
+  opacity: 0.9;
+  z-index: 1100;
+  position: fixed;
+}
+
+.test-div2 {
+  z-index: 1101;
+  background-color: #fff;
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  opacity: 1;
 }
 
 .wrapword {

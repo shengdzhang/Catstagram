@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.timeago
 //= require bootstrap-sprockets
+//= require bootstrap-dialog.min
 //= require turbolinks
 //= require flux
 //= require eventemitter
