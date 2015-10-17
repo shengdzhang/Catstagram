@@ -8,7 +8,7 @@ var UploadWidget = React.createClass({
                                    cropping: 'server',
                                    cropping_aspect_ratio: 1,
                                    cropping_default_selection_ratio: 1,
-                                   button_class: 'btn-lg btn-primary'
+                                   button_class: 'btn btn-primary'
                                  },
                                  function (error, result) {
                                    this.props.mediaUploadedHandler(result[0].secure_url);

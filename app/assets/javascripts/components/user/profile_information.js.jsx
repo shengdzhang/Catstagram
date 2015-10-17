@@ -22,7 +22,10 @@ var ProfileInformation = React.createClass({
   updateBiography: function (e) {
     e.preventDefault();
 
-    ApiUtil.updateUser({ biography: this.state.biography });
+    if (this.state.biography) {
+      ApiUtil.updateUser({ biography: this.state.biography });
+    }
+
     this.setState({ editingBiography: false });
   },
   editProfilePic: function () {
@@ -46,7 +49,10 @@ var ProfileInformation = React.createClass({
             this.props.user.id === window.CURRENT_USER_ID ?
             (
               this.state.editingProfilePic ?
-              <UploadWidget mediaUploadedHandler={this.updateProfilePic} /> :
+              <div>
+                <UploadWidget mediaUploadedHandler={this.updateProfilePic} />
+                <button className="btn btn-default" onClick={this.editProfilePic}>Cancel</button>
+              </div> :
               (
                 !this.state.editingBiography ?
                 <a onClick={this.editBiography}>Edit</a> :
