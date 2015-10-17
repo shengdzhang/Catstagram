@@ -1,7 +1,10 @@
 var ProfileInformation = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
-    return { editing: false, biography: this.props.user.biography, following: ProfileStore.following() };
+    return { editing: false,
+             biography: this.props.user.biography,
+             following: ProfileStore.following(),
+             editingProfilePic: true };
   },
   componentDidMount: function () {
     ProfileStore.addChangeListener(this._onChange);
@@ -37,7 +40,14 @@ var ProfileInformation = React.createClass({
                 <button className="btn btn-primary" onClick={this.toggleFollow}>Follow</button>
               )
           }
-          <h1><img className="profile-pic" src={this.props.user.profile_pic_url} /><small>{this.props.user.username}</small></h1>
+          <h1>
+            {
+              this.props.user.id === window.CURRENT_USER_ID ?
+              <a data-toggle="modal" data-target="#smallModal"><img className="profile-pic" src={this.props.user.profile_pic_url} /></a> :
+              <img className="profile-pic" src={this.props.user.profile_pic_url} />
+            }
+            <small>{this.props.user.username}</small>
+          </h1>
           <div className="profile-information wrapword">
             {
               this.state.editing ?
