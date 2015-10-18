@@ -14,10 +14,6 @@ var FeedIndex = React.createClass({
     this.setState({ posts: PostStore.all() });
   },
   render: function () {
-    var buttons = [
-        {type: 'danger',  text: 'Hide Modal',  handler: this.handleExternalHide},
-        {type: 'primary', text: 'Do Nothing', handler: this.handleDoingNothing}
-    ];
     return (
       <div className="feed-index">
         <div className="feed-items">

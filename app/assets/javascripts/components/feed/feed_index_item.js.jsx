@@ -49,11 +49,14 @@ var FeedIndexItem = React.createClass({
   navigateToUserProfile: function (userId) {
     window.location.href = "#/users/" + userId;
   },
-  renderModal: function (caption) {
-    BootstrapDialog.show({
+  showCaption: function (caption) {
+    var modal = new BootstrapDialog({
       title: 'Caption',
-      message: caption || "There is no caption for this post.",
+      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/>' + (caption || "There is no caption for this post.")
     });
+    modal.realize();
+    modal.getModalHeader().hide();
+    modal.open();
   },
   showLikers: function () {
     var listOfUsers =
@@ -77,7 +80,7 @@ var FeedIndexItem = React.createClass({
         </div>
         <div className="panel-body">
           <div className="panel-media">
-            <a onClick={this.renderModal.bind(null, post.caption)}>
+            <a onClick={this.showCaption.bind(null, post.caption)}>
               <img src={post.media_url} />
             </a>
           </div>
