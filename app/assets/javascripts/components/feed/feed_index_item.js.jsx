@@ -73,12 +73,12 @@ var FeedIndexItem = React.createClass({
   showComments: function () {
     var comments =
       this.state.post.comments.map(function (comment) {
-        return '<div class="comment" id="comment' + comment.id + '">' + (comment.user_id === window.CURRENT_USER_ID ? '<a id="delete-comment" class="glyphicon glyphicon-trash pull-left" data-id="' + comment.id + '"></a>' : '') + '<a href="#/users/' + comment.user_id + '">' + comment.posted_by + '</a>:<br/><p>' + comment.body + '</p><br/></div>';
+        return '<div class="comment" id="comment' + comment.id + '">' + (comment.user_id === window.CURRENT_USER_ID ? '<a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + comment.id + '"></a>' : '') + '<a href="#/users/' + comment.user_id + '">' + comment.posted_by + '</a>:<br/><p>' + comment.body + '</p><br/></div>';
       }).join('');
 
     BootstrapDialog.show({
       title: 'Comments',
-      message: comments + '<br/><textarea class="form-control" placeholder="Add a comment..." />',
+      message: '<div class="comments">' + comments + '</div><br/><textarea class="form-control" placeholder="Add a comment..." />',
       buttons: [{
         label: 'Submit',
         cssClass: 'btn-primary',
@@ -90,7 +90,7 @@ var FeedIndexItem = React.createClass({
       }]
     });
 
-    $('body').on('click', '#delete-comment', function (e) {
+    $('body').on('click', '.delete-comment', function (e) {
       $('#comment' + e.target.dataset.id).remove();
       ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id);
     }.bind(this));
