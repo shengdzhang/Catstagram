@@ -1,12 +1,12 @@
 class Api::CommentsController < ApplicationController
   def create
-    comment = Post.find(params[:post_id]).comments.new(comment_params)
-    comment.user_id = current_user.id
+    @comment = Post.find(params[:post_id]).comments.new(comment_params)
+    @comment.user_id = current_user.id
 
-    if comment.save
+    if @comment.save
       render :show
     else
-      render json: comment.errors.full_messages
+      render json: @comment.errors.full_messages
     end
   end
 

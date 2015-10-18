@@ -6,9 +6,7 @@ var FeedIndexItem = React.createClass({
     this.setState({ post: props.post });
   },
   componentWillUnmount: function () {
-    $.each(BootstrapDialog.dialogs, function(id, dialog){
-      dialog.close();
-    });
+    BootstrapDialog.closeAll();
   },
   deletePost: function (postId) {
     BootstrapDialog.confirm({
@@ -19,7 +17,7 @@ var FeedIndexItem = React.createClass({
       btnOKLabel: 'Delete',
       btnOKClass: 'btn-warning',
       callback: function(result) {
-        if(result) {
+        if (result) {
           ApiUtil.deletePost(postId);
         }
       }
@@ -31,6 +29,9 @@ var FeedIndexItem = React.createClass({
   updatePost: function (caption) {
     ApiUtil.updatePost(this.props.post.id, {caption: caption});
   },
+  postComment: function (comment) {
+    ApiUtil.createComment(this.state.post.id, { body: comment });
+  },
   renderEditForm: function () {
     BootstrapDialog.show({
       title: 'Update Caption',
@@ -38,7 +39,7 @@ var FeedIndexItem = React.createClass({
       buttons: [{
         label: 'Update',
         cssClass: 'btn-primary',
-        action: function(dialogRef) {
+        action: function (dialogRef) {
           var caption = dialogRef.getModalBody().find('textarea').val();
           this.updatePost(caption);
           dialogRef.close();
@@ -69,6 +70,54 @@ var FeedIndexItem = React.createClass({
       message: listOfUsers,
     });
   },
+  showComments: function () {
+    var comments =
+      this.state.post.comments.map(function (comment) {
+        return '<div class="comment" id="comment' + comment.id + '">' + (comment.user_id === window.CURRENT_USER_ID ? '<a id="delete-comment" class="glyphicon glyphicon-trash pull-left" data-id="' + comment.id + '"></a>' : '') + '<a href="#/users/' + comment.user_id + '">' + comment.posted_by + '</a>:<br/><p>' + comment.body + '</p><br/></div>';
+      }).join('');
+
+    BootstrapDialog.show({
+      title: 'Comments',
+      message: comments + '<br/><textarea class="form-control" placeholder="Add a comment..." />',
+      buttons: [{
+        label: 'Submit',
+        cssClass: 'btn-primary',
+        action: function (dialogRef) {
+          var comment = dialogRef.getModalBody().find('textarea').val();
+          this.postComment(comment);
+          dialogRef.close();
+        }.bind(this)
+      }]
+    });
+
+    $('body').on('click', '#delete-comment', function (e) {
+      $('#comment' + e.target.dataset.id).remove();
+      ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id);
+    }.bind(this));
+  },
+  // confirmDeleteComment: function (commentId) {
+  //   BootstrapDialog.show({
+  //     title: 'WARNING',
+  //     message: 'Are you sure you want to delete this comment? This action is irreversible.',
+  //     type: BootstrapDialog.TYPE_WARNING,
+  //     buttons: [{
+  //       label: 'Cancel',
+  //       cssClass: 'btn-default',
+  //       action: function (dialogRef) {
+  //         dialogRef.close();
+  //       }
+  //     },
+  //     {
+  //       label: "Delete",
+  //       cssClass: 'btn-warning',
+  //       action: function (dialogRef) {
+  //         ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id);
+  //         dialogRef.close();
+  //         $('#comment' + commentId).remove();
+  //       }.bind(this)
+  //     }]
+  //   });
+  // },
   render: function () {
     var post = this.state.post;
 
@@ -97,8 +146,8 @@ var FeedIndexItem = React.createClass({
                     }
                   </a>
                 </div>
-                <div className="comments pull-left">
-                  <a className="pull-left">0</a>
+                <div className="comments pull-left" onClick={this.showComments}>
+                  <a className="pull-left">{post.comments.length}</a>
                   <a>
                     <span className="glyphicon glyphicon-comment pull-left"></span>
                   </a>

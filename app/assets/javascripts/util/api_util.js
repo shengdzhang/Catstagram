@@ -103,15 +103,6 @@ var ApiUtil = {
       }.bind(this)
     });
   },
-  logOut: function () {
-    $.ajax({
-      url: 'session',
-      type: 'DELETE',
-      success: function () {
-        window.location.href = "/";
-      }
-    });
-  },
   toggleFollow: function (userId, following) {
     var type = (following ? 'DELETE' : 'POST');
     var action = (following ? 'unfollow/' : 'follow/');
@@ -123,6 +114,36 @@ var ApiUtil = {
       dataType: 'json',
       success: function (status) {
         UserActions.receiveFollowToggleRequest(status);
+      }
+    });
+  },
+  createComment: function (postId, comment) {
+    $.ajax({
+      url: 'api/posts/' + postId + '/comments',
+      type: 'POST',
+      data: { comment: comment },
+      dataType: 'json',
+      success: function () {
+        this.fetchSinglePost(postId);
+      }.bind(this)
+    });
+  },
+  deleteComment: function (postId, commentId) {
+    $.ajax({
+      url: 'api/comments/' + commentId,
+      type: 'DELETE',
+      dataType: 'json',
+      success: function () {
+        this.fetchSinglePost(postId);
+      }.bind(this)
+    });
+  },
+  logOut: function () {
+    $.ajax({
+      url: 'session',
+      type: 'DELETE',
+      success: function () {
+        window.location.href = "/";
       }
     });
   }
