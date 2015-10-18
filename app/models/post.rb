@@ -16,8 +16,9 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   has_many :favorites, dependent: :destroy
-
   has_many :likers, through: :favorites, source: :user
+
+  has_many :comments, dependent: :destroy
 
   def favorited_by?(user)
     user.favorited_posts.include?(self)

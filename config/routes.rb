@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :destroy, :update, :show] do
       post 'togglefavorite' => 'favorites#create'
       delete 'togglefavorite' => 'favorites#destroy'
+      resources :comments, only: [:create]
     end
 
+    resources :comments, only: [:destroy]
   end
 end
