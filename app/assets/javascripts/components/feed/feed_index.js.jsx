@@ -5,6 +5,7 @@ var FeedIndex = React.createClass({
   componentDidMount: function () {
     PostStore.addChangeListener(this._onChange);
     ApiUtil.fetchFeed();
+    // setInterval(ApiUtil.fetchFeed, 10000);
   },
   componentWillUnmount: function () {
     PostStore.removeChangeListener(this._onChange);

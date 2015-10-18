@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
   end
 
   def profile_index
-    @posts = Post.includes(:user).where(user_id: params[:user_id]).order(created_at: :desc)
+    @posts = Post.includes(:user, :likers).where(user_id: params[:user_id]).order(created_at: :desc)
 
     render :index
   end

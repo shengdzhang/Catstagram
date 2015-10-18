@@ -5,6 +5,11 @@ var FeedIndexItem = React.createClass({
   componentWillReceiveProps: function (props) {
     this.setState({ post: props.post });
   },
+  componentWillUnmount: function () {
+    $.each(BootstrapDialog.dialogs, function(id, dialog){
+      dialog.close();
+    });
+  },
   deletePost: function (postId) {
     BootstrapDialog.confirm({
       title: 'WARNING',
@@ -50,6 +55,17 @@ var FeedIndexItem = React.createClass({
       message: caption || "There is no caption for this post.",
     });
   },
+  showLikers: function () {
+    var listOfUsers =
+      this.state.post.likers.map(function (user) {
+        return '<a href="#/users/' + user.id + '">' + user.username + '</a>';
+      }).join('<br/>');
+
+    BootstrapDialog.show({
+      title: 'Favorited By:',
+      message: listOfUsers,
+    });
+  },
   render: function () {
     var post = this.state.post;
 
@@ -69,7 +85,7 @@ var FeedIndexItem = React.createClass({
             <span>
               <div className="post-interactions pull-left">
                 <div className="favorites pull-left">
-                  <a className="pull-left">{post.favorites_count}</a>
+                  <a className="pull-left" onClick={this.showLikers}>{post.likers.length}</a>
                   <a onClick={this.toggleFavorite}>
                     {
                       post.favorited ?
