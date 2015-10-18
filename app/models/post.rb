@@ -18,4 +18,8 @@ class Post < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
 
   has_many :likers, through: :favorites, source: :user
+
+  def favorited_by?(user)
+    user.favorited_posts.include?(self)
+  end
 end

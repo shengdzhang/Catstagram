@@ -1,6 +1,7 @@
 (function(root) {
   'use strict';
   var CHANGE_EVENT = "CHANGE_EVENT";
+  var FAVORITE_EVENT = "FAVORITE_EVENT";
 
   var _posts = [];
 
@@ -13,10 +14,9 @@
     _posts.forEach(function (p, index) {
       if (p.id === post.id) {
         _posts[index] = post;
-        return;
+        PostStore.changed();
       }
     });
-    PostStore.changed();
   }
 
   root.PostStore = $.extend({}, EventEmitter.prototype, {
@@ -41,6 +41,6 @@
           receiveEditedPost(action.post);
           break;
       }
-    }.bind(this))
+    })
   });
 }(this));

@@ -1,4 +1,10 @@
 var FeedIndexItem = React.createClass({
+  getInitialState: function () {
+    return { post: this.props.post };
+  },
+  componentWillReceiveProps: function (props) {
+    this.setState({ post: props.post });
+  },
   deletePost: function (postId) {
     BootstrapDialog.confirm({
       title: 'WARNING',
@@ -13,6 +19,9 @@ var FeedIndexItem = React.createClass({
         }
       }
     });
+  },
+  toggleFavorite: function () {
+    ApiUtil.toggleFavorite(this.props.post.id, this.props.post.favorited);
   },
   updatePost: function (caption) {
     ApiUtil.updatePost(this.props.post.id, {caption: caption});
@@ -42,7 +51,7 @@ var FeedIndexItem = React.createClass({
     });
   },
   render: function () {
-    var post = this.props.post;
+    var post = this.state.post;
 
     return (
       <div className="panel panel-primary effect8">
@@ -60,9 +69,13 @@ var FeedIndexItem = React.createClass({
             <span>
               <div className="post-interactions pull-left">
                 <div className="favorites pull-left">
-                  <a className="pull-left">0</a>
-                  <a>
-                    <span className="glyphicon glyphicon-heart-empty pull-left"></span>
+                  <a className="pull-left">{post.favorites_count}</a>
+                  <a onClick={this.toggleFavorite}>
+                    {
+                      post.favorited ?
+                      <span className="glyphicon glyphicon-heart pull-left"></span> :
+                      <span className="glyphicon glyphicon-heart-empty pull-left"></span>
+                    }
                   </a>
                 </div>
                 <div className="comments pull-left">

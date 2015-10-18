@@ -10,8 +10,14 @@ Rails.application.routes.draw do
       resources :posts, only: [:create]
       get 'profile' => 'posts#profile_index'
     end
+
     post 'follow/:id' => 'relationships#create'
     delete 'unfollow/:id' => 'relationships#destroy'
-    resources :posts, only: [:index, :destroy, :update, :show]
+
+    resources :posts, only: [:index, :destroy, :update, :show] do
+      post 'togglefavorite' => 'favorites#create'
+      delete 'togglefavorite' => 'favorites#destroy'
+    end
+
   end
 end

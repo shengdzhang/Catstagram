@@ -36,7 +36,7 @@ var ApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (post) {
-        debugger;
+        PostActions.receiveEditedPost(post);
       }
     });
   },
@@ -89,6 +89,18 @@ var ApiUtil = {
       success: function (results) {
         SearchActions.receiveUserSearchResults(results);
       }
+    });
+  },
+  toggleFavorite: function (postId, favorited) {
+    var type = (favorited ? 'DELETE' : 'POST');
+
+    $.ajax({
+      url: 'api/posts/' + postId + '/togglefavorite',
+      type: type,
+      dataType: 'json',
+      success: function () {
+        this.fetchSinglePost(postId);
+      }.bind(this)
     });
   },
   logOut: function () {
