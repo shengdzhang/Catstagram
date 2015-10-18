@@ -7,8 +7,8 @@
   <%= csrf_meta_tags %>
   <% if current_user %>
     <script>
-      window.CURRENT_USER_ID = <%= current_user.id %>
-      window.CURRENT_USER_USERNAME = "<%= current_user.username %>"
+      const CURRENT_USER_ID = Object.freeze(<%= current_user.id %>)
+      const CURRENT_USER_USERNAME = "<%= current_user.username %>"
     </script>
   <% end %>
 </head>
