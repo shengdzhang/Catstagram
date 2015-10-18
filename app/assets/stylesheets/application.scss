@@ -111,10 +111,6 @@ a:hover {
   margin-bottom: 70px;
 }
 
-.feed-item-caption {
-  margin-right: 55px;
-}
-
 nav .container-fluid {
   max-width: 1000px;
 }
@@ -166,27 +162,6 @@ nav .container-fluid {
 
 textarea {
   resize: none;
-}
-
-.test-div {
-  position: absolute;
-  bottom: 0px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: #000;
-  opacity: 0.9;
-  z-index: 1100;
-  position: fixed;
-}
-
-.test-div2 {
-  z-index: 1101;
-  background-color: #fff;
-  height: 80%;
-  width: 80%;
-  margin: auto;
-  opacity: 1;
 }
 
 .wrapword {
