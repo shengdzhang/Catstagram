@@ -1,4 +1,3 @@
-require 'byebug'
 class Api::FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.new(post_params)
