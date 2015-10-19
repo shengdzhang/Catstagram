@@ -1,9 +1,10 @@
+require 'byebug'
 class Api::FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.new(post_params)
 
     if favorite.save
-      render json: {}
+      render json: { favorited: true }
     else
       render json: favorite.errors.full_messages
     end
@@ -13,7 +14,7 @@ class Api::FavoritesController < ApplicationController
     favorite = current_user.favorites.where(post_id: params[:post_id]).first
 
     if favorite.destroy
-      render json: {}
+      render json: { favorited: false }
     else
       render json: favorite.errors.full_messages
     end

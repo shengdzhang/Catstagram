@@ -99,8 +99,8 @@ var ApiUtil = {
       url: 'api/posts/' + postId + '/togglefavorite',
       type: type,
       dataType: 'json',
-      success: function () {
-        this.fetchSinglePost(postId);
+      success: function (status) {
+        PostActions.receiveToggledFavorite(postId, status);
       }.bind(this)
     });
   },
@@ -125,8 +125,10 @@ var ApiUtil = {
       data: { comment: comment },
       dataType: 'json',
       success: function (comment) {
-        this.fetchSinglePost(postId);
-        callback(comment);
+        PostActions.receiveComment(comment);
+        if (callback) {
+          callback(comment);
+        }
       }.bind(this)
     });
   },
@@ -136,7 +138,7 @@ var ApiUtil = {
       type: 'DELETE',
       dataType: 'json',
       success: function () {
-        this.fetchSinglePost(postId);
+        PostActions.deleteComment(postId, commentId);
         if (callback) {
           callback();
         }
