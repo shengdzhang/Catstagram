@@ -2,12 +2,6 @@ var Navbar = React.createClass({
   logOut: function () {
     ApiUtil.logOut();
   },
-  navigateToUserProfile: function (userId) {
-    window.location.href = "#/users/" + userId;
-  },
-  navigateToSettingsPage: function () {
-    window.location.href = "#/settings";
-  },
   render: function () {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -46,8 +40,8 @@ var Navbar = React.createClass({
                     {window.CURRENT_USER_USERNAME} <span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a onClick={this.navigateToUserProfile.bind(null, window.CURRENT_USER_ID)}>Profile</a></li>
-                  <li><a onClick={this.navigateToSettingsPage}>Account Settings</a></li>
+                  <li><a href={"#/users/" + window.CURRENT_USER_ID}>Profile</a></li>
+                  <li><a href="#/settings">Account Settings</a></li>
                   <li role="separator" className="divider"></li>
                   <li><a onClick={this.logOut}>Log out</a></li>
                 </ul>

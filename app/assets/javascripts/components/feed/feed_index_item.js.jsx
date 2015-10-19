@@ -50,9 +50,6 @@ var FeedIndexItem = React.createClass({
       }]
     });
   },
-  navigateToUserProfile: function (userId) {
-    window.location.href = "#/users/" + userId;
-  },
   showCaption: function (caption) {
     var modal = new BootstrapDialog({
       title: 'Caption',
@@ -106,7 +103,7 @@ var FeedIndexItem = React.createClass({
     return (
       <div className="panel panel-primary feed-index-item effect8">
         <div className="panel-heading clearfix">
-          <a className="pull-left" onClick={this.navigateToUserProfile.bind(null, post.user_id)}>{post.username}</a>
+          <a href={"#/users/" + post.user_id} className="pull-left">{post.username}</a>
           <a href={"#/posts/" + post.id} className="pull-right">{jQuery.timeago(post.created_at)}</a>
         </div>
         <div className="panel-body">

@@ -69,6 +69,10 @@ var PostDetail = React.createClass({
   render: function () {
     return (
       <div className="panel panel-primary post-detail">
+        <div className="panel-heading clearfix">
+          <a href={'#/users/' + this.state.post.user_id} className="pull-left">{this.state.post.username}</a>
+          <span className="pull-right">{this.state.post.created_at ? jQuery.timeago(this.state.post.created_at) : ""}</span>
+        </div>
         <div className="panel-body">
           <div className="post-detail-photo">
             <img src={this.state.post.media_url} />
