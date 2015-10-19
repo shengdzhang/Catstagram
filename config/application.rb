@@ -33,5 +33,6 @@ module Pixor
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.intialize_on_precompile = false
     config.autoload_paths += %W(#{config.root}/lib)
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end
 end
