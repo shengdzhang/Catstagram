@@ -19,6 +19,19 @@
     });
   }
 
+  function removePost(postId) {
+    _posts.forEach(function (p, index) {
+      if (p.id === postId) {
+        _posts.splice(index, 1);
+        PostStore.changed();
+      }
+    });
+  }
+
+  function receiveSinglePost(post) {
+    _posts.unshift(post);
+  }
+
   root.PostStore = $.extend({}, EventEmitter.prototype, {
     all: function () {
       return _posts.slice();
@@ -39,6 +52,12 @@
           break;
         case PostConstants.RECEIVED_EDITED_POST:
           receiveEditedPost(action.post);
+          break;
+        case PostConstants.DELETED_POST:
+          removePost(action.postId);
+          break;
+        case PostConstants.RECEIVED_SINGLE_POST:
+          receiveSinglePost(action.post);
           break;
       }
     })

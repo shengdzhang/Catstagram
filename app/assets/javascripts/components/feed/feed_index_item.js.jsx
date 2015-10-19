@@ -98,31 +98,7 @@ var FeedIndexItem = React.createClass({
         }.bind(this));
       }.bind(this)
     });
-
   },
-  // confirmDeleteComment: function (commentId) {
-  //   BootstrapDialog.show({
-  //     title: 'WARNING',
-  //     message: 'Are you sure you want to delete this comment? This action is irreversible.',
-  //     type: BootstrapDialog.TYPE_WARNING,
-  //     buttons: [{
-  //       label: 'Cancel',
-  //       cssClass: 'btn-default',
-  //       action: function (dialogRef) {
-  //         dialogRef.close();
-  //       }
-  //     },
-  //     {
-  //       label: "Delete",
-  //       cssClass: 'btn-warning',
-  //       action: function (dialogRef) {
-  //         ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id);
-  //         dialogRef.close();
-  //         $('#comment' + commentId).remove();
-  //       }.bind(this)
-  //     }]
-  //   });
-  // },
   render: function () {
     var post = this.state.post;
 

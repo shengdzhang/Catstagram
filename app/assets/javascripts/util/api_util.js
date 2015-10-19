@@ -6,7 +6,8 @@ var ApiUtil = {
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
-        window.location.href = "/";
+        PostActions.receiveSinglePost(post);
+        window.location.href = "#";
       }
     });
   },
@@ -45,7 +46,7 @@ var ApiUtil = {
       url: 'api/posts/' + postId,
       type: 'DELETE',
       success: function () {
-        window.location.href = "/";
+        PostActions.deletedPost(postId);
       }
     });
   },

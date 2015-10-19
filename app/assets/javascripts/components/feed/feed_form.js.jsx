@@ -1,5 +1,5 @@
 var FeedForm = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
   getInitialState: function () {
     return { caption: "", media_url: "" };
   },
