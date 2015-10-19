@@ -12,6 +12,11 @@ nav {
   opacity: 0.95;
 }
 
+.navbar-brand {
+  font-family: Billabong;
+  font-size: 22px;
+}
+
 .navbar-right > li {
   margin-left: 15px;
 }
@@ -34,6 +39,15 @@ nav {
   max-height: 400px;
   margin: 20px;
   float: left;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcome h1 {
+  font-family: Billabong;
+  font-size: 70px;
 }
 
 .page-header {

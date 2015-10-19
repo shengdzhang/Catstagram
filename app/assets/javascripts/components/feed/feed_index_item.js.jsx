@@ -30,7 +30,9 @@ var FeedIndexItem = React.createClass({
     ApiUtil.updatePost(this.props.post.id, {caption: caption});
   },
   postComment: function (comment) {
-    ApiUtil.createComment(this.state.post.id, { body: comment });
+    ApiUtil.createComment(this.state.post.id, { body: comment }, function (receivedComment) {
+      $('.comments-modal').prepend('<div class="comment" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
+    });
   },
   renderEditForm: function () {
     BootstrapDialog.show({
@@ -78,22 +80,25 @@ var FeedIndexItem = React.createClass({
 
     BootstrapDialog.show({
       title: 'Comments',
-      message: '<div class="comments">' + comments + '</div><br/><textarea class="form-control" placeholder="Add a comment..." />',
+      message: '<div class="comments-modal">' + comments + '</div><br/><textarea class="form-control" placeholder="Add a comment..." />',
       buttons: [{
         label: 'Submit',
         cssClass: 'btn-primary',
         action: function (dialogRef) {
           var comment = dialogRef.getModalBody().find('textarea').val();
           this.postComment(comment);
-          dialogRef.close();
+          dialogRef.getModalBody().find('textarea').val('');
         }.bind(this)
-      }]
+      }],
+      onshown: function () {
+        $('.comments-modal').on('click', '.delete-comment', function (e) {
+          ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id, function () {
+            $('#comment' + e.target.dataset.id).remove();
+          }.bind(this));
+        }.bind(this));
+      }.bind(this)
     });
 
-    $('body').on('click', '.delete-comment', function (e) {
-      $('#comment' + e.target.dataset.id).remove();
-      ApiUtil.deleteComment(this.state.post.id, e.target.dataset.id);
-    }.bind(this));
   },
   // confirmDeleteComment: function (commentId) {
   //   BootstrapDialog.show({

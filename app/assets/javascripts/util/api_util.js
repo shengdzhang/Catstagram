@@ -117,24 +117,26 @@ var ApiUtil = {
       }
     });
   },
-  createComment: function (postId, comment) {
+  createComment: function (postId, comment, callback) {
     $.ajax({
       url: 'api/posts/' + postId + '/comments',
       type: 'POST',
       data: { comment: comment },
       dataType: 'json',
-      success: function () {
+      success: function (comment) {
         this.fetchSinglePost(postId);
+        callback(comment);
       }.bind(this)
     });
   },
-  deleteComment: function (postId, commentId) {
+  deleteComment: function (postId, commentId, callback) {
     $.ajax({
       url: 'api/comments/' + commentId,
       type: 'DELETE',
       dataType: 'json',
       success: function () {
         this.fetchSinglePost(postId);
+        callback();
       }.bind(this)
     });
   },
