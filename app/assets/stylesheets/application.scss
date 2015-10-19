@@ -217,6 +217,19 @@ body, .page-header {
   background: #f2efe8;
 }
 
+.user-stats > div {
+  display: inline-block;
+  margin: 0px 20px;
+}
+
+.user-stats > div:not(:first-child):hover {
+  cursor: pointer;
+}
+
+.user-stats {
+  text-align: center;
+}
+
 textarea {
   resize: none;
 }

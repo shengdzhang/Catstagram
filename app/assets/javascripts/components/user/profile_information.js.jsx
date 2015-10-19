@@ -14,6 +14,7 @@ var ProfileInformation = React.createClass({
     ProfileStore.removeChangeListener(this._onChange);
   },
   componentWillReceiveProps: function () {
+    BootstrapDialog.closeAll();
     this.setState({ editingBiography: false, editingProfilePic: false });
   },
   editBiography: function () {
@@ -37,6 +38,28 @@ var ProfileInformation = React.createClass({
   },
   toggleFollow: function () {
     ApiUtil.toggleFollow(this.props.user.id, this.state.following);
+  },
+  showFollowers: function () {
+    var followers =
+      this.props.user.followers.map(function (follower) {
+        return '<a href="#/users/' + follower.id + '">' + follower.username + '</a>';
+      }).join('<br/>');
+
+    BootstrapDialog.show({
+      title: "Followers",
+      message: followers
+    });
+  },
+  showFollowing: function () {
+    var followees =
+      this.props.user.followees.map(function (followee) {
+        return '<a href="#/users/' + followee.id + '">' + followee.username + '</a>';
+      }).join('<br/>');
+
+    BootstrapDialog.show({
+      title: "Following",
+      message: followees
+    });
   },
   _onChange: function () {
     this.setState({ following: ProfileStore.following() });
@@ -86,37 +109,50 @@ var ProfileInformation = React.createClass({
               </div>
             }
           </div>
-          <div className="user-stats">
+          <div className="user-stats clearfix">
             <div className="num-posts">
-              {
-                this.props.user.posts ?
-                this.props.user.posts.length :
-                ""
-              }
-              {
-                this.props.user.posts && this.props.user.posts.length == 1 ?
-                " post" :
-                " posts"
-              }
+              <h3>
+                {
+                  this.props.user.posts ?
+                  this.props.user.posts.length :
+                  ""
+                }
+                <small>
+                  {
+                    this.props.user.posts && this.props.user.posts.length == 1 ?
+                    " post" :
+                    " posts"
+                  }
+                </small>
+              </h3>
             </div>
-            <div className="num-followers">
-              {
-                this.props.user.followers ?
-                this.props.user.followers.length :
-                ""
-              }
-              {
-                this.props.user.followers && this.props.user.followers.length == 1 ?
-                " follower" :
-                " followers"
-              }
+            <div className="num-followers" onClick={this.showFollowers}>
+              <h3>
+                {
+                  this.props.user.followers ?
+                  this.props.user.followers.length :
+                  ""
+                }
+                <small>
+                  {
+                    this.props.user.followers && this.props.user.followers.length == 1 ?
+                    " follower" :
+                    " followers"
+                  }
+                </small>
+              </h3>
             </div>
-            <div className="num-following">
-              {
-                this.props.user.followees ?
-                this.props.user.followees.length :
-                ""
-              } following
+            <div className="num-following" onClick={this.showFollowing}>
+              <h3>
+                {
+                  this.props.user.followees ?
+                  this.props.user.followees.length :
+                  ""
+                }
+                <small>
+                  following
+                </small>
+              </h3>
             </div>
           </div>
         </div>
