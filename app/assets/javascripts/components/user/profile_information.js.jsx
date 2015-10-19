@@ -86,6 +86,39 @@ var ProfileInformation = React.createClass({
               </div>
             }
           </div>
+          <div className="user-stats">
+            <div className="num-posts">
+              {
+                this.props.user.posts ?
+                this.props.user.posts.length :
+                ""
+              }
+              {
+                this.props.user.posts && this.props.user.posts.length == 1 ?
+                " post" :
+                " posts"
+              }
+            </div>
+            <div className="num-followers">
+              {
+                this.props.user.followers ?
+                this.props.user.followers.length :
+                ""
+              }
+              {
+                this.props.user.followers && this.props.user.followers.length == 1 ?
+                " follower" :
+                " followers"
+              }
+            </div>
+            <div className="num-following">
+              {
+                this.props.user.followees ?
+                this.props.user.followees.length :
+                ""
+              } following
+            </div>
+          </div>
         </div>
       </div>
     );

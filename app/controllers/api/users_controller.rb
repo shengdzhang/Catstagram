@@ -5,7 +5,8 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:followers, :posts, :followees).where(id: params[:id]).first
+
     render :show
   end
 

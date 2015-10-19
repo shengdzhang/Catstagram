@@ -11,16 +11,6 @@ var ApiUtil = {
       }
     });
   },
-  fetchAllPostsFromUser: function (userId) {
-    $.ajax({
-      url: 'api/users/' + userId + '/profile',
-      type: 'GET',
-      dataType: 'json',
-      success: function (posts) {
-        PostActions.receiveAllPostsForUser(posts);
-      }
-    });
-  },
   fetchFeed: function () {
     $.ajax({
       url: 'api/posts',

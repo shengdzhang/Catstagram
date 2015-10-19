@@ -3,7 +3,6 @@
   var CHANGE_EVENT = "CHANGE_EVENT";
 
   var _user = {};
-  var _posts = [];
   var _following = false;
 
   function resetUser(user) {
@@ -12,22 +11,23 @@
     ProfileStore.changed();
   }
 
-  function resetPosts(posts) {
-    _posts = posts;
-    ProfileStore.changed();
-  }
-
   function updateFollowStatus(status) {
     _following = status;
+    if (status) {
+      _user.followers.unshift({ id: window.CURRENT_USER_ID, username: window.CURRENT_USER_USERNAME });
+    } else {
+      _user.followers.forEach(function (follower, index) {
+        if (follower.id === window.CURRENT_USER_ID) {
+          _user.followers.splice(index, 1);
+        }
+      });
+    }
     ProfileStore.changed();
   }
 
   window.ProfileStore = $.extend({}, EventEmitter.prototype, {
     user: function () {
       return $.extend({}, _user);
-    },
-    posts: function () {
-      return _posts.slice();
     },
     following: function () {
       return _following;
@@ -45,9 +45,6 @@
       switch (action.actionType) {
         case UserConstants.RECEIVED_USER:
           resetUser(action.user);
-          break;
-        case PostConstants.RECEIVED_ALL_POSTS_FROM_USER:
-          resetPosts(action.posts);
           break;
         case UserConstants.RECEIVED_FOLLOW_TOGGLE_REQUEST:
           updateFollowStatus(action.status.following);

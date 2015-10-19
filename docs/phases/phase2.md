@@ -21,7 +21,6 @@
 * ApiActions.deletePost
 
 ### ApiUtil
-* ApiUtil.fetchAllPostsFromUser
 * ApiUtil.createPost
 * ApiUtil.editPost
 * ApiUtil.destroyPost
