@@ -6,7 +6,7 @@ var PostDetailComment = React.createClass({
     var comment = this.props.comment;
 
     return (
-      <div className="comment" id="comment{comment.id}">
+      <div className="comment wrapword" id="comment{comment.id}">
         {
           comment.user_id === window.CURRENT_USER_ID ?
           <a className="glyphicon glyphicon-trash delete-comment pull-left" onClick={this.deleteComment}></a> : ""

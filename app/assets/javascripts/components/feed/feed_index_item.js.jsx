@@ -32,7 +32,7 @@ var FeedIndexItem = React.createClass({
   },
   postComment: function (comment) {
     ApiUtil.createComment(this.state.post.id, { body: comment }, function (receivedComment) {
-      $('.comments-modal').prepend('<div class="comment" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
+      $('.comments-modal').prepend('<div class="comment wrapword" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
     });
   },
   renderEditForm: function () {
@@ -76,8 +76,8 @@ var FeedIndexItem = React.createClass({
   showComments: function () {
     var comments =
       this.state.post.comments.map(function (comment) {
-        return '<div class="comment" id="comment' + comment.id + '">' + (comment.user_id === window.CURRENT_USER_ID ? '<a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + comment.id + '"></a>' : '') + '<a href="#/users/' + comment.user_id + '">' + comment.posted_by + '</a>:<br/><p>' + comment.body + '</p><br/></div>';
-      }).join('');
+        return '<div class="comment wrapword" id="comment' + comment.id + '">' + (comment.user_id === window.CURRENT_USER_ID || this.state.post.user_id === window.CURRENT_USER_ID ? '<a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + comment.id + '"></a>' : '') + '<a href="#/users/' + comment.user_id + '">' + comment.posted_by + '</a>:<br/><p>' + comment.body + '</p><br/></div>';
+      }.bind(this)).join('');
 
     BootstrapDialog.show({
       title: 'Comments',
@@ -107,7 +107,7 @@ var FeedIndexItem = React.createClass({
       <div className="panel panel-primary feed-index-item effect8">
         <div className="panel-heading clearfix">
           <a className="pull-left" onClick={this.navigateToUserProfile.bind(null, post.user_id)}>{post.username}</a>
-          <span className="pull-right">{jQuery.timeago(post.created_at)}</span>
+          <a href={"#/posts/" + post.id} className="pull-right">{jQuery.timeago(post.created_at)}</a>
         </div>
         <div className="panel-body">
           <div className="panel-media">

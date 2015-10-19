@@ -1,4 +1,5 @@
 var App = React.createClass({
+  mixins: [ReactRouter.History],
   render: function () {
     return (
       <div>

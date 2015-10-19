@@ -12,6 +12,7 @@
   }
 
   function receiveEditedPost(post) {
+    _detailedPost = post;
     _posts.forEach(function (p, index) {
       if (p.id === post.id) {
         _posts[index] = post;

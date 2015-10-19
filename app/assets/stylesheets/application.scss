@@ -77,14 +77,14 @@ nav {
   min-height: 30px;
 }
 
-.post-controls {
+.feed-index-item .post-controls {
   display: none;
   position: absolute;
   bottom: 5px;
   right: 5px;
 }
 
-.feed-index-item .panel:hover .post-controls {
+.feed-index-item:hover .post-controls {
   display: block;
 }
 
@@ -192,9 +192,18 @@ nav .container-fluid {
   margin: 0px auto;
 }
 
-// .post-detail-caption {
-//   margin-bottom: 20px;
-// }
+.post-detail-favorites {
+  margin: 5px;
+  display: block;
+}
+
+.post-detail-symbols .glyphicon {
+  padding: 5px;
+}
+
+.post-detail-favorites > a:first-child {
+  margin-top: 3px;
+}
 
 body, .page-header {
   background: #f2efe8;
@@ -214,6 +223,7 @@ textarea {
   word-break: break-all;
   white-space: normal;
 }
+
 // {
 //   text-overflow: ellipsis;
 //   white-space: nowrap;
