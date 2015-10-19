@@ -6,6 +6,7 @@ var FeedIndexItem = React.createClass({
     this.setState({ post: props.post });
   },
   componentWillUnmount: function () {
+    $('.comments-modal').off();
     BootstrapDialog.closeAll();
   },
   deletePost: function (postId) {
@@ -103,7 +104,7 @@ var FeedIndexItem = React.createClass({
     var post = this.state.post;
 
     return (
-      <div className="panel panel-primary effect8">
+      <div className="panel panel-primary feed-index-item effect8">
         <div className="panel-heading clearfix">
           <a className="pull-left" onClick={this.navigateToUserProfile.bind(null, post.user_id)}>{post.username}</a>
           <span className="pull-right">{jQuery.timeago(post.created_at)}</span>

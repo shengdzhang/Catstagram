@@ -12,6 +12,7 @@ $(function () {
         <Route path="posts/upload" component={FeedForm} />
         <Route path="users/:id" component={ProfileView} />
         <Route path="settings" component={AccountSettings} />
+        <Route path="posts/:id" components={PostDetail} />
       </Route>
     </Router>
   ), rootEl);

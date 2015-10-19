@@ -37,7 +37,7 @@ var ApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (post) {
-        PostActions.receiveEditedPost(post);
+        PostActions.receiveSinglePost(post);
       }
     });
   },
@@ -137,7 +137,9 @@ var ApiUtil = {
       dataType: 'json',
       success: function () {
         this.fetchSinglePost(postId);
-        callback();
+        if (callback) {
+          callback();
+        }
       }.bind(this)
     });
   },

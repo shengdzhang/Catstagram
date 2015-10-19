@@ -4,6 +4,7 @@
   var FAVORITE_EVENT = "FAVORITE_EVENT";
 
   var _posts = [];
+  var _detailedPost = null;
 
   function resetPosts(posts) {
     _posts = posts;
@@ -29,12 +30,17 @@
   }
 
   function receiveSinglePost(post) {
+    _detailedPost = post;
     _posts.unshift(post);
+    PostStore.changed();
   }
 
   root.PostStore = $.extend({}, EventEmitter.prototype, {
     all: function () {
       return _posts.slice();
+    },
+    detailedPost: function () {
+      return $.extend({}, _detailedPost);
     },
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
