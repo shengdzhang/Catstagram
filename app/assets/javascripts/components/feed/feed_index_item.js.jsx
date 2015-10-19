@@ -38,7 +38,7 @@ var FeedIndexItem = React.createClass({
   renderEditForm: function () {
     BootstrapDialog.show({
       title: 'Update Caption',
-      message: '<textarea class="form-control">' + this.props.post.caption + '</textarea>',
+      message: '<textarea class="form-control" placeholder="Add a caption...">' + this.props.post.caption + '</textarea>',
       buttons: [{
         label: 'Update',
         cssClass: 'btn-primary',

@@ -30,7 +30,7 @@ var PostDetail = React.createClass({
   renderEditForm: function () {
     BootstrapDialog.show({
       title: 'Update Caption',
-      message: '<textarea class="form-control">' + this.state.post.caption + '</textarea>',
+      message: '<textarea class="form-control" placeholder="Add a caption...">' + this.state.post.caption + '</textarea>',
       buttons: [{
         label: 'Update',
         cssClass: 'btn-primary',
