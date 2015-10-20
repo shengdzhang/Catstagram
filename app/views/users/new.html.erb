@@ -4,11 +4,9 @@
 </div>
 <div class="auth-form">
   <% if flash['errors'] %>
-    <ul class="flashes">
-      <% flash['errors'].each do |error| %>
-        <li class="alert alert-warning"><%= error %></li>
-      <% end %>
-    </ul>
+    <% flash['errors'].each do |error| %>
+      <div class="alert alert-warning"><%= error %></div>
+    <% end %>
   <% end %>
   <div class="jumbotron box-shadow--16dp">
     <h2>Sign Up</h2>
@@ -36,7 +34,15 @@
                    "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322238/bg-04_lsffvd.jpg",
                    "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322685/bg-05_z9wtns.jpg",
                    "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445323082/bg-06_x8h2mo.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445324215/bg-07_kl76xh.jpg"
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445324215/bg-07_kl76xh.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445360970/bg-08_sab4kg.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361374/bg-09_h3edcj.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361483/bg-10_brwiit.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361878/bg-11_xlltvs.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362104/bg-12_okzbwo.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362313/bg-13_erximm.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362487/bg-14_idhfna.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362668/bg-15_i3aq1d.jpg"
                  ];
     var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
 

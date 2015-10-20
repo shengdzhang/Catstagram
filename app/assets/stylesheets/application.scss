@@ -41,6 +41,10 @@ nav {
   margin: 50px auto;
 }
 
+.auth-form .jumbotron {
+  border-radius: 10px;
+}
+
 .feed-index-item {
   width: 100%;
   max-width: 320px;
@@ -63,6 +67,7 @@ nav {
 .page-header {
   margin: 0px;
   background-color: #fff;
+  border: 0px;
 }
 
 .page-header, .jumbotron {
@@ -170,13 +175,12 @@ nav .container-fluid {
   border-radius: 5px;
 }
 
-.flashes li {
-  width: 100%;
-  max-width: 1000px;
+.alert {
   margin: 0px auto;
-  list-style: none;
   text-align: center;
   z-index: 1;
+  background: steelblue;
+  border-color: #335877;
 }
 
 .profile-information {
@@ -216,7 +220,7 @@ nav .container-fluid {
 }
 
 body, .page-header {
-  background: #f2efe8;
+  background: aliceblue;
 }
 
 .user-stats > div {
