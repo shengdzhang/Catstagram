@@ -7,19 +7,22 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:index, :show, :update] do
-      resources :posts, only: [:create]
       get 'profile' => 'posts#profile_index'
     end
 
     post 'follow/:id' => 'relationships#create'
     delete 'unfollow/:id' => 'relationships#destroy'
 
-    resources :posts, only: [:index, :destroy, :update, :show] do
+    resources :posts, only: [:create, :index, :destroy, :update, :show] do
       post 'togglefavorite' => 'favorites#create'
       delete 'togglefavorite' => 'favorites#destroy'
       resources :comments, only: [:create]
+      resources :taggings, only: [:create]
+      delete 'taggings' => 'taggings#destroy'
     end
 
     resources :comments, only: [:destroy]
+
+    get 'tags/:name' => 'tags#index'
   end
 end

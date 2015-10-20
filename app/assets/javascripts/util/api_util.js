@@ -1,13 +1,34 @@
 var ApiUtil = {
-  createPost: function (postParams) {
+  createPost: function (postParams, callback) {
     $.ajax({
-      url: 'api/users/' + window.CURRENT_USER_ID + '/posts',
+      url: 'api/posts',
       type: 'POST',
       data: { post: postParams },
       dataType: 'json',
       success: function (post) {
         PostActions.receiveSinglePost(post);
         window.location.href = "#";
+        callback(post);
+      }
+    });
+  },
+  addTagsToPost: function (postId, tags) {
+    $.ajax({
+      url: 'api/posts/' + postId + '/taggings',
+      type: 'DELETE',
+      dataType: 'json',
+      success: function () {
+        tags.split(" ").forEach(function (tag) {
+          $.ajax({
+            url: 'api/posts/' + postId + '/taggings',
+            type: 'POST',
+            data: { tag: tag },
+            dataType: 'json',
+            success: function () {
+
+            }
+          });
+        });
       }
     });
   },

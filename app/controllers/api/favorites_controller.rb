@@ -5,7 +5,7 @@ class Api::FavoritesController < ApplicationController
     if favorite.save
       render json: { favorited: true }
     else
-      render json: favorite.errors.full_messages
+      render json: favorite.errors.full_messages, status: 422
     end
   end
 
@@ -15,7 +15,7 @@ class Api::FavoritesController < ApplicationController
     if favorite.destroy
       render json: { favorited: false }
     else
-      render json: favorite.errors.full_messages
+      render json: favorite.errors.full_messages, status: 422
     end
   end
 

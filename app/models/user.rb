@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
 
   def init
     self.username.downcase!
-    self.profile_pic_url ||= "http://s3-us-west-1.amazonaws.com/witty-avatars/default-avatar-4-l.jpg"
+    self.profile_pic_url ||= "https://cdn-img.fimfiction.net/user/vldi-1431832171-183452-256"
   end
 
   def ensure_session_token
