@@ -14,14 +14,6 @@
 </head>
 <body>
 
-<% if flash['errors'] %>
-  <ul class="flashes">
-    <% flash['errors'].each do |error| %>
-      <li class="alert alert-info"><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= yield %>
 
 </body>

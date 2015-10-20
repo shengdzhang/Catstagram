@@ -5,15 +5,17 @@ $(function () {
 
   var rootEl = document.getElementById('pixor');
 
-  React.render((
-    <Router>
-      <Route path="/" component={App}>
-        <IndexRoute component={FeedIndex} />
-        <Route path="posts/upload" component={FeedForm} />
-        <Route path="users/:id" component={ProfileView} />
-        <Route path="settings" component={AccountSettings} />
-        <Route path="posts/:id" components={PostDetail} />
-      </Route>
-    </Router>
-  ), rootEl);
+  if (rootEl) {
+    React.render((
+      <Router>
+        <Route path="/" component={App}>
+          <IndexRoute component={FeedIndex} />
+          <Route path="posts/upload" component={FeedForm} />
+          <Route path="users/:id" component={ProfileView} />
+          <Route path="settings" component={AccountSettings} />
+          <Route path="posts/:id" components={PostDetail} />
+        </Route>
+      </Router>
+    ), rootEl);
+  }
 });

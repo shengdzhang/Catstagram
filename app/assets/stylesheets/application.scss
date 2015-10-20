@@ -56,6 +56,8 @@ nav {
 .welcome h1 {
   font-family: Billabong;
   font-size: 70px;
+  color: #fff;
+  text-shadow: 4px 4px #000;
 }
 
 .page-header {
@@ -171,7 +173,7 @@ nav .container-fluid {
 .flashes li {
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0px auto;
   list-style: none;
   text-align: center;
   z-index: 1;
@@ -228,6 +230,15 @@ body, .page-header {
 
 .user-stats {
   text-align: center;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-size: cover;
 }
 
 textarea {

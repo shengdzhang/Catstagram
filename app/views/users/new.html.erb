@@ -1,7 +1,15 @@
+<div class="background"/>
 <div class="welcome">
   <h1>Welcome to Pixor!</h1>
 </div>
 <div class="auth-form">
+  <% if flash['errors'] %>
+    <ul class="flashes">
+      <% flash['errors'].each do |error| %>
+        <li class="alert alert-warning"><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="jumbotron box-shadow--16dp">
     <h2>Sign Up</h2>
 
@@ -19,3 +27,19 @@
     <p>Already have an account? <%= link_to "Sign In!", new_session_url %></p>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    var bgArray = ["http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445321413/bg-01_zys0ug.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445321421/bg-02_ncjl3w.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322230/bg-03_wbpao0.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322238/bg-04_lsffvd.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322685/bg-05_z9wtns.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445323082/bg-06_x8h2mo.jpg",
+                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445324215/bg-07_kl76xh.jpg"
+                 ];
+    var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
+
+    $('.background').css('background-image', 'url("' + bg + '")');
+  });
+</script>
