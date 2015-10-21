@@ -31,11 +31,7 @@ var FeedIndexItem = React.createClass({
     ApiUtil.updatePost(this.props.post.id, {caption: caption});
   },
   postComment: function (comment) {
-    ApiUtil.createComment(this.state.post.id, { body: comment }, function (receivedComment) {
-      if (receivedComment.body) {
-        $('.comments-modal').prepend('<div class="comment wrapword" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
-      }
-    });
+    ApiUtil.createComment(this.state.post.id, { body: comment });
   },
   renderEditForm: function () {
     BootstrapDialog.show({
@@ -87,7 +83,7 @@ var FeedIndexItem = React.createClass({
         action: function (dialogRef) {
           var comment = dialogRef.getModalBody().find('textarea').val();
           this.postComment(comment);
-          dialogRef.getModalBody().find('textarea').val('');
+          dialogRef.close();
         }.bind(this)
       }],
       onshown: function () {

@@ -4,6 +4,10 @@ var SearchIndex = React.createClass({
   },
   componentDidMount: function () {
     SearchStore.addChangeListener(this._onChange);
+    $('.search').on('click', 'a', function () {
+      $('input:text').val("");
+      ApiUtil.fetchUserSearchResults("");
+    });
   },
   updateResults: function (e) {
     ApiUtil.fetchUserSearchResults(e.target.value);
