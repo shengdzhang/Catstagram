@@ -52,6 +52,14 @@
     $('#demo-link').on('click', function () {
       $("input:text").val("demo");
       $("input:password").val("password");
+      $.ajax({
+        url: '/session',
+        type: 'POST',
+        data: { user: { username: "demo", password: "password" } },
+        success: function () {
+          window.location.href = "/";
+        }
+      })
     })
   });
 </script>
