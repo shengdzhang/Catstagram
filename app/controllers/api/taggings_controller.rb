@@ -30,5 +30,6 @@ class Api::TaggingsController < ApplicationController
 
   def destroy
     Post.find(params[:post_id]).taggings.destroy_all
+    render json: {}
   end
 end

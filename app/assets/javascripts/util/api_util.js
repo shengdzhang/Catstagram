@@ -103,6 +103,16 @@ var ApiUtil = {
       }
     });
   },
+  fetchPostSearchResults: function (tag) {
+    $.ajax({
+      url: 'api/tags/' + tag,
+      type: 'GET',
+      dataType: 'json',
+      success: function (posts) {
+        debugger;
+      }
+    });
+  },
   toggleFavorite: function (postId, favorited) {
     var type = (favorited ? 'DELETE' : 'POST');
 
