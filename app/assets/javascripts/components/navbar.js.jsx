@@ -9,7 +9,7 @@ var Navbar = React.createClass({
           <div className="navbar-header">
             <a className="navbar-brand" href="#">Pixor</a>
           </div>
-          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown" role="presentation">
                 <a className="dropdown-toggle" data-toggle="dropdown"
