@@ -57,7 +57,7 @@
   function addCommentToPost(comment) {
     _posts.forEach(function (p, index) {
       if (p.id === comment.post_id) {
-        _posts[index].comments.unshift(comment);
+        _posts[index].comments.push(comment);
       }
     });
     PostStore.changed();

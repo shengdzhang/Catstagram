@@ -33,7 +33,7 @@ var FeedIndexItem = React.createClass({
   postComment: function (comment) {
     ApiUtil.createComment(this.state.post.id, { body: comment }, function (receivedComment) {
       if (receivedComment.body) {
-        $('.comments-modal').prepend('<div class="comment wrapword" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
+        $('.comments-modal').append('<div class="comment wrapword" id="comment' + receivedComment.id + '"><a class="glyphicon glyphicon-trash delete-comment pull-left" data-id="' + receivedComment.id + '"></a><a href="#/users/' + receivedComment.user_id + '">' + receivedComment.posted_by + '</a>:<br/><p>' + receivedComment.body + '</p><br/></div>');
       }
     });
   },
