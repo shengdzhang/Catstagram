@@ -22,11 +22,11 @@ var ProfileView = React.createClass({
         <ProfileInformation user={this.state.user} />
         <div className="profile-items">
           {
-            this.state.user.posts ?
+            (typeof this.state.user.posts !== "undefined" && this.state.user.posts.length > 0) ?
             this.state.user.posts.map(function (post) {
               return <ProfileViewItem post={post} key={post.id} />;
             }) :
-            ""
+            <h4>You don't have any posts! How unfortunate!</h4>
           }
         </div>
       </div>

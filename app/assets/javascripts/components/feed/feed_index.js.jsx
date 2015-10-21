@@ -18,9 +18,11 @@ var FeedIndex = React.createClass({
       <div className="feed-index">
         <div className="feed-items">
           {
+            this.state.posts.length > 0 ?
             this.state.posts.map(function (post) {
               return <FeedIndexItem post={post} key={post.id} />;
-            })
+            }) :
+            <h3>There are no posts in your feed! Go follow a friend.</h3>
           }
         </div>
       </div>
