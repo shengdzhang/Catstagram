@@ -52,12 +52,15 @@ var ApiUtil = {
       }
     });
   },
-  deletePost: function (postId) {
+  deletePost: function (postId, callback) {
     $.ajax({
       url: 'api/posts/' + postId,
       type: 'DELETE',
       success: function () {
         PostActions.deletedPost(postId);
+        if (callback) {
+          callback();
+        }
       }
     });
   },

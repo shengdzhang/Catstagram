@@ -22,9 +22,12 @@ var PostDetail = React.createClass({
       btnOKClass: 'btn-warning',
       callback: function(result) {
         if (result) {
-          ApiUtil.deletePost(postId);
+          var userId = this.state.post.user_id;
+          ApiUtil.deletePost(postId, function () {
+            window.location.href = "#/users/" + userId;
+          });
         }
-      }
+      }.bind(this)
     });
   },
   renderEditForm: function () {
