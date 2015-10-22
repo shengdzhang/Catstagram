@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_not_logged_in, except: [:update]
+  before_action :require_not_logged_in, only: [:new, :create]
 
   def new
     @user = User.new
@@ -9,11 +9,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      log_in!(@user)
-      redirect_to root_url
+    if params[:user][:password] == params[:user][:password_confirmation]
+      if @user.save
+        log_in!(@user)
+        redirect_to root_url
+      else
+        flash.now['errors'] = @user.errors.full_messages
+        render :new
+      end
     else
-      flash.now['errors'] = @user.errors.full_messages
+      flash.now['errors'] = ["Password confirmation does not match password."]
       render :new
     end
   end
