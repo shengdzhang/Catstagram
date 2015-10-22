@@ -124,8 +124,8 @@ var PostDetail = React.createClass({
             {
               this.state.post.comments ?
               this.state.post.comments.map(function (comment) {
-                return <PostDetailComment comment={comment} key={comment.id} />
-              }) :
+                return <PostDetailComment comment={comment} postedById={this.state.post.user_id} key={comment.id} />
+              }.bind(this)) :
               ""
             }
             <form className="post-detail-comment-form" onSubmit={this.postComment}>

@@ -6,12 +6,12 @@ var PostDetailComment = React.createClass({
     var comment = this.props.comment;
 
     return (
-      <div className="comment wrapword" id="comment{comment.id}">
+      <div className="comment wrapword">
         {
-          comment.user_id === window.CURRENT_USER_ID ?
+          comment.user_id === window.CURRENT_USER_ID || this.props.postedById === window.CURRENT_USER_ID ?
           <a className="glyphicon glyphicon-trash delete-comment pull-left" onClick={this.deleteComment}></a> : ""
         }
-        <a href="#/users/{comment.user_id}">{comment.posted_by}</a>:
+        <a href={"#/users/" + comment.user_id}>{comment.posted_by}</a>:
         <br/>
         <p>{comment.body}</p><br/>
       </div>
