@@ -1,7 +1,13 @@
 var SearchActions = {
-  receiveSearchResults: function (results) {
+  receiveUserSearchResults: function (results) {
     AppDispatcher.dispatch({
-      actionType: SearchConstants.RECEIVED_SEARCH_RESULTS,
+      actionType: SearchConstants.RECEIVED_USER_SEARCH_RESULTS,
+      results: results
+    });
+  },
+  receiveTagSearchResults: function (results) {
+    AppDispatcher.dispatch({
+      actionType: SearchConstants.RECEIVED_TAG_SEARCH_RESULTS,
       results: results
     });
   },

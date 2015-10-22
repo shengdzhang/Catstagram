@@ -110,7 +110,7 @@ var ApiUtil = {
       data: { query: query },
       dataType: 'json',
       success: function (results) {
-        SearchActions.receiveSearchResults(results);
+        SearchActions.receiveUserSearchResults(results);
       }
     });
   },
@@ -121,7 +121,7 @@ var ApiUtil = {
       data: { query: query },
       dataType: 'json',
       success: function (results) {
-        SearchActions.receiveSearchResults(results);
+        SearchActions.receiveTagSearchResults(results);
       }
     });
   },

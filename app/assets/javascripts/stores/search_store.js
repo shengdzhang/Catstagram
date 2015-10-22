@@ -2,11 +2,17 @@
   'use strict';
   var CHANGE_EVENT = "CHANGE_EVENT";
 
-  var _results = [];
+  var _users = [];
+  var _tags = [];
   var _tagged_posts = [];
 
-  function resetResults(results) {
-    _results = results;
+  function resetUserResults(results) {
+    _users = results;
+    SearchStore.changed();
+  }
+
+  function resetTagResults(results) {
+    _tags = results;
     SearchStore.changed();
   }
 
@@ -16,8 +22,11 @@
   }
 
   window.SearchStore = $.extend({}, EventEmitter.prototype, {
-    all: function () {
-      return _results.slice();
+    users: function () {
+      return _users.slice();
+    },
+    tags: function () {
+      return _tags.slice();
     },
     posts: function () {
       return _tagged_posts.slice();
@@ -33,8 +42,11 @@
     },
     dispatcherId: AppDispatcher.register(function (action) {
       switch (action.actionType) {
-        case SearchConstants.RECEIVED_SEARCH_RESULTS:
-          resetResults(action.results);
+        case SearchConstants.RECEIVED_USER_SEARCH_RESULTS:
+          resetUserResults(action.results);
+          break;
+        case SearchConstants.RECEIVED_TAG_SEARCH_RESULTS:
+          resetTagResults(action.results);
           break;
         case SearchConstants.RECEIVED_POSTS_FROM_TAG_SEARCH:
           resetTaggedPosts(action.posts);
