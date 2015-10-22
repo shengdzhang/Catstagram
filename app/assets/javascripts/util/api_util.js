@@ -85,13 +85,21 @@ var ApiUtil = {
       }
     });
   },
-  updateUser: function (userParams) {
+  updateUser: function (userParams, callback) {
     $.ajax({
       url: 'api/users/' + window.CURRENT_USER_ID,
       type: 'PATCH',
       data: { user: userParams },
+      dataType: 'json',
       success: function (user) {
-        UserActions.receiveUser(user);
+        if (callback) {
+          callback();
+        } else {
+          UserActions.receiveUser(user);
+        }
+      },
+      error: function (message) {
+        callback(message.responseText);
       }
     });
   },
