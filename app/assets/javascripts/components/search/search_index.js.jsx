@@ -40,10 +40,10 @@ var SearchIndex = React.createClass({
     return (
       <div className="input-group">
         <div className="input-group-btn">
-          <button className={this.state.users ? "btn btn-selected" : "btn btn-default"} onClick={this.changeToUsersSearch}>Users</button>
+          <button className="btn btn-default" onClick={this.changeToUsersSearch}>Users</button>
         </div>
         <div className="input-group-btn">
-          <button className={this.state.tags ? "btn btn-selected" : "btn btn-default"} onClick={this.changeToTagsSearch}>Tags</button>
+          <button className="btn btn-default" onClick={this.changeToTagsSearch}>Tags</button>
         </div>
         <div className="input-group search">
           <input className="form-control" type="text" placeholder={this.state.users ? "Search Users" : "Search Tags"}
