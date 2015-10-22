@@ -27,7 +27,7 @@ var AccountSettings = React.createClass({
           ""
         }
         <h1>Account Settings</h1>
-        <div className="form-group auth-form">
+        <div className="form-group settings-form">
           <input className="form-control" type="password" placeholder="Current Password" valueLink={this.linkState("password")} />
           <br />
           <input className="form-control" type="password" placeholder="New Password" valueLink={this.linkState("newPassword")} />

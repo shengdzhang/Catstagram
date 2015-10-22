@@ -27,7 +27,9 @@ var ProfileView = React.createClass({
             this.state.user.posts.map(function (post) {
               return <ProfileViewItem post={post} key={post.id} />;
             }) :
-            <h4>You don't have any posts! How unfortunate!</h4>
+              this.state.user.id === window.CURRENT_USER_ID ?
+              <h4>You don't have any posts! How unfortunate!</h4> :
+              <h4>This user doesn't have any posts! How unfortunate!</h4>
           }
         </div>
       </div>
