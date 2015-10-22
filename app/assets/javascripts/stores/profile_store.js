@@ -37,6 +37,8 @@
     },
     removeChangeListener: function (callback) {
       this.removeListener(CHANGE_EVENT, callback);
+      _user = {};
+      _following = false;
     },
     changed: function () {
       this.emit(CHANGE_EVENT);

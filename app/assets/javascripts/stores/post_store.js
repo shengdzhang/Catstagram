@@ -4,7 +4,7 @@
   var FAVORITE_EVENT = "FAVORITE_EVENT";
 
   var _posts = [];
-  var _detailedPost = null;
+  var _detailedPost = {};
 
   function resetPosts(posts) {
     _posts = posts;
@@ -88,6 +88,8 @@
     },
     removeChangeListener: function (callback) {
       this.removeListener(CHANGE_EVENT, callback);
+      _detailedPost = {};
+      _posts = [];
     },
     changed: function () {
       this.emit(CHANGE_EVENT);
