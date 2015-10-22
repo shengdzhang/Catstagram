@@ -6,6 +6,9 @@ var SearchIndex = React.createClass({
   componentDidMount: function () {
     SearchStore.addChangeListener(this._onChange);
   },
+  componentWillUnmount: function () {
+    SearchStore.removeChangeListener(this._onChange);
+  },
   changeToUsersSearch: function (e) {
     e.preventDefault();
     this.setState({ users: true, tags: false });
@@ -37,10 +40,10 @@ var SearchIndex = React.createClass({
     return (
       <div className="input-group">
         <div className="input-group-btn">
-          <button className={this.state.users ? "btn btn-primary" : "btn btn-default"} onClick={this.changeToUsersSearch}>Users</button>
+          <button className={this.state.users ? "btn btn-selected" : "btn btn-default"} onClick={this.changeToUsersSearch}>Users</button>
         </div>
         <div className="input-group-btn">
-          <button className={this.state.tags ? "btn btn-primary" : "btn btn-default"} onClick={this.changeToTagsSearch}>Tags</button>
+          <button className={this.state.tags ? "btn btn-selected" : "btn btn-default"} onClick={this.changeToTagsSearch}>Tags</button>
         </div>
         <div className="input-group search">
           <input className="form-control" type="text" placeholder={this.state.users ? "Search Users" : "Search Tags"}

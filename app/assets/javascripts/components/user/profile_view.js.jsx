@@ -11,6 +11,7 @@ var ProfileView = React.createClass({
     ProfileStore.removeChangeListener(this._onChange);
   },
   componentWillReceiveProps: function (props) {
+    this.setState({ user: {} });
     ApiUtil.fetchUser(props.params.id);
   },
   _onChange: function () {
