@@ -14,4 +14,17 @@ class Tag < ActiveRecord::Base
 
   has_many :taggings, dependent: :destroy
   has_many :posts, through: :taggings
+
+  before_save :init
+
+  def self.find_by_query(query)
+    return [] if query.empty?
+    Tag.where(["name LIKE ?", "%#{query.downcase}%"]).limit(10)
+  end
+
+  private
+
+  def init
+    self.name.downcase!
+  end
 end

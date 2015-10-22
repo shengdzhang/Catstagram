@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:destroy]
 
-    get 'tags/:name' => 'tags#index'
+    get 'tags/:name' => 'tags#show'
+    resources :tags, only: [:index]
   end
 end

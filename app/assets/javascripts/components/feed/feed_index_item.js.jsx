@@ -51,7 +51,7 @@ var FeedIndexItem = React.createClass({
   showCaption: function (caption) {
     var modal = new BootstrapDialog({
       title: 'Caption',
-      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/>' + (caption || "There is no caption for this post.")
+      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/>' + caption
     });
     modal.realize();
     modal.getModalHeader().hide();

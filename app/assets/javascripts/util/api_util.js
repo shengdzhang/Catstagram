@@ -102,17 +102,28 @@ var ApiUtil = {
       data: { query: query },
       dataType: 'json',
       success: function (results) {
-        SearchActions.receiveUserSearchResults(results);
+        SearchActions.receiveSearchResults(results);
       }
     });
   },
-  fetchPostSearchResults: function (tag) {
+  fetchTagSearchResults: function (query) {
+    $.ajax({
+      url: 'api/tags',
+      type: 'GET',
+      data: { query: query },
+      dataType: 'json',
+      success: function (results) {
+        SearchActions.receiveSearchResults(results);
+      }
+    });
+  },
+  fetchTagSearchResultsPage: function (tag) {
     $.ajax({
       url: 'api/tags/' + tag,
       type: 'GET',
       dataType: 'json',
       success: function (posts) {
-        debugger;
+        SearchActions.receivePostsFromTagSearch(posts);
       }
     });
   },

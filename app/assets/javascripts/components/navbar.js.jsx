@@ -11,12 +11,10 @@ var Navbar = React.createClass({
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li className="dropdown" role="presentation">
-                <a className="dropdown-toggle" data-toggle="dropdown"
-                   role="button" aria-haspopup="true" aria-expanded="false">
-                  <span className="glyphicon glyphicon-search"></span>
-                </a>
-                <SearchIndex />
+              <li>
+                <form className="navbar-form search-form">
+                  <SearchIndex />
+                </form>
               </li>
               <li className="dropdown" role="presentation">
                 <a className="dropdown-toggle" data-toggle="dropdown"

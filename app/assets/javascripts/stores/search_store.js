@@ -3,15 +3,24 @@
   var CHANGE_EVENT = "CHANGE_EVENT";
 
   var _results = [];
+  var _tagged_posts = [];
 
   function resetResults(results) {
     _results = results;
     SearchStore.changed();
   }
 
+  function resetTaggedPosts(posts) {
+    _tagged_posts = posts;
+    SearchStore.changed();
+  }
+
   window.SearchStore = $.extend({}, EventEmitter.prototype, {
     all: function () {
       return _results.slice();
+    },
+    posts: function () {
+      return _tagged_posts.slice();
     },
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
@@ -24,8 +33,11 @@
     },
     dispatcherId: AppDispatcher.register(function (action) {
       switch (action.actionType) {
-        case SearchConstants.RECEIVED_USER_SEARCH_RESULTS:
+        case SearchConstants.RECEIVED_SEARCH_RESULTS:
           resetResults(action.results);
+          break;
+        case SearchConstants.RECEIVED_POSTS_FROM_TAG_SEARCH:
+          resetTaggedPosts(action.posts);
           break;
       }
     })

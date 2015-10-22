@@ -169,18 +169,18 @@ nav .container-fluid {
   max-width: 1000px;
 }
 
-.profile-items {
+.profile-items, .tag-search-view-items {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.profile-view-item img {
+.profile-view-item img, .tag-search-view-item img {
   width: 100%;
   border-radius: 5px;
 }
 
-.profile-view-item {
+.profile-view-item, .tag-search-view-item {
   width: 280px;
   height: 280px;
   padding: 0px;
@@ -256,6 +256,10 @@ body, .page-header {
   bottom: 0px;
   right: 0px;
   background-size: cover;
+}
+
+.search input, .results {
+  display: block
 }
 
 textarea {

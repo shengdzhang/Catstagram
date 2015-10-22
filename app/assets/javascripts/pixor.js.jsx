@@ -14,6 +14,7 @@ $(function () {
           <Route path="users/:id" component={ProfileView} />
           <Route path="settings" component={AccountSettings} />
           <Route path="posts/:id" components={PostDetail} />
+          <Route path="tags/:name" components={TagSearchView} />
         </Route>
       </Router>
     ), rootEl);

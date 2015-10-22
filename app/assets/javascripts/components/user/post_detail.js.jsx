@@ -110,8 +110,14 @@ var PostDetail = React.createClass({
             }
           </div>
           <div className="post-detail-caption wrapword">
-            <a href={"#/users/" + this.state.post.user_id}>{this.state.post.username}</a>:
-            <p>{this.state.post.caption || "There is no caption for this post."}</p>
+            {
+              this.state.post.caption ?
+              <div>
+                <a href={"#/users/" + this.state.post.user_id}>{this.state.post.username}</a>:
+                <p>{this.state.post.caption}</p>
+              </div> :
+              ""
+            }
           </div>
           <br/>
           <div className="post-detail-comments-section">
