@@ -44,6 +44,10 @@ nav {
   text-align: center;
 }
 
+.auth-form, .welcome h1 {
+  display: none;
+}
+
 .auth-form, .settings-form {
   width: 100%;
   max-width: 400px;
@@ -250,6 +254,7 @@ body, .page-header {
 }
 
 .background {
+  display: none;
   position: absolute;
   top: 0px;
   left: 0px;
