@@ -15,6 +15,7 @@ $(function () {
           <Route path="settings" component={AccountSettings} />
           <Route path="posts/:id" components={PostDetail} />
           <Route path="tags/:name" components={TagSearchView} />
+          <Route path="notifications" components={NotificationsIndex} />
         </Route>
       </Router>
     ), rootEl);

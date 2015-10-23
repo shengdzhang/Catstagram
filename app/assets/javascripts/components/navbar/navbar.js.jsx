@@ -1,6 +1,22 @@
 var Navbar = React.createClass({
+  getInitialState: function () {
+    return { notifications: [] };
+  },
+  componentDidMount: function () {
+    NotificationStore.addChangeListener(this._onChange);
+    ApiUtil.fetchNotificationsDropdown();
+    this.notificationInterval = setInterval(function () {
+      ApiUtil.fetchNotificationsDropdown();
+    }, 5000);
+  },
+  markAllNotificationsAsRead: function () {
+    ApiUtil.markAllNotificationsAsRead();
+  },
   logOut: function () {
     ApiUtil.logOut();
+  },
+  _onChange: function () {
+    this.setState({ notifications: NotificationStore.all() });
   },
   render: function () {
     return (
@@ -18,17 +34,17 @@ var Navbar = React.createClass({
               </li>
               <li className="dropdown" role="presentation">
                 <a className="dropdown-toggle" data-toggle="dropdown"
-                   role="button" aria-haspopup="true" aria-expanded="false">
-                   Activity <span className="badge">7</span>
+                   role="button" aria-haspopup="true" aria-expanded="false"
+                   onClick={this.markAllNotificationsAsRead}>
+                   Activity {NotificationStore.numUnread() > 0 ? <span className="badge">{NotificationStore.numUnread()}</span> : ""}
                 </a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">These</a></li>
-                  <li><a href="#">are</a></li>
-                  <li><a href="#">sample</a></li>
-                  <li><a href="#">notifications,</a></li>
-                  <li><a href="#">not</a></li>
-                  <li><a href="#">real</a></li>
-                  <li><a href="#">ones.</a></li>
+                <ul className="dropdown-menu scrollable-menu">
+                  <li><a href="#/notifications">View All Notifications</a></li>
+                  {
+                    this.state.notifications.map(function (notification) {
+                      return <Notification notification={notification} key={notification.id} />
+                    })
+                  }
                 </ul>
               </li>
               <li><a href="#/posts/upload" className="glyphicon glyphicon-camera"></a></li>

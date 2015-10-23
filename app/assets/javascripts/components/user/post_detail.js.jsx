@@ -10,7 +10,13 @@ var PostDetail = React.createClass({
     PostStore.removeChangeListener(this._onChange);
   },
   toggleFavorite: function () {
-    ApiUtil.toggleFavorite(this.state.post.id, this.state.post.favorited);
+    ApiUtil.toggleFavorite(this.state.post.id, this.state.post.favorited, function (status) {
+      if (status.favorited) {
+        ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                     message: window.CURRENT_USER_USERNAME + " liked your photo.",
+                                     href: "#/posts/" + this.state.post.id });
+      }
+    }.bind(this));
   },
   deletePost: function (postId) {
     BootstrapDialog.confirm({
@@ -53,7 +59,10 @@ var PostDetail = React.createClass({
 
     ApiUtil.createComment(this.state.post.id, { body: e.target[0].value }, function () {
       $('textarea').val('');
-    });
+      ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                   message: window.CURRENT_USER_USERNAME + " commented on your photo.",
+                                   href: "#/posts/" + this.state.post.id });
+    }.bind(this));
   },
   showLikers: function () {
     var listOfUsers =

@@ -32,6 +32,47 @@ var ApiUtil = {
       }
     });
   },
+  fetchNotificationsDropdown: function () {
+    $.ajax({
+      url: 'api/activity',
+      type: 'GET',
+      dataType: 'json',
+      success: function (notifications) {
+        NotificationActions.receiveNotificationDropdown(notifications);
+      }
+    });
+  },
+  fetchAllNotifications: function () {
+    $.ajax({
+      url: 'api/notifications',
+      type: 'GET',
+      dataType: 'json',
+      success: function (notifications) {
+        NotificationActions.receiveAllNotifications(notifications);
+      }
+    });
+  },
+  createNotification: function (notificationParams) {
+    $.ajax({
+      url: 'api/notifications',
+      type: 'POST',
+      data: { notification: notificationParams },
+      dataType: 'json',
+      success: function () {
+
+      }
+    });
+  },
+  markAllNotificationsAsRead: function () {
+    $.ajax({
+      url: 'api/readall',
+      type: 'PATCH',
+      dataType: 'json',
+      success: function () {
+        NotificationActions.markAllAsRead();
+      }
+    });
+  },
   fetchFeed: function () {
     $.ajax({
       url: 'api/posts',
@@ -135,7 +176,7 @@ var ApiUtil = {
       }
     });
   },
-  toggleFavorite: function (postId, favorited) {
+  toggleFavorite: function (postId, favorited, callback) {
     var type = (favorited ? 'DELETE' : 'POST');
 
     $.ajax({
@@ -144,10 +185,11 @@ var ApiUtil = {
       dataType: 'json',
       success: function (status) {
         PostActions.receiveToggledFavorite(postId, status);
+        callback(status);
       }.bind(this)
     });
   },
-  toggleFollow: function (userId, following) {
+  toggleFollow: function (userId, following, callback) {
     var type = (following ? 'DELETE' : 'POST');
     var action = (following ? 'unfollow/' : 'follow/');
     var url = 'api/' + action + userId;
@@ -158,6 +200,7 @@ var ApiUtil = {
       dataType: 'json',
       success: function (status) {
         UserActions.receiveFollowToggleRequest(status);
+        callback(status);
       }
     });
   },

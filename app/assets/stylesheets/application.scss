@@ -275,6 +275,34 @@ body, .page-header {
   text-align: center;
 }
 
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.scrollable-menu::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+.scrollable-menu::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: lightgray;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.75);
+}
+
+.list-group {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+.notifications-index-item:hover {
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
 textarea {
   resize: none;
 }

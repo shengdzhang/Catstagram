@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019234601) do
+ActiveRecord::Schema.define(version: 20151022215329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20151019234601) do
   add_index "favorites", ["post_id", "user_id"], name: "index_favorites_on_post_id_and_user_id", unique: true, using: :btree
   add_index "favorites", ["post_id"], name: "index_favorites_on_post_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "message",                    null: false
+    t.string   "href",                       null: false
+    t.boolean  "checked",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",    null: false

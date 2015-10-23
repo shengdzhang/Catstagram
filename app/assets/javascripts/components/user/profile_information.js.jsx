@@ -37,7 +37,13 @@ var ProfileInformation = React.createClass({
     this.setState({ editingProfilePic: false });
   },
   toggleFollow: function () {
-    ApiUtil.toggleFollow(this.props.user.id, this.state.following);
+    ApiUtil.toggleFollow(this.props.user.id, this.state.following, function (status) {
+      if (status.following) {
+        ApiUtil.createNotification({ user_id: this.props.user.id,
+                                     message: window.CURRENT_USER_USERNAME + " has started following you.",
+                                     href: "#/users/" + window.CURRENT_USER_ID });
+      }
+    }.bind(this));
   },
   showFollowers: function () {
     var followers =

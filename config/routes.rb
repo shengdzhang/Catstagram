@@ -25,5 +25,9 @@ Rails.application.routes.draw do
 
     get 'tags/:name' => 'tags#show'
     resources :tags, only: [:index]
+
+    resources :notifications, only: [:index, :create]
+    get 'activity' => 'notifications#dropdown'
+    patch 'readall' => 'notifications#read_all'
   end
 end

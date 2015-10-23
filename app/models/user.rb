@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :passive_relationships
 
+  has_many :notifications, dependent: :destroy
+
   attr_reader :password
 
   after_initialize :ensure_session_token

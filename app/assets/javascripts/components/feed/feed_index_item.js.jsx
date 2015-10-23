@@ -25,13 +25,23 @@ var FeedIndexItem = React.createClass({
     });
   },
   toggleFavorite: function () {
-    ApiUtil.toggleFavorite(this.props.post.id, this.props.post.favorited);
+    ApiUtil.toggleFavorite(this.props.post.id, this.props.post.favorited, function (status) {
+      if (status.favorited) {
+        ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                     message: window.CURRENT_USER_USERNAME + " liked your photo.",
+                                     href: "#/posts/" + this.state.post.id });
+      }
+    }.bind(this));
   },
   updatePost: function (caption) {
     ApiUtil.updatePost(this.props.post.id, {caption: caption});
   },
   postComment: function (comment) {
-    ApiUtil.createComment(this.state.post.id, { body: comment });
+    ApiUtil.createComment(this.state.post.id, { body: comment }, function () {
+      ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                   message: window.CURRENT_USER_USERNAME + " commented on your photo.",
+                                   href: "#/posts/" + this.state.post.id });
+    }.bind(this));
   },
   renderEditForm: function () {
     BootstrapDialog.show({
