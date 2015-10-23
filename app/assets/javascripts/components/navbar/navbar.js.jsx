@@ -5,9 +5,7 @@ var Navbar = React.createClass({
   componentDidMount: function () {
     NotificationStore.addChangeListener(this._onChange);
     ApiUtil.fetchNotificationsDropdown();
-    this.notificationInterval = setInterval(function () {
-      ApiUtil.fetchNotificationsDropdown();
-    }, 5000);
+    setInterval(ApiUtil.fetchNotificationsDropdown, 5000);
   },
   markAllNotificationsAsRead: function () {
     ApiUtil.markAllNotificationsAsRead();

@@ -5,9 +5,11 @@ var PostDetail = React.createClass({
   componentDidMount: function () {
     PostStore.addChangeListener(this._onChange);
     ApiUtil.fetchSinglePost(this.props.params.id);
+    this.interval = setInterval(ApiUtil.fetchSinglePost.bind(null, this.props.params.id), 5000);
   },
   componentWillUnmount: function () {
     PostStore.removeChangeListener(this._onChange);
+    clearInterval(this.interval);
   },
   componentWillReceiveProps: function (props) {
     ApiUtil.fetchSinglePost(props.params.id);
