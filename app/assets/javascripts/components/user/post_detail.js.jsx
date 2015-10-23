@@ -9,9 +9,12 @@ var PostDetail = React.createClass({
   componentWillUnmount: function () {
     PostStore.removeChangeListener(this._onChange);
   },
+  componentWillReceiveProps: function (props) {
+    ApiUtil.fetchSinglePost(props.params.id);
+  },
   toggleFavorite: function () {
     ApiUtil.toggleFavorite(this.state.post.id, this.state.post.favorited, function (status) {
-      if (status.favorited) {
+      if (status.favorited && this.state.post.user_id !== window.CURRENT_USER_ID) {
         ApiUtil.createNotification({ user_id: this.state.post.user_id,
                                      message: window.CURRENT_USER_USERNAME + " liked your photo.",
                                      href: "#/posts/" + this.state.post.id });
@@ -59,9 +62,11 @@ var PostDetail = React.createClass({
 
     ApiUtil.createComment(this.state.post.id, { body: e.target[0].value }, function () {
       $('textarea').val('');
-      ApiUtil.createNotification({ user_id: this.state.post.user_id,
-                                   message: window.CURRENT_USER_USERNAME + " commented on your photo.",
-                                   href: "#/posts/" + this.state.post.id });
+      if (this.state.post.user_id !== window.CURRENT_USER_ID) {
+        ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                     message: window.CURRENT_USER_USERNAME + " commented on your photo.",
+                                     href: "#/posts/" + this.state.post.id });
+      }
     }.bind(this));
   },
   showLikers: function () {

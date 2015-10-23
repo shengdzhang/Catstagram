@@ -26,7 +26,7 @@ var FeedIndexItem = React.createClass({
   },
   toggleFavorite: function () {
     ApiUtil.toggleFavorite(this.props.post.id, this.props.post.favorited, function (status) {
-      if (status.favorited) {
+      if (status.favorited && this.state.post.user_id !== window.CURRENT_USER_ID) {
         ApiUtil.createNotification({ user_id: this.state.post.user_id,
                                      message: window.CURRENT_USER_USERNAME + " liked your photo.",
                                      href: "#/posts/" + this.state.post.id });
@@ -38,9 +38,11 @@ var FeedIndexItem = React.createClass({
   },
   postComment: function (comment) {
     ApiUtil.createComment(this.state.post.id, { body: comment }, function () {
-      ApiUtil.createNotification({ user_id: this.state.post.user_id,
-                                   message: window.CURRENT_USER_USERNAME + " commented on your photo.",
-                                   href: "#/posts/" + this.state.post.id });
+      if (this.state.post.user_id !== window.CURRENT_USER_ID) {
+        ApiUtil.createNotification({ user_id: this.state.post.user_id,
+                                     message: window.CURRENT_USER_USERNAME + " commented on your photo.",
+                                     href: "#/posts/" + this.state.post.id });
+      }
     }.bind(this));
   },
   renderEditForm: function () {
