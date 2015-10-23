@@ -59,11 +59,14 @@ var PostDetail = React.createClass({
   updatePost: function (caption) {
     ApiUtil.updatePost(this.state.post.id, {caption: caption});
   },
-  postComment: function (e) {
-    e.preventDefault();
-
-    ApiUtil.createComment(this.state.post.id, { body: e.target[0].value }, function () {
-      $('textarea').val('');
+  handleKeyUp: function (e) {
+    if (e.keyCode === 13) {
+      this.postComment(e.target.value);
+    }
+  },
+  postComment: function (comment) {
+    ApiUtil.createComment(this.state.post.id, { body: comment }, function () {
+      $('input:text').val('');
       if (this.state.post.user_id !== window.CURRENT_USER_ID) {
         ApiUtil.createNotification({ user_id: this.state.post.user_id,
                                      message: window.CURRENT_USER_USERNAME + " commented on your photo.",
@@ -86,6 +89,8 @@ var PostDetail = React.createClass({
     this.setState({ post: PostStore.detailedPost() });
   },
   render: function () {
+    var likers = this.state.post.likers;
+
     return (
       <div className="panel panel-primary post-detail">
         <div className="panel-heading clearfix">
@@ -97,19 +102,12 @@ var PostDetail = React.createClass({
             <img src={this.state.post.media_url} />
           </div>
           <div className="post-detail-symbols clearfix">
-            <div className="post-detail-favorites">
-              <a className="pull-left" onClick={this.showLikers}>
+            <div className="post-detail-favorites" onClick={this.showLikers}>
+              <a className="pull-left">
                 {
-                  this.state.post.likers ?
-                  this.state.post.likers.length :
-                  "0"
-                }
-              </a>
-              <a onClick={this.toggleFavorite}>
-                {
-                  this.state.post.favorited ?
-                  <span className="glyphicon glyphicon-heart pull-left"></span> :
-                  <span className="glyphicon glyphicon-heart-empty pull-left"></span>
+                  likers ?
+                  likers.length + (likers.length != 1 ? " likes" : " like") :
+                  "0 likes"
                 }
               </a>
             </div>
@@ -125,6 +123,7 @@ var PostDetail = React.createClass({
               </div> : ""
             }
           </div>
+          <br/>
           <div className="post-detail-caption wrapword">
             {
               this.state.post.caption ?
@@ -136,7 +135,7 @@ var PostDetail = React.createClass({
             }
           </div>
           <br/>
-          <div className="post-detail-comments-section">
+          <div className="post-detail-comments-section clearfix">
             {
               this.state.post.comments ?
               this.state.post.comments.map(function (comment) {
@@ -144,10 +143,17 @@ var PostDetail = React.createClass({
               }.bind(this)) :
               ""
             }
-            <form className="post-detail-comment-form" onSubmit={this.postComment}>
-              <textarea className="form-control" placeholder="Add a comment..." />
-              <button type="submit" className="btn btn-primary form-control">Submit</button>
-            </form>
+
+            <div className="input-group input-group">
+              <a className="input-group-addon" onClick={this.toggleFavorite}>
+                {
+                  this.state.post.favorited ?
+                  <span className="glyphicon glyphicon-heart pull-left"></span> :
+                  <span className="glyphicon glyphicon-heart-empty pull-left"></span>
+                }
+              </a>
+              <input type="text" className="form-control" placeholder="Add a comment..." onKeyUp={this.handleKeyUp}/>
+            </div>
           </div>
         </div>
       </div>

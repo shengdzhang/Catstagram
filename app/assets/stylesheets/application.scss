@@ -109,6 +109,11 @@ nav {
   min-height: 30px;
 }
 
+.panel-footer {
+  text-align: center;
+  max-height: 30px;
+}
+
 .feed-index-item .post-controls {
   display: none;
   position: absolute;
@@ -301,6 +306,29 @@ body, .page-header {
 .notifications-index-item:hover {
   cursor: pointer;
   background-color: #e7e7e7;
+}
+
+.view-post {
+  margin-top: -5px;
+}
+
+.post-detail-heart {
+  position: absolute;
+  left: 0px;
+  font-size: 50px;
+  padding-right: 15px;
+}
+
+.test {
+  position: relative;
+}
+
+.comment-form {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  left: 65px;
 }
 
 textarea {

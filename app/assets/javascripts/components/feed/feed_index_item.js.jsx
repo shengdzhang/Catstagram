@@ -63,22 +63,11 @@ var FeedIndexItem = React.createClass({
   showCaption: function (caption) {
     var modal = new BootstrapDialog({
       title: 'Caption',
-      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/>' + caption
+      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/><p>' + caption + '</p><a href="#/posts/' + this.state.post.id + '">View Full Post</a>'
     });
     modal.realize();
     modal.getModalHeader().hide();
     modal.open();
-  },
-  showLikers: function () {
-    var listOfUsers =
-      this.state.post.likers.map(function (user) {
-        return '<a href="#/users/' + user.id + '">' + user.username + '</a>';
-      }).join('<br/>');
-
-    BootstrapDialog.show({
-      title: 'Favorited By:',
-      message: listOfUsers,
-    });
   },
   showComments: function () {
     var comments =
@@ -125,9 +114,9 @@ var FeedIndexItem = React.createClass({
           <div className="panel-footer">
             <span>
               <div className="post-interactions pull-left">
-                <div className="favorites pull-left">
-                  <a className="pull-left" onClick={this.showLikers}>{post.likers.length}</a>
-                  <a onClick={this.toggleFavorite}>
+                <div className="favorites pull-left" onClick={this.toggleFavorite}>
+                  <a className="pull-left">{post.likers.length}</a>
+                  <a>
                     {
                       post.favorited ?
                       <span className="glyphicon glyphicon-heart pull-left"></span> :
