@@ -25,13 +25,13 @@ var SearchIndex = React.createClass({
     var tagsPresent = (this.state.tags.length > 0);
 
     return (
-      <div className="form-group">
-        <div className="form-group search">
+      <div className="input-group">
+        <div className="input-group search">
           <input className="form-control" type="text" placeholder="Search"
                  onKeyUp={this.updateResults} />
         {
           usersPresent || tagsPresent ?
-          <ul className="results dropdown-menu">
+          <ul className="results dropdown-menu scrollable-menu">
             {
               usersPresent ?
               <li><b>Users</b></li> :
