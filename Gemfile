@@ -16,6 +16,7 @@ gem 'flux-rails-assets'
 gem 'cloudinary'
 gem 'faker'
 gem 'newrelic_rpm'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

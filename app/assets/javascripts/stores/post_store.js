@@ -6,8 +6,8 @@
   var _posts = [];
   var _detailedPost = {};
 
-  function resetPosts(posts) {
-    _posts = posts;
+  function addPostsToFeed(posts) {
+    _posts = _posts.concat(posts);
     PostStore.changed();
   }
 
@@ -97,7 +97,7 @@
     dispatcherId: AppDispatcher.register(function (action) {
       switch (action.actionType) {
         case PostConstants.RECEIVED_FEED_ITEMS:
-          resetPosts(action.posts);
+          addPostsToFeed(action.posts);
           break;
         case PostConstants.RECEIVED_EDITED_POST:
           receiveEditedPost(action.post);

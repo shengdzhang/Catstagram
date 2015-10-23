@@ -73,11 +73,12 @@ var ApiUtil = {
       }
     });
   },
-  fetchFeed: function () {
+  fetchFeed: function (page) {
     $.ajax({
       url: 'api/posts',
       type: 'GET',
       dataType: 'json',
+      data: { page: page },
       success: function (posts) {
         PostActions.receiveFeed(posts);
       }

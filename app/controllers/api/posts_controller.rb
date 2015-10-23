@@ -16,7 +16,7 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.user_feed
+    @posts = current_user.user_feed.page(params[:page]).per(24)
 
     render :index
   end
