@@ -11,7 +11,9 @@ var UploadWidget = React.createClass({
                                    button_class: 'btn btn-primary'
                                  },
                                  function (error, result) {
-                                   this.props.mediaUploadedHandler(result[0].secure_url);
+                                   this.props.mediaUploadedHandler(
+                                     "https://res.cloudinary.com/pixor/image/upload/h_600,w_600/" + result[0].path
+                                   );
                                  }.bind(this));
   },
   render: function () {

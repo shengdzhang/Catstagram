@@ -24,7 +24,7 @@ var FeedForm = React.createClass({
                 <textarea className="form-control" valueLink={this.linkState("caption")} placeholder="Add a caption..."/>
                 <input type="text" className="form-control" valueLink={this.linkState("tags")} placeholder="Tags (separate with spaces)"/>
                 <button type="submit" className="btn btn-primary form-control" onClick={this.createPost}>Post</button>
-                <a href="#"> Cancel</a>
+                <a className="btn btn-default form-control" href="#">Cancel</a>
               </form>
             </div> :
             <div className="jumbotron col-xs-offset-4 col-xs-4">
