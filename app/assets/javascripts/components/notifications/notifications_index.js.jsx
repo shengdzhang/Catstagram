@@ -5,9 +5,11 @@ var NotificationsIndex = React.createClass({
   componentDidMount: function () {
     NotificationStore.addChangeListener(this._onChange);
     ApiUtil.fetchAllNotifications();
+    this.interval = setInterval(ApiUtil.fetchAllNotifications, 5000);
   },
   componentWillUnmount: function () {
     NotificationStore.removeChangeListener(this._onChange);
+    clearInterval(this.interval);
   },
   _onChange: function () {
     this.setState({ notifications: NotificationStore.all() });

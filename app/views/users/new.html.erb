@@ -51,10 +51,16 @@
 
     $('.background').css('background-image', 'url("' + bg + '")');
 
-    $('.background').fadeIn(450, function () {
-      $('.welcome h1').fadeIn(600, function () {
-        $('.auth-form').fadeIn(600);
-      });
-    })
+    if ($('.alert').length > 0) {
+      $('.background').show();
+      $('.welcome h1').show();
+      $('.auth-form').show();
+    } else {
+      $('.background').fadeIn(450, function () {
+        $('.welcome h1').fadeIn(600, function () {
+          $('.auth-form').fadeIn(600);
+        });
+      })
+    }
   });
 </script>
