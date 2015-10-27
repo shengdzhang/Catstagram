@@ -44,13 +44,15 @@ var PostDetail = React.createClass({
   renderEditForm: function () {
     BootstrapDialog.show({
       title: 'Update Caption',
-      message: '<textarea class="form-control" placeholder="Add a caption...">' + this.state.post.caption + '</textarea>',
+      message: '<textarea class="form-control" placeholder="Add a caption...">' + this.state.post.caption + '</textarea><br/><p>Tags:</p><input type="text" class="form-control" placeholder="Add tags..." value="' + this.state.post.tags + '"/>',
       buttons: [{
         label: 'Update',
         cssClass: 'btn-primary',
         action: function (dialogRef) {
           var caption = dialogRef.getModalBody().find('textarea').val();
+          var tags = dialogRef.getModalBody().find('input').val();
           this.updatePost(caption);
+          ApiUtil.addTagsToPost(this.state.post.id, tags);
           dialogRef.close();
         }.bind(this)
       }]
@@ -123,7 +125,14 @@ var PostDetail = React.createClass({
               </div> : ""
             }
           </div>
-          <br/>
+          <p>
+          {
+            this.state.post.tags ?
+            this.state.post.tags.split(" ").map(function (tag, index) {
+              return <a href={"#/tags/" + tag} key={index}>{"#" + tag + " "}</a>
+            }) :
+            ""
+          }</p>
           <div className="post-detail-caption wrapword">
             {
               this.state.post.caption ?

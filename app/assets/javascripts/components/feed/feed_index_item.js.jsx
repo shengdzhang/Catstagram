@@ -48,22 +48,27 @@ var FeedIndexItem = React.createClass({
   renderEditForm: function () {
     BootstrapDialog.show({
       title: 'Update Caption',
-      message: '<textarea class="form-control" placeholder="Add a caption...">' + this.props.post.caption + '</textarea>',
+      message: '<p>Caption:</p><textarea class="form-control" placeholder="Add a caption...">' + this.props.post.caption + '</textarea><br/><p>Tags:</p><input type="text" class="form-control" placeholder="Add tags..." value="' + this.props.post.tags + '"/>',
       buttons: [{
         label: 'Update',
         cssClass: 'btn-primary',
         action: function (dialogRef) {
           var caption = dialogRef.getModalBody().find('textarea').val();
+          var tags = dialogRef.getModalBody().find('input').val();
           this.updatePost(caption);
+          ApiUtil.addTagsToPost(this.props.post.id, tags);
           dialogRef.close();
         }.bind(this)
       }]
     });
   },
   showCaption: function (caption) {
+    var tags = this.state.post.tags.split(" ").map(function (tag, index) {
+      return '<a href="#/tags/' + tag + '">#' + tag + ' </a>';
+    }).join(" ");
     var modal = new BootstrapDialog({
       title: 'Caption',
-      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/><p>' + caption + '</p><a href="#/posts/' + this.state.post.id + '">View Full Post</a>'
+      message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/><p>' + caption + '</p><p>' + tags + '</p><a href="#/posts/' + this.state.post.id + '">View Full Post</a>'
     });
     modal.realize();
     modal.getModalHeader().hide();

@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
   end
 
   def profile_index
-    @posts = Post.includes(:user, :likers).where(user_id: params[:user_id])
+    @posts = Post.includes(:user, :likers, :tags).where(user_id: params[:user_id])
 
     render :index
   end
@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user, :likers, :tags).find(params[:id])
 
     if !authorize_user(@post.user)
       render json: {}

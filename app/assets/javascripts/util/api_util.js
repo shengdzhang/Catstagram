@@ -18,14 +18,14 @@ var ApiUtil = {
       type: 'DELETE',
       dataType: 'json',
       success: function () {
-        tags.split(" ").forEach(function (tag) {
+        tags.split(" ").forEach(function (tag, index) {
           $.ajax({
             url: 'api/posts/' + postId + '/taggings',
             type: 'POST',
             data: { tag: tag },
             dataType: 'json',
             success: function () {
-
+              PostActions.receiveTags(postId, tags);
             }
           });
         });

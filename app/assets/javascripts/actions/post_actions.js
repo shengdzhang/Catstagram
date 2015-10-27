@@ -42,5 +42,12 @@ var PostActions = {
       actionType: PostConstants.DELETED_POST,
       postId: postId
     });
+  },
+  receiveTags: function (postId, tags) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.RECEIVED_TAGS,
+      postId: postId,
+      tags: tags
+    });
   }
 };

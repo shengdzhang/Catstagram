@@ -14,7 +14,6 @@ var FeedIndex = React.createClass({
   },
   componentWillUnmount: function () {
     PostStore.removeChangeListener(this._onChange);
-    clearInterval(this.interval);
     $(window).off('scroll');
   },
   _onChange: function () {

@@ -36,6 +36,16 @@
     PostStore.changed();
   }
 
+  function updateTags(postId, tags) {
+    _detailedPost.tags = tags;
+    _posts.forEach(function (p, index) {
+      if (p.id === postId) {
+        _posts[index].tags = tags;
+      }
+    });
+    PostStore.changed();
+  }
+
   function toggleFavorite(postId, status) {
     _posts.forEach(function (p, index) {
       if (p.id === postId) {
@@ -116,6 +126,9 @@
           break;
         case PostConstants.DELETED_COMMENT:
           removeCommentFromPost(action.postId, action.commentId);
+          break;
+        case PostConstants.RECEIVED_TAGS:
+          updateTags(action.postId, action.tags);
           break;
       }
     })
