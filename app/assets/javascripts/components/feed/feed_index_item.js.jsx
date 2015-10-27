@@ -63,9 +63,12 @@ var FeedIndexItem = React.createClass({
     });
   },
   showCaption: function (caption) {
-    var tags = this.state.post.tags.split(" ").map(function (tag, index) {
-      return '<a href="#/tags/' + tag + '">#' + tag + ' </a>';
-    }).join(" ");
+    var tags = "";
+    if (this.state.post.tags) {
+      tags = this.state.post.tags.split(" ").map(function (tag, index) {
+        return '<a href="#/tags/' + tag + '">#' + tag + ' </a>';
+      }).join(" ");
+    }
     var modal = new BootstrapDialog({
       title: 'Caption',
       message: '<img class="modal-image" src="' + this.state.post.media_url + '"/><br/><p>' + caption + '</p><p>' + tags + '</p><a href="#/posts/' + this.state.post.id + '">View Full Post</a>'
