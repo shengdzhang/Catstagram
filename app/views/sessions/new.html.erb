@@ -62,12 +62,12 @@
     }
 
     $('#demo-link').on('click', function () {
-      $("input:text").val("demo");
+      $("input:text").val("garrett");
       $("input:password").val("password");
       $.ajax({
         url: '/session',
         type: 'POST',
-        data: { user: { username: "demo", password: "password" } },
+        data: { user: { username: "garrett", password: "password" } },
         success: function () {
           window.location.href = "/";
         }

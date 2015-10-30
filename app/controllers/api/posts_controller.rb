@@ -1,3 +1,4 @@
+require 'byebug'
 class Api::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
@@ -16,7 +17,8 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.user_feed.page(params[:page]).per(24)
+    posts = Kaminari.paginate_array(current_user.user_feed)
+    @posts = posts.page(params[:page]).per(24)
 
     render :index
   end
