@@ -9,8 +9,6 @@
 Pixor is a web application inspired by Instagram built using Ruby on Rails
 and React.js. Pixor allows users to:
 
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
-
 - [ ] Create an account
 - [ ] Log in/out
 - [ ] Create, view, edit, and delete photos
@@ -18,9 +16,8 @@ and React.js. Pixor allows users to:
 - [ ] Search for users by username
 - [ ] Follow other users
 - [ ] View, favorite, and comment on photos posted by other users
-- [ ] Receive notifications about favorites and follows
+- [ ] Receive notifications about favorites, follows, and comments
 - [ ] Tag photos with multiple tags and search by tag
-- [ ] Apply filters to photos when posting
 
 ## Design Docs
 * [View Wireframes][view]
@@ -31,7 +28,7 @@ and React.js. Pixor allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Post Model and JSON API (1.5 days)
+### Phase 1: User Authentication, Post Model and JSON API (0.5 days)
 
 Phase 1 will consist of implementing user signup and authentication. On
 successful signup, the user will be redirected to a landing page that will
@@ -40,7 +37,7 @@ completed before working on any front-end work.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Post CRUD (2.5 days)
+### Phase 2: Flux Architecture and Post CRUD (2 days)
 
 In Phase 2, I will set up the React Router and the structure of the React
 components which will make up the view. In accordance with the Flux pattern, I
@@ -70,26 +67,27 @@ profile information.
 
 ### Phase 4: Comments and Favorites (1 day)
 
-Phase 4 will allow users to comment on and favorite posts.
+Phase 4 will allow users to comment on and favorite posts. For favorites,
+this will require a join table between posts and users with uniqueness
+constraints. For the comments, I will need to add a new inclusion for every
+post retrieval from the database.
 
 [Details][phase-four]
 
-### Phase 5: Notifications, Tags, and Filters (2 days)
+### Phase 5: Notifications and Tags (2 days)
 
 At the end of Phase 5, users will be able to add tags to posts as a means for
 searching. They will also receive notifications when other users follow them,
-favorite their posts, or comment on one of their posts. Users will also be
-able to add filters to their posts.
+favorite their posts, or comment on one of their posts.
 
 [Details][phase-five]
 
-### Phase 6: Styling and Seed Data (1 day)
+### Phase 6: Styling and Seed Data (1.5 day)
 
 Phase 6 will involve making the application look more presentable and adding
 seed data for the demo account.
 
 ### Bonus Features
-- [ ] Videos
 - [ ] Option to make account private
 - [ ] Allow users to tag other users in posts
 - [ ] Allow users to see who their biggest fan is

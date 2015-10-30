@@ -1,4 +1,4 @@
-# Phase 5: Notifications, Tags, and Filters (2 days)
+# Phase 5: Notifications and Tags (2 days)
 
 ## Rails
 ### Models
