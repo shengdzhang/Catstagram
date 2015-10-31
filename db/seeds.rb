@@ -1,6 +1,6 @@
 User.create!(username: "garrett", password: "password", profile_pic_url: "http://s3-us-west-1.amazonaws.com/witty-avatars/default-avatar-4-l.jpg", biography: "Eat. Sleep. Code. Repeat.")
 
-50.times do |i|
+25.times do |i|
   username = Faker::Internet.user_name
   password = "password"
   profile_pic_url = Faker::Avatar.image
@@ -8,28 +8,26 @@ User.create!(username: "garrett", password: "password", profile_pic_url: "http:/
   User.create!(username: username, password: password, profile_pic_url: profile_pic_url, biography: biography)
 end
 
-tags = %W(
-  lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat
-)
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v1444929498/jshbfink34zb4sd1tyvc.gif", user_id: 1, caption: "Hehehe she's so oblivious", created_at: Faker::Date.between(5.weeks.ago, Date.today))
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444929184/yh1fpamdk1xmrwcvppch.jpg", user_id: 1, caption: "Havasu trip, 2015. Can't wait to go back!", created_at: Faker::Date.between(5.weeks.ago, Date.today))
+Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444867356/pnwpzlvzpvut2ieydmf4.jpg", user_id: 1, caption: "Nebula", created_at: Faker::Date.between(5.weeks.ago, Date.today))
+
+tags = %W(photooftheday awesome cool photography 2k15 random interesting neat fun wow happiness joy life)
 
 tags.each do |name|
   Tag.create!(name: name)
 end
 
-Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v1444929498/jshbfink34zb4sd1tyvc.gif", user_id: 1, caption: "Hehehe she's so oblivious", created_at: Faker::Date.between(5.weeks.ago, Date.today))
-Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444929184/yh1fpamdk1xmrwcvppch.jpg", user_id: 1, caption: "Havasu trip, 2015. Can't wait to go back!", created_at: Faker::Date.between(5.weeks.ago, Date.today))
-Post.create!(media_url: "https://res.cloudinary.com/pixor/image/upload/v1444867356/pnwpzlvzpvut2ieydmf4.jpg", user_id: 1, caption: "Nebula", created_at: Faker::Date.between(5.weeks.ago, Date.today))
-
 3.times do |id|
   post = Post.find(id + 1)
-  num_comments = rand(20)
-  num_favorites = rand(40)
+  num_comments = rand(5)
+  num_favorites = rand(10)
   num_tags = rand(5)
-  user_ids = (1..50).to_a.shuffle
-  tag_ids = (1..36).to_a.shuffle
+  user_ids = (1..26).to_a.shuffle
+  tag_ids = (1..13).to_a.shuffle
   num_comments.times do
     body = Faker::Lorem.sentence(rand(6) + 1)
-    user_id = rand(50) + 1
+    user_id = rand(26) + 1
     post.comments.create!(body: body, user_id: user_id)
   end
   num_favorites.times do |i|
@@ -95,21 +93,21 @@ pictures = ["https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v14454516
   "https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v1446237289/hem9gfdggtfuvsx6zxx8.jpg",
   "https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v1446237410/s8gpb0wbpeupcuy8pvns.gif"]
 
-51.times do |i|
+26.times do |i|
   user = User.find(i+1)
-  10.times do
-    caption = Faker::Lorem.sentence(rand(10) + 1)
+  (rand(5) + 7).times do
+    caption = Faker::Lorem.sentence(rand(5) + 1)
     media_url = pictures.sample
     created_at = updated_at = Faker::Date.between(5.weeks.ago, Date.today)
     post = user.posts.create!(media_url: media_url, caption: caption, created_at: created_at, updated_at: updated_at)
-    num_comments = rand(20)
-    num_favorites = rand(40)
+    num_comments = rand(5)
+    num_favorites = rand(10)
     num_tags = rand(5)
-    user_ids = (1..50).to_a.shuffle
-    tag_ids = (1..36).to_a.shuffle
+    user_ids = (1..26).to_a.shuffle
+    tag_ids = (1..13).to_a.shuffle
     num_comments.times do
       body = Faker::Lorem.sentence(rand(6) + 1)
-      user_id = rand(50) + 1
+      user_id = rand(26) + 1
       post.comments.create!(body: body, user_id: user_id)
     end
     num_favorites.times do |j|
@@ -119,8 +117,8 @@ pictures = ["https://res.cloudinary.com/pixor/image/upload/h_600,w_600/v14454516
       post.taggings.create!(tag_id: tag_ids[k])
     end
   end
-  relationships_user_ids = (1..50).to_a.shuffle
-  rand(40).times do |l|
+  relationships_user_ids = (1..26).to_a.shuffle
+  (rand(10) + 10).times do |l|
     user.passive_relationships.create!(follower_id: relationships_user_ids[l]) if relationships_user_ids[l] != user.id
   end
 end
