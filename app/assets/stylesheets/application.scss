@@ -15,70 +15,13 @@ p {
   display: block;
 }
 
-nav {
-  max-height: 52px;
-  opacity: 0.95;
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.profile-items h4 {
-  text-align: center;
-  margin-top: 100px;
-}
-
-.navbar-brand {
-  font-family: Billabong;
-  font-size: 22px;
-}
-
-.navbar-right > li {
-  margin-left: 15px;
-}
-
-.feed-index {
-  width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.feed-items h4 {
-  text-align: center;
-}
-
-.auth-form, .welcome h1 {
-  display: none;
-}
-
-.auth-form, .settings-form {
-  width: 100%;
-  max-width: 400px;
-  margin: 50px auto;
-}
-
-.auth-form .jumbotron {
-  border-radius: 10px;
-}
-
-.auth-form, .auth-form .jumbotron, .welcome h1 {
-  opacity: .97;
-}
-
-.feed-index-item {
-  width: 100%;
-  max-width: 320px;
-  max-height: 400px;
-  margin: 20px;
-  float: left;
-}
-
-.welcome {
-  text-align: center;
-}
-
-.welcome h1 {
-  font-family: Billabong;
-  font-size: 70px;
-  color: #fff;
-  text-shadow: 4px 4px #000;
+textarea {
+  resize: none;
 }
 
 .page-header {
@@ -95,6 +38,142 @@ nav {
   padding: 30px;
 }
 
+body, .page-header {
+  background: aliceblue;
+}
+
+.list-group {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+// Navbar
+
+nav {
+  max-height: 52px;
+  opacity: 0.95;
+}
+
+.navbar-brand {
+  font-family: Billabong;
+  font-size: 22px;
+}
+
+.navbar-right > li {
+  margin-left: 15px;
+}
+
+#navbar-feed-separator {
+  margin-bottom: 70px;
+}
+
+nav .container-fluid {
+  max-width: 1000px;
+}
+
+.search {
+  width: 100%;
+  margin-top: 0px;
+  padding: 0px;
+}
+
+.results {
+  display: block
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 350px;
+  overflow-x: hidden;
+}
+
+.scrollable-menu::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+.scrollable-menu::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: lightgray;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.75);
+}
+
+.notifications-index-item:hover {
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+// Profile
+
+.profile-items h4 {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.profile-items, .tag-search-view-items {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-view-item img, .tag-search-view-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.profile-view-item, .tag-search-view-item {
+  width: 280px;
+  height: 280px;
+  padding: 0px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.profile-information {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+}
+
+.user-stats > div {
+  display: inline-block;
+  margin: 0px 20px;
+}
+
+.user-stats > div:not(:first-child):hover {
+  cursor: pointer;
+}
+
+.user-stats {
+  text-align: center;
+}
+
+.account-settings {
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+// Feed
+
+.feed-index {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.feed-items h4 {
+  text-align: center;
+}
+
 .feed-index-item .panel-body {
   padding: 0px;
   margin: 0px;
@@ -103,10 +182,6 @@ nav {
 
 .panel-heading > a {
   color: #fff;
-}
-
-.feed-index-item .panel-footer {
-  min-height: 30px;
 }
 
 .panel-footer {
@@ -153,11 +228,6 @@ nav {
   height: 320px;
 }
 
-a:hover {
-  cursor: pointer;
-  text-decoration: none;
-}
-
 .feed-index-item .panel-body .glyphicon {
   padding: 5px;
 }
@@ -170,31 +240,47 @@ a:hover {
   margin-right: 4px;
 }
 
-#navbar-feed-separator {
-  margin-bottom: 70px;
+.feed-index-item .panel-footer {
+  min-height: 30px;
 }
 
-nav .container-fluid {
-  max-width: 1000px;
-}
-
-.profile-items, .tag-search-view-items {
+.feed-index-item {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 320px;
+  max-height: 400px;
+  margin: 20px;
+  float: left;
 }
 
-.profile-view-item img, .tag-search-view-item img {
+// Log in/Sign in
+
+.auth-form, .welcome h1 {
+  display: none;
+}
+
+.auth-form, .settings-form {
   width: 100%;
-  border-radius: 5px;
+  max-width: 400px;
+  margin: 50px auto;
 }
 
-.profile-view-item, .tag-search-view-item {
-  width: 280px;
-  height: 280px;
-  padding: 0px;
-  margin: 10px;
-  border-radius: 5px;
+.auth-form .jumbotron {
+  border-radius: 10px;
+}
+
+.auth-form, .auth-form .jumbotron, .welcome h1 {
+  opacity: .97;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcome h1 {
+  font-family: Billabong;
+  font-size: 70px;
+  color: #fff;
+  text-shadow: 4px 4px #000;
 }
 
 .alert {
@@ -205,22 +291,17 @@ nav .container-fluid {
   border-color: #335877;
 }
 
-.profile-information {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+.background {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-size: cover;
 }
 
-.profile-pic {
-  width: 100px;
-  height: 100px;
-}
-
-.search {
-  width: 100%;
-  margin-top: 0px;
-  padding: 0px;
-}
+// Post detail
 
 .post-detail {
   width: 100%;
@@ -241,73 +322,6 @@ nav .container-fluid {
   margin-top: 3px;
 }
 
-body, .page-header {
-  background: aliceblue;
-}
-
-.user-stats > div {
-  display: inline-block;
-  margin: 0px 20px;
-}
-
-.user-stats > div:not(:first-child):hover {
-  cursor: pointer;
-}
-
-.user-stats {
-  text-align: center;
-}
-
-.background {
-  display: none;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  background-size: cover;
-}
-
-.results {
-  display: block
-}
-
-.account-settings {
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-  margin: 0px auto;
-  text-align: center;
-}
-
-.scrollable-menu {
-  height: auto;
-  max-height: 350px;
-  overflow-x: hidden;
-}
-
-.scrollable-menu::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 4px;
-}
-
-.scrollable-menu::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background-color: lightgray;
-  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.75);
-}
-
-.list-group {
-  width: 100%;
-  max-width: 600px;
-  margin: 0px auto;
-}
-
-.notifications-index-item:hover {
-  cursor: pointer;
-  background-color: #e7e7e7;
-}
-
 .view-post {
   margin-top: -5px;
 }
@@ -319,10 +333,6 @@ body, .page-header {
   padding-right: 15px;
 }
 
-.test {
-  position: relative;
-}
-
 .comment-form {
   position: absolute;
   right: 0px;
@@ -330,13 +340,3 @@ body, .page-header {
   top: 0px;
   left: 65px;
 }
-
-textarea {
-  resize: none;
-}
-
-// {
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-//   overflow: hidden;
-// }

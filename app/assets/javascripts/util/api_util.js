@@ -1,4 +1,5 @@
 var ApiUtil = {
+  // Posts
   createPost: function (postParams, callback) {
     $.ajax({
       url: 'api/posts',
@@ -9,67 +10,6 @@ var ApiUtil = {
         PostActions.receiveSinglePost(post);
         window.location.href = "#";
         callback(post);
-      }
-    });
-  },
-  addTagsToPost: function (postId, tags) {
-    $.ajax({
-      url: 'api/posts/' + postId + '/taggings',
-      type: 'DELETE',
-      dataType: 'json',
-      success: function () {
-        tags.split(" ").forEach(function (tag, index) {
-          $.ajax({
-            url: 'api/posts/' + postId + '/taggings',
-            type: 'POST',
-            data: { tag: tag },
-            dataType: 'json',
-            success: function () {
-              PostActions.receiveTags(postId, tags);
-            }
-          });
-        });
-      }
-    });
-  },
-  fetchNotificationsDropdown: function () {
-    $.ajax({
-      url: 'api/activity',
-      type: 'GET',
-      dataType: 'json',
-      success: function (notifications) {
-        NotificationActions.receiveNotificationDropdown(notifications);
-      }
-    });
-  },
-  fetchAllNotifications: function () {
-    $.ajax({
-      url: 'api/notifications',
-      type: 'GET',
-      dataType: 'json',
-      success: function (notifications) {
-        NotificationActions.receiveAllNotifications(notifications);
-      }
-    });
-  },
-  createNotification: function (notificationParams) {
-    $.ajax({
-      url: 'api/notifications',
-      type: 'POST',
-      data: { notification: notificationParams },
-      dataType: 'json',
-      success: function () {
-
-      }
-    });
-  },
-  markAllNotificationsAsRead: function () {
-    $.ajax({
-      url: 'api/readall',
-      type: 'PATCH',
-      dataType: 'json',
-      success: function () {
-        NotificationActions.markAllAsRead();
       }
     });
   },
@@ -117,6 +57,73 @@ var ApiUtil = {
       }
     });
   },
+
+  // Tags
+  addTagsToPost: function (postId, tags) {
+    $.ajax({
+      url: 'api/posts/' + postId + '/taggings',
+      type: 'DELETE',
+      dataType: 'json',
+      success: function () {
+        tags.split(" ").forEach(function (tag, index) {
+          $.ajax({
+            url: 'api/posts/' + postId + '/taggings',
+            type: 'POST',
+            data: { tag: tag },
+            dataType: 'json',
+            success: function () {
+              PostActions.receiveTags(postId, tags);
+            }
+          });
+        });
+      }
+    });
+  },
+
+  // Notifications
+  fetchNotificationsDropdown: function () {
+    $.ajax({
+      url: 'api/activity',
+      type: 'GET',
+      dataType: 'json',
+      success: function (notifications) {
+        NotificationActions.receiveNotificationDropdown(notifications);
+      }
+    });
+  },
+  fetchAllNotifications: function () {
+    $.ajax({
+      url: 'api/notifications',
+      type: 'GET',
+      dataType: 'json',
+      success: function (notifications) {
+        NotificationActions.receiveAllNotifications(notifications);
+      }
+    });
+  },
+  createNotification: function (notificationParams) {
+    $.ajax({
+      url: 'api/notifications',
+      type: 'POST',
+      data: { notification: notificationParams },
+      dataType: 'json',
+      success: function () {
+
+      }
+    });
+  },
+  markAllNotificationsAsRead: function () {
+    $.ajax({
+      url: 'api/readall',
+      type: 'PATCH',
+      dataType: 'json',
+      success: function () {
+        NotificationActions.markAllAsRead();
+      }
+    });
+  },
+
+  // Users
   fetchUser: function (userId) {
     $.ajax({
       url: 'api/users/' + userId,
@@ -145,6 +152,8 @@ var ApiUtil = {
       }
     });
   },
+
+  //Search
   fetchUserSearchResults: function (query) {
     $.ajax({
       url: 'api/users',
@@ -177,6 +186,8 @@ var ApiUtil = {
       }
     });
   },
+
+  // Toggles
   toggleFavorite: function (postId, favorited, callback) {
     var type = (favorited ? 'DELETE' : 'POST');
 
@@ -205,6 +216,8 @@ var ApiUtil = {
       }
     });
   },
+
+  //Comments
   createComment: function (postId, comment, callback) {
     $.ajax({
       url: 'api/posts/' + postId + '/comments',
@@ -232,6 +245,8 @@ var ApiUtil = {
       }.bind(this)
     });
   },
+
+  // Session
   logOut: function () {
     $.ajax({
       url: 'session',
