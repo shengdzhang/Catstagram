@@ -18,9 +18,11 @@ var NotificationsIndex = React.createClass({
     return (
       <ul className="list-group">
         {
+          this.state.notifications.length > 0 ?
           this.state.notifications.map(function (notification) {
             return <NotificationsIndexItem notification={notification} key={notification.id} />
-          })
+          }) :
+          <li className="list-group-item clearfix">You have no notifications.</li>
         }
       </ul>
     );
