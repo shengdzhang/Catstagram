@@ -1,0 +1,86 @@
+
+.auth-wrap {
+  padding-top: 135px;
+  display: none;
+}
+
+.displayed {
+  display: block;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.sign-head {
+  position: relative;
+  min-height: 379px;
+}
+
+.js-toggle-signin, .js-toggle-signup {
+  font-weight: bold;
+  cursor: pointer;
+  color: #0000FF;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  text-decoration: none;
+  color: #f00;
+}
+
+section.module h2 {
+  margin-bottom: 20px;
+  font-family: "Roboto Slab", serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+section.module p {
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+}
+
+section.module.content {
+  padding: 20px 0;
+  border-top: solid 1px #ccccff;
+  background-color: #FAFAE8;
+}
+
+section.module.parallax {
+  height: 640px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+section.module.parallax h2 {
+  font-family: "Roboto Slab", serif;
+  -webkit-text-stroke: 0px white;
+  color: #DDD;
+  font-size: 30px;
+  line-height: 600px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 3px 3px #000;
+}
+
+section.module.parallax-1 {
+  background-image: url("/assets/ocelot2.jpg");
+}
+
+.jumbotron {
+  padding: 30px;
+}

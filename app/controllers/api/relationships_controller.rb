@@ -12,4 +12,5 @@ class Api::RelationshipsController < ApplicationController
     current_user.unfollow!(user)
     render json: { following: current_user.following?(user) }
   end
+  
 end

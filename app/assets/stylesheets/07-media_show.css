@@ -1,0 +1,70 @@
+.media-show {
+  padding-top: 70px;
+}
+
+.media-show-img {
+  height: 350px;
+  width: 350px;
+  float: left;
+  border: 1px solid black;
+  border-radius: 5%;
+  margin-right: 15px;
+}
+
+.medium-detail-title, .medium-detail-time, .medium-detail-user, .medium-detail-description {
+  margin-top: 0px;
+}
+
+.medium-detail-time {
+  display: inline;
+}
+
+.medium-detail-likes > a {
+  font-size: 16px;
+  color: #0066ff;
+}
+
+.post-detail-comments-section {
+  height: 185px;
+  margin-bottom: 5px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.glyphicon-trash, .glyphicon-edit {
+  margin-right: 10px;
+}
+
+.medium-detail {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+.medium-detail-likes {
+  margin: 5px;
+  display: block;
+}
+
+.medium-detail-symbols .glyphicon {
+  padding: 5px;
+}
+
+.medium-detail-likes > a:first-child {
+  margin-top: 3px;
+}
+
+.title-form {
+  width: 540px;
+}
+
+.desc-form {
+  width: 95% !important;
+}
+
+.profile-no-media {
+  padding-top: 100px;
+  font-weight: bold;
+  font-size: 24px;
+}

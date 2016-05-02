@@ -1,34 +1,33 @@
-# Phase 3: Profile Views, Search, and Follows (2 days)
+# Phase 3: Comments (2 days)
 
 ## Rails
 ### Models
-* Relationship
+* Comments
 
 ### Controllers
-* RelationshipsController (create, destroy)
+* Api::CommentsController (create, destroy, update, index)
 
 ### Views
-* accounts/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* ProfileView
-  - ProfileViewItem
-  - ProfileInformation
-  - FollowButton
-* ProfileEditForm
+* CommentsIndex
+* CommentsForm
 * SearchIndex
-  - SearchIndexItem
 
 ### Stores
-* SearchItemStore
+* Comments
 
 ### Actions
-* ApiActions.deleteRelationship
-* ApiActions.receiveAllRelationshipsForUser
+* ApiActions.receiveAllComments
+* ApiActions.receiveSingleComment
+* ApiActions.deleteComment
 
 ### ApiUtil
-* ApiUtil.createRelationship
-* ApiUtil.destroyRelationship
+* ApiUtil.fetchAllComment
+* ApiUtil.fetchSingleComment
+* ApiUtil.createComment
+* ApiUtil.editComment
+* ApiUtil.destroyComment
 
 ## Gems/Libraries

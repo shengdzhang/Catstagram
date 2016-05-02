@@ -14,9 +14,9 @@ gem 'annotate'
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets'
 gem 'cloudinary'
-gem 'faker'
-gem 'newrelic_rpm'
 gem 'kaminari'
+gem 'seed_dump'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'

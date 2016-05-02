@@ -1,0 +1,79 @@
+.user-edit {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.user-edit-wrapper {
+    height: 380px;
+    margin:auto;
+    width: 600px;
+}
+
+.edit-form-wrap {
+  padding: 30px;
+  width: 35%;
+  float: left;
+  padding-right: 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #eee;
+}
+
+.edit-form-wrap > textarea {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.edit-password {
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  padding-left: 5px;
+  border-radius: 3px;
+}
+
+.profile-image-wrapper {
+  width: 55%;
+  float: right;
+  height: 100%;
+}
+
+.profile-image-wrapper > .profile-text {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.profile-image-wrapper > .profile-img {
+  width: 100%;
+  height: 80%;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.profile-image-wrapper > .profile-button-wrapper {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.edit-reset {
+  margin-left: 15px;
+}
+
+.edit-toggle-password {
+  margin: 5px;
+}
+
+.edit-no-pw {
+  display: block;
+  height: 228px;
+}
+
+.edit-no-pw-message {
+  padding-top: 70px;
+  font-size: 16px;
+}

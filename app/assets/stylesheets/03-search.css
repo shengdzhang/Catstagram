@@ -1,0 +1,89 @@
+#searchbar {
+  width: 210px;
+  margin-top: 12px;
+  position: relative;
+  cursor: default;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+#searchglass {
+  width: 10%;
+  float: left;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#searchbar > input {
+  width: 85%;
+  float: left;
+  text-align: center;
+  border: none;
+  padding-right: 30px;
+}
+
+#searchbar > input:hover {
+  cursor: text;
+}
+
+#searchbar > input:focus {
+  text-align: left;
+  outline: none;
+}
+
+.my-dropdown {
+  position: absolute;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 30px;
+  z-index: 1;
+  opacity: 0;
+  width: 220px;
+}
+
+.my-dropdown > li {
+  border: 1px solid #ccc;
+  color: #000;
+  background-color: #fff;
+  text-align: left;
+  padding-left: 10px;
+  width: 0px;
+  transition: 0.5s;
+  display: block;
+  cursor: default;
+}
+
+#searchbar>input:focus ~ .my-dropdown{
+    opacity: 1;
+    display: block;
+}
+
+#searchbar>input:focus ~ .my-dropdown >li{
+    width: 185px;
+}
+
+#searchbar>input:focus ~ .my-dropdown >li:hover{
+    display: block;
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.search-item {
+    max-height: 30px;
+}
+
+.search-pic {
+  max-height: 40px;
+  max-width: 40px;
+  border: 1px solid #eee;
+  border-radius: 1px;
+  margin-top: -6px;
+  float: left;
+}
+
+.search-name {
+  margin-left: 50px;
+  font-size: 20px;
+}

@@ -1,29 +1,33 @@
-# Phase 4: Comments and Favorites (1 day)
+## Phase 4: Notifications
 
 ## Rails
 ### Models
-  * Comment
-  * Favorite
+* Notifications
 
 ### Controllers
-  * CommentsController (create, destroy)
-  * FavoritesController (create, destroy)
+* Api::NotificationsController (create, index, show)
 
 ### Views
+* notifications/index.json.jbuilder
 
 ## Flux
 ### Views (React Components)
+* NotificationsIndex
+  - NotificationsIndexItem
+* NotificationsShow
+* NotificationsForm
 
 ### Stores
+* Notifications
 
 ### Actions
-  * ApiActions.deleteComment
-  * ApiActions.deleteFavorite
+* ApiActions.receiveAllNotifications
+* ApiActions.receiveSingleNotification
+* ApiActions.deleteNotification
 
 ### ApiUtil
-  * ApiUtil.createComment
-  * ApiUtil.destroyComment
-  * ApiUtil.createFavorite
-  * ApiUtil.destroyFavorite
+* ApiUtil.fetchAllNotifications
+* ApiUtil.fetchSingleNotifications
+* ApiUtil.createNotification
 
 ## Gems/Libraries

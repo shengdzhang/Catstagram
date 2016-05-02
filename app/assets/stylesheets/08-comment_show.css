@@ -1,0 +1,9 @@
+.nested-comments {
+  margin-left:5%;
+  width:95%;
+  margin-bottom: 0px !important;
+}
+
+.comment > p {
+  margin-bottom: 10px;
+}

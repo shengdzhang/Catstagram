@@ -4,10 +4,11 @@
 #
 #  id              :integer          not null, primary key
 #  username        :string           not null
+#  displayname     :string
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  profile_pic_url :string
-#  biography       :text
+#  description     :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -18,10 +19,10 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   default_scope { order('username ASC') }
 
-  has_many :posts, dependent: :destroy
+  has_many :media, dependent: :destroy
 
-  has_many :favorites, dependent: :destroy
-  has_many :favorited_posts, through: :favorites, source: :post
+  has_many :likes, dependent: :destroy
+  has_many :liked_media, through: :likes, source: :medium
 
   has_many :comments, dependent: :destroy
 
@@ -41,8 +42,6 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :passive_relationships
 
-  has_many :notifications, dependent: :destroy
-
   attr_reader :password
 
   after_initialize :ensure_session_token
@@ -54,17 +53,14 @@ class User < ActiveRecord::Base
     user if user.is_password?(password)
   end
 
-  def self.find_by_query(query)
-    return [] if query.empty?
-    User.where(["username LIKE ?", "%#{query.downcase}%"]).limit(10)
-  end
-
-  def generate_session_token
-    SecureRandom.urlsafe_base64(16)
+  def self.guest
+    user = User.find_by_username("guest")
+    user = User.create({username: "guest", displayname: "Guest", password: SecureRandom.urlsafe_base64(16).to_s, profile_pic_url: "http://res.cloudinary.com/catstagram/image/upload/v1445632575/Anonymous_denjpa.png"}) unless user
+    return user
   end
 
   def reset_session_token!
-    self.session_token = generate_session_token
+    self.session_token = SecureRandom.urlsafe_base64(16)
     self.save!
     self.session_token
   end
@@ -91,20 +87,14 @@ class User < ActiveRecord::Base
     self.followees.include?(user)
   end
 
-  def user_feed
-    following_ids = Relationship.select(:following_id).where(follower_id: self.id).map(&:following_id)
-    following_ids << self.id
-    Post.includes(:user, :likers, comments: [:user]).where(:user_id => following_ids)
-  end
-
   private
 
   def init
     self.username.downcase!
-    self.profile_pic_url ||= "http://s3-us-west-1.amazonaws.com/witty-avatars/default-avatar-#{(1..5).to_a.sample}-l.jpg"
+    self.profile_pic_url ||= "http://res.cloudinary.com/catstagram/image/upload/v1445632575/Anonymous_denjpa.png"
   end
 
   def ensure_session_token
-    self.session_token ||= generate_session_token
+    self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
 end

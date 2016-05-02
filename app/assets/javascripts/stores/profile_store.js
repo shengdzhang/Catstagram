@@ -1,4 +1,5 @@
-(function() {
+(function(root) {
+
   'use strict';
   var CHANGE_EVENT = "CHANGE_EVENT";
 
@@ -25,33 +26,39 @@
     ProfileStore.changed();
   }
 
-  window.ProfileStore = $.extend({}, EventEmitter.prototype, {
+  var ProfileStore = root.ProfileStore = $.extend({}, EventEmitter.prototype, {
+
     user: function () {
       return $.extend({}, _user);
     },
+
     following: function () {
       return _following;
     },
+
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
     },
+
     removeChangeListener: function (callback) {
       this.removeListener(CHANGE_EVENT, callback);
       _user = {};
       _following = false;
     },
+
     changed: function () {
       this.emit(CHANGE_EVENT);
     },
-    dispatcherId: AppDispatcher.register(function (action) {
-      switch (action.actionType) {
+
+    dispatcherId: AppDispatcher.register(function (payload) {
+      switch (payload.actionType) {
         case UserConstants.RECEIVED_USER:
-          resetUser(action.user);
+          resetUser(payload.user);
           break;
         case UserConstants.RECEIVED_FOLLOW_TOGGLE_REQUEST:
-          updateFollowStatus(action.status.following);
+          updateFollowStatus(payload.status.following);
           break;
       }
     })
   });
-}());
+}(this));

@@ -1,4 +1,4 @@
-# Phase 2: Flux Architecture and Post CRUD (2.5 days)
+# Phase 2: Flux Architecture and Media CRUD (3 days)
 
 ## Rails
 ### Models
@@ -9,23 +9,25 @@
 
 ## Flux
 ### Views (React Components)
-* FeedIndex
-  - FeedIndexItem
-* FeedForm
+* MediaIndex
+  - MediaIndexItem
+* MediaForm
 
 ### Stores
-* Post
+* Media
 
 ### Actions
-* ApiActions.receivePostsFromUser
-* ApiActions.deletePost
+* ApiActions.receiveAllMedia
+* ApiActions.receiveSingleMedia
+* ApiActions.deleteMedia
 
 ### ApiUtil
-* ApiUtil.createPost
-* ApiUtil.editPost
-* ApiUtil.destroyPost
+* ApiUtil.fetchAllMedia
+* ApiUtil.fetchSingleMedia
+* ApiUtil.createMedia
+* ApiUtil.editMedia
+* ApiUtil.destroyMedia
 
 ## Gems/Libraries
 * Flux Dispatcher
 * Twitter Bootstrap
-* Cloudinary

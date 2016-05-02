@@ -11,53 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022215329) do
+ActiveRecord::Schema.define(version: 20151019200146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text     "body",       null: false
-    t.integer  "user_id",    null: false
-    t.integer  "post_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "body",             null: false
+    t.integer  "user_id",          null: false
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer  "post_id",    null: false
+  create_table "likes", force: :cascade do |t|
+    t.integer  "medium_id",  null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "favorites", ["post_id", "user_id"], name: "index_favorites_on_post_id_and_user_id", unique: true, using: :btree
-  add_index "favorites", ["post_id"], name: "index_favorites_on_post_id", using: :btree
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+  add_index "likes", ["medium_id", "user_id"], name: "index_likes_on_medium_id_and_user_id", unique: true, using: :btree
+  add_index "likes", ["medium_id"], name: "index_likes_on_medium_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.string   "message",                    null: false
-    t.string   "href",                       null: false
-    t.boolean  "checked",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+  create_table "media", force: :cascade do |t|
+    t.string   "title",       null: false
+    t.text     "description"
+    t.integer  "user_id",     null: false
+    t.string   "media_url",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
-  create_table "posts", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.string   "media_url",  null: false
-    t.text     "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+  add_index "media", ["user_id"], name: "index_media_on_user_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id",  null: false
@@ -70,31 +61,13 @@ ActiveRecord::Schema.define(version: 20151022215329) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   add_index "relationships", ["following_id"], name: "index_relationships_on_following_id", using: :btree
 
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "post_id",    null: false
-    t.integer  "tag_id",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "taggings", ["post_id", "tag_id"], name: "index_taggings_on_post_id_and_tag_id", unique: true, using: :btree
-  add_index "taggings", ["post_id"], name: "index_taggings_on_post_id", using: :btree
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-
-  create_table "tags", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
+    t.string   "displayname"
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
     t.string   "profile_pic_url"
-    t.text     "biography"
+    t.text     "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

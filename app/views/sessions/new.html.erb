@@ -1,77 +1,87 @@
-<div class="background"/>
-<div class="welcome">
-  <h1>Welcome to Pixor!</h1>
-</div>
-<div class="auth-form">
-  <% if flash['errors'] %>
-    <% flash['errors'].each do |error| %>
-      <div class="alert alert-warning"><%= error %></div>
-    <% end %>
-  <% end %>
-  <div class="jumbotron box-shadow--16dp">
-    <h2>Sign In</h2>
 
-    <form class="form-group" action=<%= session_url %> method='POST'>
-      <%= auth_token %>
-      <input type="text" name="user[username]" class="form-control" id="username" placeholder="Username">
-      <br>
+<nav class="my-navbar">
+  <div class="container-fluid">
 
-      <input type="password" name="user[password]" class="form-control" id="password" placeholder="Password">
-      <br>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#collapse-menu"
+              aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
 
-      <button type="submit" class="btn btn-primary form-control">Sign In</button>
-    </form>
+    <div class="collapse navbar-collapse" id="collapse-menu">
+      <ul class="nav navbar-nav pull-right">
+        <li><a id="signinbtn" class="button btn btn-primary js-signin-modal-open">Sign In</a></li>
+        <li><a id="signupbtn" class="button btn btn-primary js-signup-modal-open">Sign Up</a></li>
+        <li>
+          <form action="<%= guest_session_url %>" method="post">
+            <%= auth_token %>
+            <input id="guestbtn" class="button btn btn-primary" type="submit" value="Guest"/>
+          </form>
+        </li>
+      </ul>
+    </div>
 
-    <p>New to Pixor? <%= link_to "Sign Up!", new_user_url %></p>
-    <p><a id="demo-link">Sign In as Demo</a></p>
+  </div>
+</nav>
+
+<section class="module content">
+  <div class="container">
+    <h2 class="row col-xs-12 text-center">Welcome to Catstagram!</h2>
+    <p class="text-center">This is a project inspired by Instagram. </p>
+  </div>
+</section>
+
+<section class="module parallax parallax-1">
+  <div class="container">
+    <h2>Created using Ruby on Rails and jReact.</h2>
+  </div>
+</section>
+
+<div class="auth-wrap sign-in displayed">
+  <div class="container">
+    <div class="auth-form col-xs-8 col-xs-offset-2">
+      <% if flash['errors'] %>
+        <% flash['errors'].each do |error| %>
+          <div class="alert alert-warning"><%= error %></div>
+        <% end %>
+      <% end %>
+
+      <div class="jumbotron sign-head sign-head col-xs-offset-3 col-xs-4">
+
+        <a href= "<%= new_user_url%>" class="modal-close">&times;</a>
+
+        <div class="row">
+
+            <h2 class="text-center">Sign In</h2>
+
+            <form class="form-group" action=<%= session_url %> method='POST'>
+              <%= auth_token %>
+              <input type="text" name="user[username]" class="form-control" id="username" placeholder="Username">
+              <br/>
+
+              <input type="password" name="user[password]" class="form-control" id="password" placeholder="Password">
+              <br/>
+
+              <p class="text-center">Or use the guest account.
+              <br/>
+              <br/>
+
+              <button type="submit" class="btn btn-primary form-control">Sign In</button>
+
+            </form>
+            <form action="<%= guest_session_url %>" method="post">
+              <%= auth_token %>
+              <input class="btn btn-primary form-control" type="submit" value="Guest"/>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(function() {
-    var bgArray = ["http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445321413/bg-01_zys0ug.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445321421/bg-02_ncjl3w.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322230/bg-03_wbpao0.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322238/bg-04_lsffvd.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445322685/bg-05_z9wtns.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445323082/bg-06_x8h2mo.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445324215/bg-07_kl76xh.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445360970/bg-08_sab4kg.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361374/bg-09_h3edcj.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361483/bg-10_brwiit.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445361878/bg-11_xlltvs.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362104/bg-12_okzbwo.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362313/bg-13_erximm.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362487/bg-14_idhfna.jpg",
-                   "http://res.cloudinary.com/pixor/image/upload/e_blur:400/v1445362668/bg-15_i3aq1d.jpg"
-                 ];
-    var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
-
-    $('.background').css('background-image', 'url("' + bg + '")');
-
-    if ($('.alert').length > 0) {
-      $('.background').show();
-      $('.welcome h1').show();
-      $('.auth-form').show();
-    } else {
-      $('.background').fadeIn(450, function () {
-        $('.welcome h1').fadeIn(600, function () {
-          $('.auth-form').fadeIn(600);
-        });
-      })
-    }
-
-    $('#demo-link').on('click', function () {
-      $("input:text").val("garrett");
-      $("input:password").val("password");
-      $.ajax({
-        url: '/session',
-        type: 'POST',
-        data: { user: { username: "garrett", password: "password" } },
-        success: function () {
-          window.location.href = "/";
-        }
-      })
-    });
-  });
-</script>

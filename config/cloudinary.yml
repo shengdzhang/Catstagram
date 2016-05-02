@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: pixor
-  api_key: '722574199445564'
-  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  cloud_name: catstagram
+  api_key: '139394879474972'
+  api_secret: KLAhzCQU1XUY4O7Es9zTKe6j-DM
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: pixor
-  api_key: '722574199445564'
-  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  cloud_name: catstagram
+  api_key: '139394879474972'
+  api_secret: KLAhzCQU1XUY4O7Es9zTKe6j-DM
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: pixor
-  api_key: '722574199445564'
-  api_secret: sYl2youEWVMyS9fXWacB5sWIhps
+  cloud_name: catstagram
+  api_key: '139394879474972'
+  api_secret: KLAhzCQU1XUY4O7Es9zTKe6j-DM
   enhance_image_tag: true
   static_image_support: false

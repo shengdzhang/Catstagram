@@ -15,13 +15,19 @@ class SessionsController < ApplicationController
       flash.now['errors'] = ['Invalid credentials, please try again']
       render :new
     else
-      log_in!(@user)
+      log_in(@user)
       redirect_to root_url
     end
   end
 
+  def guest
+    user = User.guest
+    log_in(user)
+    redirect_to root_url
+  end
+
   def destroy
-    current_user.reset_session_token! unless current_user.username == "garrett"
+    current_user.reset_session_token!
     session[:session_token] = nil
     render json: {}
   end

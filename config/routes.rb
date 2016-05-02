@@ -3,31 +3,27 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :new]
 
-  resource :session, only: [:create, :new, :destroy]
+  resource :session, only: [:new, :create, :destroy] do
+    member do
+      post :guest
+    end
+  end
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:index, :show, :update] do
-      get 'profile' => 'posts#profile_index'
+      get 'profile' => 'media#profile_index'
+      get 'activity' => 'users#index'
     end
 
     post 'follow/:id' => 'relationships#create'
     delete 'unfollow/:id' => 'relationships#destroy'
 
-    resources :posts, only: [:create, :index, :destroy, :update, :show] do
-      post 'togglefavorite' => 'favorites#create'
-      delete 'togglefavorite' => 'favorites#destroy'
-      resources :comments, only: [:create]
-      resources :taggings, only: [:create]
-      delete 'taggings' => 'taggings#destroy'
+    resources :media, only: [:create, :index, :destroy, :update, :show] do
+      post 'togglelike' => 'likes#create'
+      delete 'togglelike' => 'likes#destroy'
     end
 
-    resources :comments, only: [:destroy]
+    resources :comments, only: [:create, :destroy, :update, :show]
 
-    get 'tags/:name' => 'tags#show'
-    resources :tags, only: [:index]
-
-    resources :notifications, only: [:index, :create]
-    get 'activity' => 'notifications#dropdown'
-    patch 'readall' => 'notifications#read_all'
   end
 end

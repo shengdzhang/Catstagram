@@ -1,144 +1,93 @@
 var ApiUtil = {
-  // Posts
-  createPost: function (postParams, callback) {
+
+  // Media
+  createMedium: function (mediumParams) {
     $.ajax({
-      url: 'api/posts',
-      type: 'POST',
-      data: { post: postParams },
+      url: 'api/media',
+      method: 'POST',
+      data: { medium: mediumParams },
       dataType: 'json',
-      success: function (post) {
-        PostActions.receiveSinglePost(post);
-        window.location.href = "#";
-        callback(post);
+      success: function (medium) {
+        MediaActions.receiveSingleMedium(medium);
       }
     });
   },
-  fetchFeed: function (page) {
+
+  fetchSingleMedium: function (mediumId) {
     $.ajax({
-      url: 'api/posts',
-      type: 'GET',
+      url: 'api/media/' + mediumId,
+      method: 'GET',
       dataType: 'json',
-      data: { page: page },
-      success: function (posts) {
-        PostActions.receiveFeed(posts);
+      success: function (medium) {
+        MediaActions.receiveSingleMedium(medium);
       }
     });
   },
-  fetchSinglePost: function (postId) {
+
+  deleteMedium: function (mediumId, callback) {
     $.ajax({
-      url: 'api/posts/' + postId,
-      type: 'GET',
-      dataType: 'json',
-      success: function (post) {
-        PostActions.receiveSinglePost(post);
-      }
-    });
-  },
-  deletePost: function (postId, callback) {
-    $.ajax({
-      url: 'api/posts/' + postId,
-      type: 'DELETE',
+      url: 'api/media/' + mediumId,
+      method: 'DELETE',
       success: function () {
-        PostActions.deletedPost(postId);
+        MediaActions.deletedMedium(mediumId);
         if (callback) {
           callback();
         }
       }
     });
   },
-  updatePost: function (postId, postParams) {
-    $.ajax({
-      url: 'api/posts/' + postId,
-      type: 'PATCH',
-      data: { post: postParams },
-      dataType: 'json',
-      success: function (post) {
-        PostActions.receiveEditedPost(post);
-      }
-    });
-  },
 
-  // Tags
-  addTagsToPost: function (postId, tags) {
+  updateMedium: function (mediumId, mediumParams) {
     $.ajax({
-      url: 'api/posts/' + postId + '/taggings',
-      type: 'DELETE',
+      url: 'api/media/' + mediumId,
+      method: 'PATCH',
+      data: { medium: mediumParams },
       dataType: 'json',
-      success: function () {
-        tags.split(" ").forEach(function (tag, index) {
-          $.ajax({
-            url: 'api/posts/' + postId + '/taggings',
-            type: 'POST',
-            data: { tag: tag },
-            dataType: 'json',
-            success: function () {
-              PostActions.receiveTags(postId, tags);
-            }
-          });
-        });
-      }
-    });
-  },
-
-  // Notifications
-  fetchNotificationsDropdown: function () {
-    $.ajax({
-      url: 'api/activity',
-      type: 'GET',
-      dataType: 'json',
-      success: function (notifications) {
-        NotificationActions.receiveNotificationDropdown(notifications);
-      }
-    });
-  },
-  fetchAllNotifications: function () {
-    $.ajax({
-      url: 'api/notifications',
-      type: 'GET',
-      dataType: 'json',
-      success: function (notifications) {
-        NotificationActions.receiveAllNotifications(notifications);
-      }
-    });
-  },
-  createNotification: function (notificationParams) {
-    $.ajax({
-      url: 'api/notifications',
-      type: 'POST',
-      data: { notification: notificationParams },
-      dataType: 'json',
-      success: function () {
-
-      }
-    });
-  },
-  markAllNotificationsAsRead: function () {
-    $.ajax({
-      url: 'api/readall',
-      type: 'PATCH',
-      dataType: 'json',
-      success: function () {
-        NotificationActions.markAllAsRead();
+      success: function (medium) {
+        MediaActions.receiveEditedMedium(medium);
       }
     });
   },
 
   // Users
+
+  getUsers: function(){
+    $.ajax({
+      url: "api/users",
+      method: "GET",
+      success: function(users) {
+        UserActions.getAllUsers(users);
+      }
+    });
+  },
+
   fetchUser: function (userId) {
     $.ajax({
       url: 'api/users/' + userId,
-      type: 'GET',
+      method: 'GET',
       dataType: 'json',
       success: function (user) {
         UserActions.receiveUser(user);
       }
     });
   },
+
+  fetchMain: function (userId) {
+    $.ajax({
+      url: 'api/users/' + userId,
+      method: 'GET',
+      dataType: 'json',
+      success: function (user) {
+        UserActions.receiveMain(user);
+      }
+    });
+  },
+
   updateUser: function (userParams, callback) {
     $.ajax({
       url: 'api/users/' + window.CURRENT_USER_ID,
-      type: 'PATCH',
-      data: { user: userParams },
+      method: 'PATCH',
+      data: { user: userParams, type: "Update" },
       dataType: 'json',
       success: function (user) {
         if (callback) {
@@ -153,96 +102,119 @@ var ApiUtil = {
     });
   },
 
-  //Search
-  fetchUserSearchResults: function (query) {
+  editUser: function (userParams) {
     $.ajax({
-      url: 'api/users',
-      type: 'GET',
-      data: { query: query },
+      url: 'api/users/' + window.CURRENT_USER_ID,
+      method: 'PATCH',
+      data: { user: userParams, type: "Edit" },
       dataType: 'json',
-      success: function (results) {
-        SearchActions.receiveUserSearchResults(results);
-      }
-    });
-  },
-  fetchTagSearchResults: function (query) {
-    $.ajax({
-      url: 'api/tags',
-      type: 'GET',
-      data: { query: query },
-      dataType: 'json',
-      success: function (results) {
-        SearchActions.receiveTagSearchResults(results);
-      }
-    });
-  },
-  fetchTagSearchResultsPage: function (tag) {
-    $.ajax({
-      url: 'api/tags/' + tag,
-      type: 'GET',
-      dataType: 'json',
-      success: function (posts) {
-        SearchActions.receivePostsFromTagSearch(posts);
+      success: function (user) {
+        UserActions.receiveUser(user);
       }
     });
   },
 
   // Toggles
-  toggleFavorite: function (postId, favorited, callback) {
-    var type = (favorited ? 'DELETE' : 'POST');
+  toggleLike: function (mediumId, liked) {
+    var type = (liked ? 'DELETE' : 'POST');
 
     $.ajax({
-      url: 'api/posts/' + postId + '/togglefavorite',
-      type: type,
+      url: 'api/media/' + mediumId + '/togglelike',
+      method: type,
       dataType: 'json',
       success: function (status) {
-        PostActions.receiveToggledFavorite(postId, status);
-        callback(status);
+        MediaActions.receiveToggledLike(mediumId, status);
       }.bind(this)
     });
   },
-  toggleFollow: function (userId, following, callback) {
+
+  toggleFollow: function (userId, following) {
     var type = (following ? 'DELETE' : 'POST');
     var action = (following ? 'unfollow/' : 'follow/');
     var url = 'api/' + action + userId;
 
     $.ajax({
       url: url,
-      type: type,
+      method: type,
       dataType: 'json',
       success: function (status) {
         UserActions.receiveFollowToggleRequest(status);
-        callback(status);
       }
     });
   },
 
-  //Comments
-  createComment: function (postId, comment, callback) {
+  toggleMainFollow: function (userId, following) {
+    var type = (following ? 'DELETE' : 'POST');
+    var action = (following ? 'unfollow/' : 'follow/');
+    var url = 'api/' + action + userId;
+
     $.ajax({
-      url: 'api/posts/' + postId + '/comments',
-      type: 'POST',
-      data: { comment: comment },
+      url: url,
+      method: type,
+      dataType: 'json',
+      success: function (status) {
+        UserActions.receiveMainFollowToggleRequest(status, userId);
+      }
+    });
+  },
+
+
+  //Comments
+  createMediaComment: function (mediumId, comment) {
+    $.ajax({
+      url: 'api/comments',
+      method: 'POST',
+      data: {"type": "Medium", "type_id": mediumId, "body": comment},
       dataType: 'json',
       success: function (comment) {
-        PostActions.receiveComment(comment);
-        if (callback) {
-          callback(comment);
-        }
+        MediaActions.receiveComment(comment);
       }.bind(this)
     });
   },
-  deleteComment: function (postId, commentId, callback) {
+
+  createNestedComment: function(commentId, comment){
+    $.ajax ({
+      url: "/api/comments",
+      method: "POST",
+      data: {"type": "Comment", "type_id": commentId, "body": comment},
+      datatype: "JSON",
+      success: function (comment) {
+        CommentActions.createComment(comment);
+      }.bind(this)
+    });
+  },
+
+  deleteComment: function (commentId) {
     $.ajax({
       url: 'api/comments/' + commentId,
-      type: 'DELETE',
+      method: 'DELETE',
       dataType: 'json',
-      success: function () {
-        PostActions.deleteComment(postId, commentId);
-        if (callback) {
-          callback();
-        }
+      success: function (comment) {
+        CommentActions.deleteComment(comment);
       }.bind(this)
+    });
+  },
+
+  fetchComment: function(id) {
+    $.ajax ({
+      url: "/api/comments/" +id,
+      method: "GET",
+      datatype: "JSON",
+      success: function (comment) {
+        CommentActions.createComment(comment);
+      }
+    });
+  },
+
+  updateComment: function (id, text) {
+    $.ajax ({
+      url: "/api/comments/" +id,
+      method: "PATCH",
+      data: {"body": text},
+      datatype: "JSON",
+      success: function (comment) {
+        CommentActions.updateComment(comment);
+      }
     });
   },
 
@@ -250,7 +222,7 @@ var ApiUtil = {
   logOut: function () {
     $.ajax({
       url: 'session',
-      type: 'DELETE',
+      method: 'DELETE',
       success: function () {
         window.location.href = "/";
       }

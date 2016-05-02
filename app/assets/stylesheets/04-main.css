@@ -1,0 +1,114 @@
+.main-msg {
+  font-size: 30px;
+}
+
+.main-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-name-wrapper {
+  display: block;
+  max-width: 300px;
+  margin-top: 10px;
+}
+
+.main-img {
+  width: 30%;
+  float: left;
+  height: 30%;
+  margin: 1%;
+  margin-top: 15px;
+  border: 1px solid #000;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.main-pic {
+  max-height: 40px;
+  max-width: 40px;
+  border: 1px solid #eee;
+  border-radius: 1px;
+  margin-top: -6px;
+  margin-right: 15px;
+}
+
+.follow {
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 1%;
+  outline: none;
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  line-height: 0px;
+  box-sizing: border-box;
+}
+
+.follow:hover {
+  cursor: pointer;
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.unfollow {
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 1%;
+  outline: none;
+  background-color: green;
+  background: #34d94a;
+  background-image: -webkit-linear-gradient(top, #34d94a, #2bb86f);
+  background-image: -moz-linear-gradient(top, #34d94a, #2bb86f);
+  background-image: -ms-linear-gradient(top, #34d94a, #2bb86f);
+  background-image: -o-linear-gradient(top, #34d94a, #2bb86f);
+  background-image: linear-gradient(to bottom, #34d94a, #2bb86f);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  line-height: 0px;
+  box-sizing: border-box;
+}
+
+.unfollow:hover {
+  cursor: pointer;
+  background: #3cfc99;
+  background-image: -webkit-linear-gradient(top, #3cfc99, #34d955);
+  background-image: -moz-linear-gradient(top, #3cfc99, #34d955);
+  background-image: -ms-linear-gradient(top, #3cfc99, #34d955);
+  background-image: -o-linear-gradient(top, #3cfc99, #34d955);
+  background-image: linear-gradient(to bottom, #3cfc99, #34d955);
+  text-decoration: none;
+}
+
+.main-follow-btn {
+  margin-top: -33px;
+}

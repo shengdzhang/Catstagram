@@ -1,62 +1,77 @@
 var Navbar = React.createClass({
-  getInitialState: function () {
-    return { notifications: [] };
-  },
+
+  mixins: [ReactRouter.History],
+
   componentDidMount: function () {
-    NotificationStore.addChangeListener(this._onChange);
-    ApiUtil.fetchNotificationsDropdown();
-    setInterval(ApiUtil.fetchNotificationsDropdown, 5000);
+    ApiUtil.getUsers();
   },
-  markAllNotificationsAsRead: function () {
-    ApiUtil.markAllNotificationsAsRead();
+
+  handleProfile: function () {
+    var url = "users/" + window.CURRENT_USER_ID;
+    this.history.pushState(null, url);
   },
-  logOut: function () {
+
+  handleSettings: function () {
+    var url = "settings";
+    this.history.pushState(null, url);
+  },
+
+  handleUpload: function () {
+    var url = "media/upload";
+    this.history.pushState(null, url);
+  },
+
+  handleLogOut: function () {
     ApiUtil.logOut();
   },
-  _onChange: function () {
-    this.setState({ notifications: NotificationStore.all() });
+
+  home: function () {
+    var url = "#";
+    this.history.pushState(null, url);
   },
+
+  about: function () {
+    var followers ='<div className="nav-dialog-about"> Hello. This is a full stack website designed using Ruby on Rails and jReact. It is used purely for educational/presentation purposes. Images are from google and I do not own any of them. </div> <br/> <div>Sheng Da Zhang<div>';
+
+    BootstrapDialog.show({
+      title: "About",
+      message: followers
+    });
+  },
+
   render: function () {
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="my-navbar">
         <div className="container-fluid">
+
           <div className="navbar-header">
-            <a className="navbar-brand" href="#">Pixor</a>
+            <a className="navbar-logo" onClick={this.home}>Catstagram</a>
           </div>
+
+          <div className="navbar-about">
+            <a onClick={this.about}>About</a>
+          </div>
+
           <div className="collapse navbar-collapse">
+
             <ul className="nav navbar-nav navbar-right">
-              <li>
-                <form className="navbar-form search-form">
-                  <SearchIndex />
-                </form>
+              <li className="nav-center">
+                <Search />
               </li>
-              <li className="dropdown" role="presentation">
-                <a className="dropdown-toggle" data-toggle="dropdown"
-                   role="button" aria-haspopup="true" aria-expanded="false"
-                   onClick={this.markAllNotificationsAsRead}>
-                   Activity {NotificationStore.numUnread() > 0 ? <span className="badge">{NotificationStore.numUnread()}</span> : ""}
-                </a>
-                <ul className="dropdown-menu scrollable-menu">
-                  <li><a href="#/notifications">View All Notifications</a></li>
-                  {
-                    this.state.notifications.map(function (notification) {
-                      return <Notification notification={notification} key={notification.id} />
-                    })
-                  }
-                </ul>
-              </li>
-              <li><a href="#/posts/upload" className="glyphicon glyphicon-camera"></a></li>
-              <li className="dropdown">
-                <a className="dropdown-toggle" data-toggle="dropdown"
-                   role="button" aria-haspopup="true" aria-expanded="false">
-                    {window.CURRENT_USER_USERNAME} <span className="caret"></span>
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a href={"#/users/" + window.CURRENT_USER_ID}>Profile</a></li>
-                  <li><a href="#/settings">Account Settings</a></li>
-                  <li role="separator" className="divider"></li>
-                  <li><a onClick={this.logOut}>Log out</a></li>
-                </ul>
+
+              <li className="profile-wrapper">
+                <strong>
+                  {window.CURRENT_USER_USERNAME} <span className="caret"></span>
+                </strong>
+
+                <div className="profile-content">
+                  <ul className="list-group">
+                    <li className="list-group-item" onClick={this.handleProfile}>Profile</li>
+                    <li className="list-group-item" onClick={this.handleSettings}>Settings</li>
+                    <li className="list-group-item" onClick={this.handleUpload}>Upload</li>
+                    <li className="list-group-item" onClick={this.handleLogOut}>Logout</li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>

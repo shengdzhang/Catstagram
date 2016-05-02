@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: Pixor_development
+  database: cats4_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: Pixor_test
+  database: cats4_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: Pixor_production
-  username: Pixor
-  password: <%= ENV['PIXOR_DATABASE_PASSWORD'] %>
+  database: cats4_production
+  username: CATST
+  password: <%= ENV['CATS_DATABASE_PASSWORD'] %>

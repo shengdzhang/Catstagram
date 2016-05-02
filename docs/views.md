@@ -6,25 +6,26 @@
 ## New Session
 ![new-session]
 
-## FeedIndex / FeedIndexItem
-![feed]
+## User Index
+![root]
 
-## FeedForm
-![feed-form]
+## Media/Comments
+![comments]
 
-## ProfileView / ProfileViewItem / ProfileInformation
-![profile-view]
+## Media
+![media-form]
 
-## ProfileEditForm
-![profile-edit-form]
+## User Show
+![user-show]
 
 ## Component Heirarchy
 ![component-heirarchy]
 
-[new-user]: ./wireframes/SignUp.png
-[new-session]: ./wireframes/SignIn.png
-[feed]: ./wireframes/Feed.png
-[feed-form]: ./wireframes/FeedForm.png
-[profile-view]: ./wireframes/Profile.png
-[component-heirarchy]: ./wireframes/ComponentHierarchy.png
-[profile-edit-form]: ./wireframes/ProfileEditForm.png
+
+[new-user]: ./wireframes/new_user.png
+[new-session]: ./wireframes/new_session.png
+[root]: ./wireframes/root_user.png
+[comments]: ./wireframes/media_show.png
+[media-form]: ./wireframes/media_form.png
+[component-heirarchy]: ./wireframes/component_heirarchy.png
+[user-show]: ./wireframes/user_show.png

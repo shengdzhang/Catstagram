@@ -1,2 +1,3 @@
-json.extract! @comment, :id, :body, :user_id, :post_id
-json.posted_by current_user.username
+json.extract! @comment, :id, :body, :user_id, :commentable_id, :commentable_type
+json.posted_by current_user.displayname
+json.comments @comment.comments
