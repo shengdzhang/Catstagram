@@ -35,8 +35,8 @@ var MediaForm = React.createClass ({
   handleLink: function (e) {
     e.preventDefault();
     var options = {
-                    upload_preset: 'lg2jfbk8',
-                    cloud_name: 'catstagram',
+                    upload_preset: window.cloudinary_upload_preset,
+                    cloud_name: window.cloudinary_cloud_name,
                     theme: 'minimal',
                     cropping: 'server',
                     cropping_aspect_ratio: 1,
