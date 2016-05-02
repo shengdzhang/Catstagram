@@ -41,9 +41,11 @@
 
     all: function () {
       var users = _users.slice();
-      users.splice(UserStore.findGuest(users),1);
       var current = UserStore.findUser(CURRENT_USER_ID, users);
       users.splice(current, 1);
+      if (UserStore.findGuest(users) !== undefined) {
+        users.splice(UserStore.findGuest(users),1);
+      }
       return users;
     },
 
