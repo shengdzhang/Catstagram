@@ -84,3 +84,7 @@ section.module.parallax-1 {
 .jumbotron {
   padding: 30px;
 }
+
+.col-xs-offset-2 {
+  margin-right: 16.7%;
+}
