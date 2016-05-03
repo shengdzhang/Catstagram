@@ -11,4 +11,16 @@ Utilizes Cloudinary API for upload and cloud storage of image and videos.
 
 Sample Images:
 
-![ScreenShot](http://res.cloudinary.com/catstagram/image/upload/v1462232423/dp4udbaiz6oz1u5bqusf.png)
+Log-in Page:
+![ScreenShot](http://res.cloudinary.com/catstagram/image/upload/c_scale,w_606/v1462234197/Sign-in_ykw4lm.png)
+
+Index-Page:
+
+User-Profile-Page:
+
+Media-Details-Page:
+
+Upload-Images/Media:
+
+User-Settings:
+
