@@ -11,4 +11,4 @@ Utilizes Cloudinary API for upload and cloud storage of image and videos.
 
 Sample Images:
 
-![ScreenShot](https://raw.github.com/shengdzhang/Catstagram/master/app/assets/imgaes/favicon.ico)
+![ScreenShot](http://res.cloudinary.com/catstagram/image/upload/v1462232423/dp4udbaiz6oz1u5bqusf.png)
