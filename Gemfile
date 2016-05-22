@@ -17,6 +17,7 @@ gem 'cloudinary'
 gem 'kaminari'
 gem 'seed_dump'
 gem 'figaro'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug'
